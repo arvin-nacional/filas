@@ -7,7 +7,10 @@ const defaultOpenGraph: Metadata['openGraph'] = {
     'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
   images: [
     {
-      url: `${getServerSideURL()}/filas-logo.jpg`,
+      url: `${getServerSideURL()}/filas-social-share.png`,
+      width: 1024,
+      height: 537,
+      type: 'image/png',
       alt: 'FILAS',
     },
   ],

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description:
       'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
     siteName: 'FILAS',
-    images: [{ url: '/filas-logo.jpg', width: 2000, height: 2000, alt: 'FILAS' }],
+    images: [{ url: '/filas-social-share.png', width: 1024, height: 537, alt: 'FILAS' }],
     url: '/',
   }),
   twitter: {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'FILAS - First to Execute. Last to See Things Through.',
     description:
       'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
-    images: ['/filas-logo.jpg'],
+    images: ['/filas-social-share.png'],
   },
 }
 

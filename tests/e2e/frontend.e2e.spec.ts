@@ -21,6 +21,17 @@ test.describe('Frontend', () => {
       'content',
       siteDescription,
     )
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+      'content',
+      /^https?:\/\/[^/]+\/filas-social-share\.png$/,
+    )
+    await expect(page.locator('meta[name="twitter:image"]')).toHaveAttribute(
+      'content',
+      /^https?:\/\/[^/]+\/filas-social-share\.png$/,
+    )
+    const shareImage = await page.request.get('http://localhost:3000/filas-social-share.png')
+    expect(shareImage.ok()).toBeTruthy()
+    expect(shareImage.headers()['content-type']).toContain('image/png')
     const heading = page.locator('h1').first()
     await expect(heading).toHaveText('Coming soon.')
     const logo = page.getByRole('img', { name: 'FILAS', exact: true })
