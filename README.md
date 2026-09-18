@@ -1,6 +1,6 @@
-# Payload Website Template
+# FILAS - First to Execute. Last to See Things Through.
 
-This is the official [Payload Website Template](https://github.com/payloadcms/payload/blob/3.x/templates/website). Use it to power websites, blogs, or portfolios from small to enterprise. This repo includes a fully-working backend, enterprise-grade admin panel, and a beautifully designed, production-ready website.
+The FILAS website is built with Payload CMS and Next.js, based on the official [Payload website template](https://github.com/payloadcms/payload/blob/3.x/templates/website).
 
 This template is right for you if you are working on:
 

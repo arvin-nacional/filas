@@ -2,6 +2,16 @@ import { test, expect, Page } from '@playwright/test'
 import { login } from '../helpers/login'
 import { seedTestUser, cleanupTestUser, testUser } from '../helpers/seedUser'
 
+test('shows the FILAS logo on login', async ({ page }) => {
+  await page.goto('http://localhost:3000/admin/login')
+  const logo = page.getByRole('img', { name: 'FILAS', exact: true })
+  await expect(logo).toBeVisible()
+  await expect(logo).toHaveAttribute('src', '/filas-logo.jpg')
+  await expect
+    .poll(() => logo.evaluate((image: HTMLImageElement) => image.naturalWidth))
+    .toBeGreaterThan(0)
+})
+
 test.describe('Admin Panel', () => {
   let page: Page
 

@@ -5,19 +5,22 @@ import { comingSoonDefaults } from '@/blocks/ComingSoon/defaults'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 
 export const metadata: Metadata = {
-  title: 'FILAS — Coming Soon',
-  description: comingSoonDefaults.description,
+  title: 'FILAS - First to Execute. Last to See Things Through.',
+  description:
+    'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
   openGraph: mergeOpenGraph({
-    title: 'FILAS — Coming Soon',
-    description: comingSoonDefaults.description,
+    title: 'FILAS - First to Execute. Last to See Things Through.',
+    description:
+      'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
     siteName: 'FILAS',
     images: [{ url: '/filas-logo.jpg', width: 2000, height: 2000, alt: 'FILAS' }],
     url: '/',
   }),
   twitter: {
     card: 'summary_large_image',
-    title: 'FILAS — Coming Soon',
-    description: comingSoonDefaults.description,
+    title: 'FILAS - First to Execute. Last to See Things Through.',
+    description:
+      'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
     images: ['/filas-logo.jpg'],
   },
 }

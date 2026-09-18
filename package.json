@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "filas",
   "version": "1.0.0",
-  "description": "Website template for Payload",
+  "description": "FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.",
   "license": "MIT",
   "type": "module",
   "scripts": {
