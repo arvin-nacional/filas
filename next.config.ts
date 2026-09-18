@@ -20,6 +20,10 @@ const nextConfig: NextConfig = {
   images: {
     localPatterns: [
       {
+        pathname: '/filas-logo.jpg',
+        search: '',
+      },
+      {
         pathname: '/api/media/file/**',
       },
     ],

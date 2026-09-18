@@ -12,6 +12,7 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { SiteChrome } from '@/components/SiteChrome'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -65,19 +66,22 @@ export default async function Page({ params: paramsPromise }: Args) {
   }
 
   const { hero, layout } = page
+  const isComingSoon = layout.length === 1 && layout[0].blockType === 'comingSoon'
 
-  return (
-    <article className="pt-16 pb-24">
+  const content = (
+    <main className={isComingSoon ? undefined : 'pt-16 pb-24'}>
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
-      <RenderHero {...hero} />
+      {!isComingSoon && <RenderHero {...hero} />}
       <RenderBlocks blocks={layout} />
-    </article>
+    </main>
   )
+
+  return isComingSoon ? content : <SiteChrome>{content}</SiteChrome>
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
