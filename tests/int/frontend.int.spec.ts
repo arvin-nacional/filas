@@ -37,7 +37,7 @@ describe('Low Impact hero', () => {
 
   it('preserves supplied hero content', () => {
     const html = renderToStaticMarkup(
-      createElement(LowImpactHero, { children: createElement('h1', null, 'Page heading') }),
+      createElement(LowImpactHero, null, createElement('h1', null, 'Page heading')),
     )
     expect(html).toContain('<h1>Page heading</h1>')
   })

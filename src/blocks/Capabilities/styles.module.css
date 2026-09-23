@@ -1,0 +1,232 @@
+.container {
+  width: min(100% - 112px, 1280px);
+  margin-inline: auto;
+}
+.hero,
+.section {
+  color: var(--filas-ink);
+  background: var(--filas-paper);
+  scroll-margin-top: 110px;
+}
+.hero {
+  padding: clamp(70px, 8vw, 120px) 0 0;
+}
+.eyebrow {
+  margin: 0 0 30px;
+  font:
+    11px/1.7 var(--font-geist-mono),
+    monospace;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--filas-accent-text);
+}
+.hero h1 {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 98px);
+  line-height: 1.07;
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+.hero h1 span {
+  color: var(--filas-accent-text);
+}
+.heroDescription {
+  max-width: 590px;
+  margin: 32px 0 64px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--filas-muted);
+}
+.jumpLinks {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--filas-line);
+  border-bottom: 1px solid var(--filas-line);
+}
+.jumpLinks a {
+  display: grid;
+  grid-template-columns: 1fr 20px;
+  gap: 15px;
+  padding: 26px 20px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--filas-ink);
+  text-decoration: none;
+  border-right: 1px solid var(--filas-line);
+}
+.jumpLinks a:first-child {
+  padding-left: 0;
+}
+.jumpLinks a:last-child {
+  border-right: 0;
+}
+.jumpLinks a:hover {
+  color: var(--filas-accent-text);
+  background: var(--filas-surface);
+}
+.jumpLinks a:focus-visible {
+  outline: 2px solid var(--filas-accent-text);
+  outline-offset: -3px;
+}
+.number {
+  color: var(--filas-accent-text);
+  font:
+    12px/1.5 var(--font-geist-mono),
+    monospace;
+}
+.jumpLinks .number {
+  grid-column: 1 / -1;
+}
+.jumpLinks svg {
+  align-self: center;
+}
+.section {
+  padding: 110px 0;
+}
+.surface {
+  background: var(--filas-surface);
+}
+.detailGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+}
+.heading {
+  max-width: 760px;
+  margin: 0;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 500;
+  line-height: 1.14;
+  letter-spacing: -0.045em;
+  white-space: pre-line;
+  text-wrap: balance;
+}
+.description {
+  max-width: 540px;
+  margin: 25px 0 0;
+  color: var(--filas-muted);
+  font-size: 17px;
+  line-height: 1.85;
+}
+.services {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.services li {
+  padding: 24px 0;
+  border-top: 1px solid var(--filas-line);
+}
+.services li:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.services li:last-child {
+  padding-bottom: 0;
+}
+.services h3,
+.connections h3 {
+  margin: 0 0 12px;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+}
+.services p,
+.connections p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--filas-muted);
+}
+.connected {
+  color: var(--filas-paper);
+  background: var(--filas-ink);
+}
+.connected .eyebrow,
+.connected .number {
+  color: #e6a48a;
+}
+.connected .description,
+.connections p {
+  color: #c8c4bd;
+}
+.connections {
+  margin: 60px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px;
+}
+.connections li {
+  border-top: 1px solid #4b4843;
+  padding-top: 24px;
+}
+.connections h3 {
+  margin-top: 26px;
+}
+@media (max-width: 1000px) {
+  .container {
+    width: calc(100% - 64px);
+  }
+  .section {
+    padding: 80px 0;
+  }
+  .detailGrid {
+    gap: 44px;
+  }
+  .jumpLinks {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .jumpLinks a:nth-child(2) {
+    border-right: 0;
+  }
+  .jumpLinks a:nth-child(n + 3) {
+    border-top: 1px solid var(--filas-line);
+  }
+  .jumpLinks a:nth-child(3) {
+    padding-left: 0;
+  }
+  .connections {
+    gap: 26px;
+  }
+}
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+  .hero {
+    padding-top: 64px;
+  }
+  .hero h1 {
+    font-size: clamp(40px, 10.5vw, 62px);
+  }
+  .heroDescription {
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    margin-bottom: 24px;
+  }
+  .jumpLinks a {
+    font-size: 13px;
+    padding: 20px 12px;
+    gap: 12px;
+  }
+  .section {
+    padding: 64px 0;
+  }
+  .detailGrid,
+  .connections {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .heading {
+    font-size: 36px;
+  }
+  .connections {
+    margin-top: 40px;
+  }
+}

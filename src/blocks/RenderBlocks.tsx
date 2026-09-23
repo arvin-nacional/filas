@@ -9,9 +9,13 @@ import { ComingSoonBlock } from '@/blocks/ComingSoon/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { homepageComponents } from '@/blocks/Homepage/Components'
+import { aboutComponents } from '@/blocks/About/Components'
+import { capabilitiesComponents } from '@/blocks/Capabilities/Components'
 
 const blockComponents = {
   ...homepageComponents,
+  ...aboutComponents,
+  ...capabilitiesComponents,
   archive: ArchiveBlock,
   content: ContentBlock,
   comingSoon: ComingSoonBlock,

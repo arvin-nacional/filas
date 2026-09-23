@@ -209,6 +209,14 @@ export interface Page {
     | AudienceBlock
     | ClientLogosBlock
     | ContactInvitationBlock
+    | AboutHeroBlock
+    | CompanyStoryBlock
+    | PurposeBlock
+    | ValuesBlock
+    | LeadershipBlock
+    | CapabilitiesHeroBlock
+    | CapabilityDetailBlock
+    | ConnectedCapabilitiesBlock
     | ComingSoonBlock
     | CallToActionBlock
     | ContentBlock
@@ -618,6 +626,178 @@ export interface ContactInvitationBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactInvitation';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutHeroBlock".
+ */
+export interface AboutHeroBlock {
+  eyebrow: string;
+  heading: string;
+  emphasis: string;
+  description: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'aboutHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyStoryBlock".
+ */
+export interface CompanyStoryBlock {
+  /**
+   * Use a unique lowercase section name for links, such as our-people.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  paragraphs: {
+    text: string;
+    id?: string | null;
+  }[];
+  statement: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'companyStory';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PurposeBlock".
+ */
+export interface PurposeBlock {
+  /**
+   * Use a unique lowercase section name for links, such as our-people.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  missionLabel: string;
+  /**
+   * Suggested draft copy. Replace with the approved FILAS mission before launch.
+   */
+  mission: string;
+  visionLabel: string;
+  /**
+   * Suggested draft copy. Replace with the approved FILAS vision before launch.
+   */
+  vision: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'purpose';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValuesBlock".
+ */
+export interface ValuesBlock {
+  /**
+   * Use a unique lowercase section name for links, such as our-people.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  values: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'values';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LeadershipBlock".
+ */
+export interface LeadershipBlock {
+  /**
+   * Use a unique lowercase section name for links, such as our-people.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  /**
+   * Reorder people here. Photos and biographies are optional; add supplied content when available.
+   */
+  people: {
+    name: string;
+    role: string;
+    photo?: (string | null) | Media;
+    biography?: string | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'leadership';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CapabilitiesHeroBlock".
+ */
+export interface CapabilitiesHeroBlock {
+  eyebrow: string;
+  heading: string;
+  emphasis: string;
+  description: string;
+  navigationLabel: string;
+  links: {
+    label: string;
+    /**
+     * Use a unique lowercase section name. Match the hero jump link to this value.
+     */
+    anchorId: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'capabilitiesHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CapabilityDetailBlock".
+ */
+export interface CapabilityDetailBlock {
+  /**
+   * Use a unique lowercase section name. Match the hero jump link to this value.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  tone: 'paper' | 'surface';
+  /**
+   * Add one block per capability group, with its own heading, section anchor, and services.
+   */
+  services: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'capabilityDetail';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConnectedCapabilitiesBlock".
+ */
+export interface ConnectedCapabilitiesBlock {
+  /**
+   * Use a unique lowercase section name. Match the hero jump link to this value.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  connections: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'connectedCapabilities';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1279,6 +1459,14 @@ export interface PagesSelect<T extends boolean = true> {
         audience?: T | AudienceBlockSelect<T>;
         clientLogos?: T | ClientLogosBlockSelect<T>;
         contactInvitation?: T | ContactInvitationBlockSelect<T>;
+        aboutHero?: T | AboutHeroBlockSelect<T>;
+        companyStory?: T | CompanyStoryBlockSelect<T>;
+        purpose?: T | PurposeBlockSelect<T>;
+        values?: T | ValuesBlockSelect<T>;
+        leadership?: T | LeadershipBlockSelect<T>;
+        capabilitiesHero?: T | CapabilitiesHeroBlockSelect<T>;
+        capabilityDetail?: T | CapabilityDetailBlockSelect<T>;
+        connectedCapabilities?: T | ConnectedCapabilitiesBlockSelect<T>;
         comingSoon?: T | ComingSoonBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
@@ -1440,6 +1628,149 @@ export interface ContactInvitationBlockSelect<T extends boolean = true> {
         url?: T;
       };
   note?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutHeroBlock_select".
+ */
+export interface AboutHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  emphasis?: T;
+  description?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CompanyStoryBlock_select".
+ */
+export interface CompanyStoryBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  paragraphs?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  statement?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PurposeBlock_select".
+ */
+export interface PurposeBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  missionLabel?: T;
+  mission?: T;
+  visionLabel?: T;
+  vision?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ValuesBlock_select".
+ */
+export interface ValuesBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  values?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LeadershipBlock_select".
+ */
+export interface LeadershipBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  people?:
+    | T
+    | {
+        name?: T;
+        role?: T;
+        photo?: T;
+        biography?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CapabilitiesHeroBlock_select".
+ */
+export interface CapabilitiesHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  emphasis?: T;
+  description?: T;
+  navigationLabel?: T;
+  links?:
+    | T
+    | {
+        label?: T;
+        anchorId?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CapabilityDetailBlock_select".
+ */
+export interface CapabilityDetailBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  tone?: T;
+  services?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConnectedCapabilitiesBlock_select".
+ */
+export interface ConnectedCapabilitiesBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  connections?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
