@@ -9,6 +9,7 @@ import { ComingSoon } from '../../blocks/ComingSoon/config'
 import { homepageBlocks } from '../../blocks/Homepage/config'
 import { aboutBlocks } from '../../blocks/About/config'
 import { capabilitiesBlocks } from '../../blocks/Capabilities/config'
+import { contactBlocks } from '../../blocks/Contact/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { hero } from '@/heros/config'
@@ -80,6 +81,7 @@ export const Pages: CollectionConfig<'pages'> = {
                 ...homepageBlocks,
                 ...aboutBlocks,
                 ...capabilitiesBlocks,
+                ...contactBlocks,
                 ComingSoon,
                 CallToAction,
                 Content,

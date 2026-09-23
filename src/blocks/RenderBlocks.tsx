@@ -11,11 +11,13 @@ import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { homepageComponents } from '@/blocks/Homepage/Components'
 import { aboutComponents } from '@/blocks/About/Components'
 import { capabilitiesComponents } from '@/blocks/Capabilities/Components'
+import { contactComponents } from '@/blocks/Contact/Components'
 
 const blockComponents = {
   ...homepageComponents,
   ...aboutComponents,
   ...capabilitiesComponents,
+  ...contactComponents,
   archive: ArchiveBlock,
   content: ContentBlock,
   comingSoon: ComingSoonBlock,

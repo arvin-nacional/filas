@@ -171,6 +171,13 @@
 }
 
 @theme inline {
+  --color-filas-paper: var(--filas-paper);
+  --color-filas-ink: var(--filas-ink);
+  --color-filas-accent: var(--filas-accent);
+  --color-filas-accent-text: var(--filas-accent-text);
+  --color-filas-muted: var(--filas-muted);
+  --color-filas-line: var(--filas-line);
+  --color-filas-surface: var(--filas-surface);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
