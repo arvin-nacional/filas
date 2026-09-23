@@ -11,12 +11,24 @@ import { Width } from '../Width'
 export const Email: React.FC<
   EmailField & {
     errors: Partial<FieldErrorsImpl>
+    labelClassName?: string
+    inputClassName?: string
     register: UseFormRegister<FieldValues>
   }
-> = ({ name, defaultValue, errors, label, register, required, width }) => {
+> = ({
+  labelClassName,
+  inputClassName,
+  name,
+  defaultValue,
+  errors,
+  label,
+  register,
+  required,
+  width,
+}) => {
   return (
     <Width width={width}>
-      <Label htmlFor={name}>
+      <Label className={labelClassName} htmlFor={name}>
         {label}
 
         {required && (
@@ -26,6 +38,7 @@ export const Email: React.FC<
         )}
       </Label>
       <Input
+        className={inputClassName}
         defaultValue={defaultValue}
         id={name}
         type="email"

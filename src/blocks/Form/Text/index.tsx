@@ -11,12 +11,24 @@ import { Width } from '../Width'
 export const Text: React.FC<
   TextField & {
     errors: Partial<FieldErrorsImpl>
+    labelClassName?: string
+    inputClassName?: string
     register: UseFormRegister<FieldValues>
   }
-> = ({ name, defaultValue, errors, label, register, required, width }) => {
+> = ({
+  labelClassName,
+  inputClassName,
+  name,
+  defaultValue,
+  errors,
+  label,
+  register,
+  required,
+  width,
+}) => {
   return (
     <Width width={width}>
-      <Label htmlFor={name}>
+      <Label className={labelClassName} htmlFor={name}>
         {label}
 
         {required && (
@@ -25,7 +37,13 @@ export const Text: React.FC<
           </span>
         )}
       </Label>
-      <Input defaultValue={defaultValue} id={name} type="text" {...register(name, { required })} />
+      <Input
+        className={inputClassName}
+        defaultValue={defaultValue}
+        id={name}
+        type="text"
+        {...register(name, { required })}
+      />
       {errors[name] && <Error name={name} />}
     </Width>
   )

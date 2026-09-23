@@ -13,9 +13,10 @@ import { Width } from '../Width'
 export const Checkbox: React.FC<
   CheckboxField & {
     errors: Partial<FieldErrorsImpl>
+    labelClassName?: string
     register: UseFormRegister<FieldValues>
   }
-> = ({ name, defaultValue, errors, label, register, required, width }) => {
+> = ({ labelClassName, name, defaultValue, errors, label, register, required, width }) => {
   const props = register(name, { required: required })
   const { setValue } = useFormContext()
 
@@ -30,7 +31,7 @@ export const Checkbox: React.FC<
             setValue(props.name, checked)
           }}
         />
-        <Label htmlFor={name}>
+        <Label className={labelClassName} htmlFor={name}>
           {required && (
             <span className="required">
               * <span className="sr-only">(required)</span>

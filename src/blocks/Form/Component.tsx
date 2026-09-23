@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import type { DefaultTypedEditorState } from '@payloadcms/richtext-lexical'
 
 import { fields } from './fields'
+import { cn } from '@/utilities/ui'
 import { getClientSideURL } from '@/utilities/getURL'
 import { getFormDefaults, getSubmissionData } from './formValues'
 
@@ -156,6 +157,17 @@ export const FormBlock: React.FC<
                             control={control}
                             errors={errors}
                             register={register}
+                            labelClassName={
+                              variant === 'contact' ? 'text-sm leading-relaxed' : undefined
+                            }
+                            inputClassName={
+                              variant === 'contact'
+                                ? cn(
+                                    'mt-2 min-h-12 rounded-xs border-filas-line bg-filas-paper text-base shadow-none md:text-base',
+                                    field.blockType === 'textarea' && 'min-h-36',
+                                  )
+                                : undefined
+                            }
                           />
                         </div>
                       )
@@ -164,7 +176,17 @@ export const FormBlock: React.FC<
                   })}
               </div>
 
-              <Button form={formID} type="submit" variant="default" disabled={isLoading}>
+              <Button
+                form={formID}
+                type="submit"
+                variant="default"
+                disabled={isLoading}
+                className={
+                  variant === 'contact'
+                    ? 'min-h-12 rounded-xs bg-filas-ink px-6 py-3.5 text-filas-paper hover:bg-filas-accent-text'
+                    : undefined
+                }
+              >
                 {isLoading ? 'Sending…' : submitButtonLabel || 'Send inquiry'}
               </Button>
             </form>
