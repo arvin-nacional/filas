@@ -8,8 +8,10 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { ComingSoonBlock } from '@/blocks/ComingSoon/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
+import { homepageComponents } from '@/blocks/Homepage/Components'
 
 const blockComponents = {
+  ...homepageComponents,
   archive: ArchiveBlock,
   content: ContentBlock,
   comingSoon: ComingSoonBlock,
@@ -20,8 +22,9 @@ const blockComponents = {
 
 export const RenderBlocks: React.FC<{
   blocks: Page['layout'][0][]
+  homePath?: string
 }> = (props) => {
-  const { blocks } = props
+  const { blocks, homePath } = props
 
   const hasBlocks = blocks && Array.isArray(blocks) && blocks.length > 0
 
@@ -36,9 +39,16 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div className={blockType === 'comingSoon' ? undefined : 'my-16'} key={index}>
+                <div
+                  className={
+                    blockType === 'comingSoon' || blockType in homepageComponents
+                      ? undefined
+                      : 'my-16'
+                  }
+                  key={block.id || index}
+                >
                   {/* @ts-expect-error there may be some mismatch between the expected types here */}
-                  <Block {...block} disableInnerContainer />
+                  <Block {...block} homePath={homePath} disableInnerContainer />
                 </div>
               )
             }

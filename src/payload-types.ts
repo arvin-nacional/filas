@@ -201,7 +201,21 @@ export interface Page {
       | null;
     media?: (string | null) | Media;
   };
-  layout: (ComingSoonBlock | CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (
+    | GrowthHeroBlock
+    | GrowthIntroBlock
+    | ApproachBlock
+    | ServicesOverviewBlock
+    | AudienceBlock
+    | ClientLogosBlock
+    | ContactInvitationBlock
+    | ComingSoonBlock
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -438,6 +452,172 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GrowthHeroBlock".
+ */
+export interface GrowthHeroBlock {
+  eyebrow: string;
+  heading: string;
+  emphasis: string;
+  description: string;
+  primaryLink: {
+    label: string;
+    /**
+     * A site path (/contact), section link (/#services), https:// URL, or mailto: address.
+     */
+    url: string;
+  };
+  secondaryLink: {
+    label: string;
+    /**
+     * A site path (/contact), section link (/#services), https:// URL, or mailto: address.
+     */
+    url: string;
+  };
+  footnote: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'growthHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GrowthIntroBlock".
+ */
+export interface GrowthIntroBlock {
+  /**
+   * A unique section name for navigation links, such as services. Use lowercase letters, numbers, and hyphens.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  supportingText: string;
+  statement: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'growthIntro';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApproachBlock".
+ */
+export interface ApproachBlock {
+  /**
+   * A unique section name for navigation links, such as services. Use lowercase letters, numbers, and hyphens.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  steps: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'approach';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesOverviewBlock".
+ */
+export interface ServicesOverviewBlock {
+  /**
+   * A unique section name for navigation links, such as services. Use lowercase letters, numbers, and hyphens.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  services: {
+    title: string;
+    summary: string;
+    description: string;
+    capabilities: {
+      label: string;
+      id?: string | null;
+    }[];
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'servicesOverview';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AudienceBlock".
+ */
+export interface AudienceBlock {
+  /**
+   * A unique section name for navigation links, such as services. Use lowercase letters, numbers, and hyphens.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  stages: {
+    label: string;
+    title: string;
+    description: string;
+    featured?: boolean | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'audience';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClientLogosBlock".
+ */
+export interface ClientLogosBlock {
+  /**
+   * A unique section name for navigation links, such as services. Use lowercase letters, numbers, and hyphens.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  /**
+   * Add only client names and logos approved for public display. This section stays hidden until at least one approved logo is available.
+   */
+  clients?:
+    | {
+        name: string;
+        logo: string | Media;
+        approved?: boolean | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'clientLogos';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactInvitationBlock".
+ */
+export interface ContactInvitationBlock {
+  /**
+   * A unique section name for navigation links, such as services. Use lowercase letters, numbers, and hyphens.
+   */
+  anchorId: string;
+  eyebrow: string;
+  heading: string;
+  description: string;
+  link: {
+    label: string;
+    /**
+     * A site path (/contact), section link (/#services), https:// URL, or mailto: address.
+     */
+    url: string;
+  };
+  note: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contactInvitation';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1092,6 +1272,13 @@ export interface PagesSelect<T extends boolean = true> {
   layout?:
     | T
     | {
+        growthHero?: T | GrowthHeroBlockSelect<T>;
+        growthIntro?: T | GrowthIntroBlockSelect<T>;
+        approach?: T | ApproachBlockSelect<T>;
+        servicesOverview?: T | ServicesOverviewBlockSelect<T>;
+        audience?: T | AudienceBlockSelect<T>;
+        clientLogos?: T | ClientLogosBlockSelect<T>;
+        contactInvitation?: T | ContactInvitationBlockSelect<T>;
         comingSoon?: T | ComingSoonBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
@@ -1112,6 +1299,149 @@ export interface PagesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GrowthHeroBlock_select".
+ */
+export interface GrowthHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  emphasis?: T;
+  description?: T;
+  primaryLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  secondaryLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  footnote?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GrowthIntroBlock_select".
+ */
+export interface GrowthIntroBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  supportingText?: T;
+  statement?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ApproachBlock_select".
+ */
+export interface ApproachBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  steps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ServicesOverviewBlock_select".
+ */
+export interface ServicesOverviewBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  services?:
+    | T
+    | {
+        title?: T;
+        summary?: T;
+        description?: T;
+        capabilities?:
+          | T
+          | {
+              label?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AudienceBlock_select".
+ */
+export interface AudienceBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  stages?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        description?: T;
+        featured?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ClientLogosBlock_select".
+ */
+export interface ClientLogosBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  clients?:
+    | T
+    | {
+        name?: T;
+        logo?: T;
+        approved?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ContactInvitationBlock_select".
+ */
+export interface ContactInvitationBlockSelect<T extends boolean = true> {
+  anchorId?: T;
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  link?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  note?: T;
+  id?: T;
+  blockName?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1679,6 +2009,8 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
+  actionLabel: string;
+  actionURL: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1708,6 +2040,13 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  description?: string | null;
+  promise?: string | null;
+  note?: string | null;
+  /**
+   * Optional public contact email. Leave blank until confirmed.
+   */
+  email?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1730,6 +2069,8 @@ export interface HeaderSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  actionLabel?: T;
+  actionURL?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1753,6 +2094,10 @@ export interface FooterSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  description?: T;
+  promise?: T;
+  note?: T;
+  email?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

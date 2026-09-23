@@ -1,41 +1,78 @@
 'use client'
-import { useHeaderTheme } from '@/providers/HeaderTheme'
+
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import React, { useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import type { Header } from '@/payload-types'
+import { Brand } from '@/components/Brand'
+import { CMSLink } from '@/components/Link'
+import { headerDefaults, siteURL } from '@/components/SiteChrome/defaults'
 
-import { Logo } from '@/components/Logo/Logo'
-import { HeaderNav } from './Nav'
+import styles from './styles.module.css'
 
-interface HeaderClientProps {
-  data: Header
-}
-
-export const HeaderClient: React.FC<HeaderClientProps> = ({ data }) => {
-  /* Storing the value in a useState to avoid hydration errors */
-  const [theme, setTheme] = useState<string | null>(null)
-  const { headerTheme, setHeaderTheme } = useHeaderTheme()
-  const pathname = usePathname()
-
-  useEffect(() => {
-    setHeaderTheme(null)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname])
-
-  useEffect(() => {
-    if (headerTheme && headerTheme !== theme) setTheme(headerTheme)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [headerTheme])
+export const HeaderClient = ({
+  data,
+  homePath = '/',
+}: {
+  data: Partial<Header>
+  homePath?: string
+}) => {
+  const [open, setOpen] = useState(false)
+  const menuButton = useRef<HTMLButtonElement>(null)
+  const navItems = data.navItems?.length ? data.navItems : headerDefaults.navItems
 
   return (
-    <header className="container relative z-20   " {...(theme ? { 'data-theme': theme } : {})}>
-      <div className="py-8 flex justify-between">
-        <Link href="/">
-          <Logo loading="eager" priority="high" className="invert dark:invert-0" />
-        </Link>
-        <HeaderNav data={data} />
+    <header
+      className={styles.header}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape' && open) {
+          setOpen(false)
+          menuButton.current?.focus()
+        }
+      }}
+    >
+      <a className={styles.skipLink} href="#main-content">
+        Skip to content
+      </a>
+      <div className={styles.inner}>
+        <Brand href={homePath} />
+        <button
+          className={styles.menuButton}
+          type="button"
+          aria-expanded={open}
+          aria-controls="primary-navigation"
+          aria-label={open ? 'Close navigation' : 'Open navigation'}
+          onClick={() => setOpen(!open)}
+          ref={menuButton}
+        >
+          <span>{open ? 'Close' : 'Menu'}</span>
+          {open ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+        </button>
+        <nav
+          id="primary-navigation"
+          aria-label="Main navigation"
+          className={`${styles.navigation} ${open ? styles.open : ''}`}
+          onClick={(event) => {
+            if ((event.target as HTMLElement).closest('a')) setOpen(false)
+          }}
+        >
+          {navItems.map(({ link }, index) => (
+            <CMSLink
+              {...link}
+              url={link.url ? siteURL(link.url, homePath) : undefined}
+              key={index}
+              className={styles.navLink}
+            />
+          ))}
+          <Link
+            className={styles.action}
+            href={siteURL(data.actionURL || headerDefaults.actionURL, homePath)}
+          >
+            {data.actionLabel || headerDefaults.actionLabel}
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+        </nav>
       </div>
     </header>
   )

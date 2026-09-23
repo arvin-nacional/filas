@@ -87,6 +87,13 @@
 }
 
 :root {
+  --filas-paper: #faf9f6;
+  --filas-ink: #1c1c1b;
+  --filas-accent: #b85236;
+  --filas-accent-text: #9e442e;
+  --filas-muted: #69655f;
+  --filas-line: #dfddd6;
+  --filas-surface: #f0eee7;
   --background: oklch(100% 0 0deg);
   --foreground: oklch(14.5% 0 0deg);
   --card: oklch(96.5% 0.005 265deg);
@@ -221,4 +228,24 @@ html {
 html[data-theme='dark'],
 html[data-theme='light'] {
   opacity: initial;
+}
+
+.filas-site {
+  --background: var(--filas-paper);
+  --foreground: var(--filas-ink);
+  --card: var(--filas-surface);
+  --card-foreground: var(--filas-ink);
+  --primary: var(--filas-ink);
+  --primary-foreground: var(--filas-paper);
+  --muted: var(--filas-surface);
+  --muted-foreground: var(--filas-muted);
+  --border: var(--filas-line);
+  color-scheme: light;
+  min-height: 100svh;
+  background: var(--filas-paper);
+  color: var(--filas-ink);
+}
+
+.filas-site #main-content {
+  scroll-margin-top: 96px;
 }

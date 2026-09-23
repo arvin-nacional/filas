@@ -13,6 +13,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
 import { SiteChrome } from '@/components/SiteChrome'
+import { homepageComponents } from '@/blocks/Homepage/Components'
 
 export async function generateStaticParams() {
   const payload = await getPayload({ config: configPromise })
@@ -67,30 +68,37 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page
   const isComingSoon = layout.length === 1 && layout[0].blockType === 'comingSoon'
+  const hasHomepageBlocks = layout.some((block) => block.blockType in homepageComponents)
+  const hasGrowthHero = layout.some((block) => block.blockType === 'growthHero')
+  const homePath =
+    draft && hasGrowthHero && slug !== 'home' ? `/${encodeURIComponent(decodedSlug)}` : '/'
 
   const content = (
-    <main className={isComingSoon ? undefined : 'pt-16 pb-24'}>
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className={isComingSoon || hasHomepageBlocks ? undefined : 'pt-16 pb-24'}
+    >
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
-      {!isComingSoon && <RenderHero {...hero} />}
-      <RenderBlocks blocks={layout} />
+      {!isComingSoon && !hasGrowthHero && <RenderHero {...hero} />}
+      <RenderBlocks blocks={layout} homePath={homePath} />
     </main>
   )
 
-  return isComingSoon ? content : <SiteChrome>{content}</SiteChrome>
+  return isComingSoon ? content : <SiteChrome homePath={homePath}>{content}</SiteChrome>
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
   const { slug = 'home' } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
-  const page = await queryPageBySlug({
-    slug: decodedSlug,
-  })
+  const page =
+    (await queryPageBySlug({ slug: decodedSlug })) || (slug === 'home' ? homeStatic : null)
 
   return generateMeta({ doc: page })
 }

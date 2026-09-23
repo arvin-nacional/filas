@@ -1,89 +1,40 @@
 import type { RequiredDataFromCollectionSlug } from 'payload'
 
-// Used for pre-seeded content so that the homepage is not empty
+import {
+  approachDefaults,
+  audienceDefaults,
+  contactInvitationDefaults,
+  growthHeroDefaults,
+  growthIntroDefaults,
+  servicesOverviewDefaults,
+} from '@/blocks/Homepage/defaults'
+
+// Used by the development preview and as a fallback when no home document exists.
+// Existing CMS content always takes precedence.
 export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
   slug: 'home',
+  title: 'Home',
   _status: 'published',
-  hero: {
-    type: 'lowImpact',
-    richText: {
-      root: {
-        type: 'root',
-        children: [
-          {
-            type: 'heading',
-            children: [
-              {
-                type: 'text',
-                detail: 0,
-                format: 0,
-                mode: 'normal',
-                style: '',
-                text: 'FILAS - First to Execute. Last to See Things Through.',
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            format: '',
-            indent: 0,
-            tag: 'h1',
-            version: 1,
-          },
-          {
-            type: 'paragraph',
-            children: [
-              {
-                type: 'link',
-                children: [
-                  {
-                    type: 'text',
-                    detail: 0,
-                    format: 0,
-                    mode: 'normal',
-                    style: '',
-                    text: 'Visit the admin dashboard',
-                    version: 1,
-                  },
-                ],
-                direction: 'ltr',
-                fields: {
-                  linkType: 'custom',
-                  newTab: false,
-                  url: '/admin',
-                },
-                format: '',
-                indent: 0,
-                version: 2,
-              },
-              {
-                type: 'text',
-                detail: 0,
-                format: 0,
-                mode: 'normal',
-                style: '',
-                text: ' to make your account and seed content for your website.',
-                version: 1,
-              },
-            ],
-            direction: 'ltr',
-            format: '',
-            indent: 0,
-            textFormat: 0,
-            version: 1,
-          },
-        ],
-        direction: 'ltr',
-        format: '',
-        indent: 0,
-        version: 1,
-      },
+  hero: { type: 'none' },
+  layout: [
+    { blockType: 'growthHero', blockName: 'Your next chapter', ...growthHeroDefaults },
+    { blockType: 'growthIntro', blockName: 'A partner in your progress', ...growthIntroDefaults },
+    { blockType: 'approach', blockName: 'How we work', ...approachDefaults },
+    {
+      blockType: 'servicesOverview',
+      blockName: 'Connected capabilities',
+      ...servicesOverviewDefaults,
     },
-  },
+    { blockType: 'audience', blockName: 'Who we work with', ...audienceDefaults },
+    {
+      blockType: 'contactInvitation',
+      blockName: 'Start a conversation',
+      ...contactInvitationDefaults,
+    },
+  ],
   meta: {
+    title: 'FILAS - First to Execute. Last to See Things Through.',
     description:
       'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
-    title: 'FILAS - First to Execute. Last to See Things Through.',
   },
-  title: 'Home',
-  layout: [],
 }

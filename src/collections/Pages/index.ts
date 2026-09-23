@@ -6,6 +6,7 @@ import { Archive } from '../../blocks/ArchiveBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { ComingSoon } from '../../blocks/ComingSoon/config'
+import { homepageBlocks } from '../../blocks/Homepage/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { hero } from '@/heros/config'
@@ -73,7 +74,15 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [ComingSoon, CallToAction, Content, MediaBlock, Archive, FormBlock],
+              blocks: [
+                ...homepageBlocks,
+                ComingSoon,
+                CallToAction,
+                Content,
+                MediaBlock,
+                Archive,
+                FormBlock,
+              ],
               required: true,
               admin: {
                 initCollapsed: true,
