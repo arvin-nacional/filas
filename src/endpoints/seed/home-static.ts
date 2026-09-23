@@ -9,8 +9,8 @@ import {
   servicesOverviewDefaults,
 } from '@/blocks/Homepage/defaults'
 
-// Used by the development preview and as a fallback when no home document exists.
-// Existing CMS content always takes precedence.
+// Starter content when Home is missing or still contains only Coming Soon.
+// A configured CMS homepage takes precedence; this fallback never writes to the CMS.
 export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
   slug: 'home',
   title: 'Home',

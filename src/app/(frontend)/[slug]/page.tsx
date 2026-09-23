@@ -12,7 +12,6 @@ import { RenderHero } from '@/heros/RenderHero'
 import { generateMeta } from '@/utilities/generateMeta'
 import PageClient from './page.client'
 import { LivePreviewListener } from '@/components/LivePreviewListener'
-import { SiteChrome } from '@/components/SiteChrome'
 import { homepageComponents } from '@/blocks/Homepage/Components'
 
 export async function generateStaticParams() {
@@ -67,30 +66,23 @@ export default async function Page({ params: paramsPromise }: Args) {
   }
 
   const { hero, layout } = page
-  const isComingSoon = layout.length === 1 && layout[0].blockType === 'comingSoon'
   const hasHomepageBlocks = layout.some((block) => block.blockType in homepageComponents)
   const hasGrowthHero = layout.some((block) => block.blockType === 'growthHero')
   const homePath =
     draft && hasGrowthHero && slug !== 'home' ? `/${encodeURIComponent(decodedSlug)}` : '/'
 
-  const content = (
-    <main
-      id="main-content"
-      tabIndex={-1}
-      className={isComingSoon || hasHomepageBlocks ? undefined : 'pt-16 pb-24'}
-    >
+  return (
+    <div className={hasHomepageBlocks ? undefined : 'pt-16 pb-24'}>
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
-      {!isComingSoon && !hasGrowthHero && <RenderHero {...hero} />}
+      {!hasGrowthHero && <RenderHero {...hero} />}
       <RenderBlocks blocks={layout} homePath={homePath} />
-    </main>
+    </div>
   )
-
-  return isComingSoon ? content : <SiteChrome homePath={homePath}>{content}</SiteChrome>
 }
 
 export async function generateMetadata({ params: paramsPromise }: Args): Promise<Metadata> {
@@ -121,5 +113,14 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     },
   })
 
-  return result.docs?.[0] || null
+  const page = result.docs?.[0]
+  if (!page || slug !== 'home') return page || null
+
+  // Keep this branch's homepage usable while the shared CMS still contains the
+  // production holding page. This transforms output only; no CMS writes occur.
+  const layout = page.layout.filter((block) => block.blockType !== 'comingSoon')
+  if (page.layout.some((block) => block.blockType === 'comingSoon') && !layout.length) {
+    return { ...page, hero: homeStatic.hero, layout: homeStatic.layout, meta: homeStatic.meta }
+  }
+  return { ...page, layout }
 })

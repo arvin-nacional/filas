@@ -12,7 +12,9 @@ export const SiteChrome = ({
 }) => (
   <div className="filas-site">
     <Header homePath={homePath} />
-    {children}
+    <main id="main-content" tabIndex={-1}>
+      {children}
+    </main>
     <Footer homePath={homePath} />
   </div>
 )

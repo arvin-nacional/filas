@@ -6,6 +6,7 @@ import { GeistSans } from 'geist/font/sans'
 import React from 'react'
 
 import { AdminBar } from '@/components/AdminBar'
+import { SiteChrome } from '@/components/SiteChrome'
 import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
@@ -27,7 +28,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Providers>
           {isEnabled && <AdminBar adminBarProps={{ preview: true }} />}
 
-          {children}
+          <SiteChrome>{children}</SiteChrome>
         </Providers>
       </body>
     </html>
@@ -35,6 +36,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 }
 
 export const metadata: Metadata = {
+  ...(process.env.VERCEL_ENV === 'preview' ? { robots: { index: false, follow: false } } : {}),
   title: 'FILAS - First to Execute. Last to See Things Through.',
   description:
     'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',

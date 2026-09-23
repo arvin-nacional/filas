@@ -32,8 +32,12 @@ test.describe('Frontend', () => {
     const shareImage = await page.request.get('http://localhost:3000/filas-social-share.png')
     expect(shareImage.ok()).toBeTruthy()
     expect(shareImage.headers()['content-type']).toContain('image/png')
+    await expect(page.getByRole('banner')).toHaveCount(1)
+    await expect(page.getByRole('main')).toHaveCount(1)
+    await expect(page.getByRole('contentinfo')).toHaveCount(1)
+    await expect(page.getByRole('heading', { name: 'Coming soon.' })).toHaveCount(0)
     const heading = page.locator('h1').first()
-    await expect(heading).toHaveText('Coming soon.')
+    await expect(heading).toHaveText(/You have built something\s*worth growing\./)
     const logo = page.getByRole('img', { name: 'FILAS', exact: true })
     await expect(logo).toBeVisible()
     await expect

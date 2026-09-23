@@ -1,6 +1,11 @@
 import canUseDOM from './canUseDOM'
 
 export const getServerSideURL = () => {
+  if (process.env.VERCEL_ENV === 'preview') {
+    const previewHost = process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL
+    if (previewHost) return `https://${previewHost}`
+  }
+
   return (
     process.env.NEXT_PUBLIC_SERVER_URL ||
     (process.env.VERCEL_PROJECT_PRODUCTION_URL

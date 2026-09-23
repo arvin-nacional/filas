@@ -7,7 +7,7 @@ import { useRef, useState } from 'react'
 import type { Header } from '@/payload-types'
 import { Brand } from '@/components/Brand'
 import { CMSLink } from '@/components/Link'
-import { headerDefaults, siteURL } from '@/components/SiteChrome/defaults'
+import { siteURL } from '@/components/SiteChrome/defaults'
 
 import styles from './styles.module.css'
 
@@ -15,12 +15,12 @@ export const HeaderClient = ({
   data,
   homePath = '/',
 }: {
-  data: Partial<Header>
+  data: Header
   homePath?: string
 }) => {
   const [open, setOpen] = useState(false)
   const menuButton = useRef<HTMLButtonElement>(null)
-  const navItems = data.navItems?.length ? data.navItems : headerDefaults.navItems
+  const navItems = data.navItems ?? []
 
   return (
     <header
@@ -65,13 +65,12 @@ export const HeaderClient = ({
               className={styles.navLink}
             />
           ))}
-          <Link
-            className={styles.action}
-            href={siteURL(data.actionURL || headerDefaults.actionURL, homePath)}
-          >
-            {data.actionLabel || headerDefaults.actionLabel}
-            <ArrowUpRight size={16} aria-hidden="true" />
-          </Link>
+          {data.actionURL && data.actionLabel && (
+            <Link className={styles.action} href={siteURL(data.actionURL, homePath)}>
+              {data.actionLabel}
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </Link>
+          )}
         </nav>
       </div>
     </header>
