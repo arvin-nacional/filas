@@ -230,22 +230,6 @@ html[data-theme='light'] {
   opacity: initial;
 }
 
-.filas-site {
-  --background: var(--filas-paper);
-  --foreground: var(--filas-ink);
-  --card: var(--filas-surface);
-  --card-foreground: var(--filas-ink);
-  --primary: var(--filas-ink);
-  --primary-foreground: var(--filas-paper);
-  --muted: var(--filas-surface);
-  --muted-foreground: var(--filas-muted);
-  --border: var(--filas-line);
-  color-scheme: light;
-  min-height: 100svh;
-  background: var(--filas-paper);
-  color: var(--filas-ink);
-}
-
-.filas-site #main-content {
+#main-content {
   scroll-margin-top: 96px;
 }

@@ -41,9 +41,7 @@ export const RenderBlocks: React.FC<{
               return (
                 <div
                   className={
-                    blockType === 'comingSoon' || blockType in homepageComponents
-                      ? undefined
-                      : 'my-16'
+                    blockType === 'comingSoon' || blockType in homepageComponents ? undefined : ''
                   }
                   key={block.id || index}
                 >

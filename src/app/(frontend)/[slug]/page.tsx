@@ -2,10 +2,9 @@ import type { Metadata } from 'next'
 
 import { PayloadRedirects } from '@/components/PayloadRedirects'
 import configPromise from '@payload-config'
-import { getPayload, type RequiredDataFromCollectionSlug } from 'payload'
+import { getPayload } from 'payload'
 import { draftMode } from 'next/headers'
 import React, { cache } from 'react'
-import { homeStatic } from '@/endpoints/seed/home-static'
 
 import { RenderBlocks } from '@/blocks/RenderBlocks'
 import { RenderHero } from '@/heros/RenderHero'
@@ -49,17 +48,10 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { slug = 'home' } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
-  const url = '/' + decodedSlug
-  let page: RequiredDataFromCollectionSlug<'pages'> | null
-
-  page = await queryPageBySlug({
+  const url = decodedSlug === 'home' ? '/' : '/' + decodedSlug
+  const page = await queryPageBySlug({
     slug: decodedSlug,
   })
-
-  // Remove this code once your website is seeded
-  if (!page && slug === 'home') {
-    page = homeStatic
-  }
 
   if (!page) {
     return <PayloadRedirects url={url} />
@@ -72,14 +64,14 @@ export default async function Page({ params: paramsPromise }: Args) {
     draft && hasGrowthHero && slug !== 'home' ? `/${encodeURIComponent(decodedSlug)}` : '/'
 
   return (
-    <div className={hasHomepageBlocks ? undefined : 'pt-16 pb-24'}>
+    <div className={hasHomepageBlocks ? undefined : ''}>
       <PageClient />
       {/* Allows redirects for valid pages too */}
       <PayloadRedirects disableNotFound url={url} />
 
       {draft && <LivePreviewListener />}
 
-      {!hasGrowthHero && <RenderHero {...hero} />}
+      <RenderHero {...hero} />
       <RenderBlocks blocks={layout} homePath={homePath} />
     </div>
   )
@@ -89,8 +81,7 @@ export async function generateMetadata({ params: paramsPromise }: Args): Promise
   const { slug = 'home' } = await paramsPromise
   // Decode to support slugs with special characters
   const decodedSlug = decodeURIComponent(slug)
-  const page =
-    (await queryPageBySlug({ slug: decodedSlug })) || (slug === 'home' ? homeStatic : null)
+  const page = await queryPageBySlug({ slug: decodedSlug })
 
   return generateMeta({ doc: page })
 }
@@ -113,14 +104,5 @@ const queryPageBySlug = cache(async ({ slug }: { slug: string }) => {
     },
   })
 
-  const page = result.docs?.[0]
-  if (!page || slug !== 'home') return page || null
-
-  // Keep this branch's homepage usable while the shared CMS still contains the
-  // production holding page. This transforms output only; no CMS writes occur.
-  const layout = page.layout.filter((block) => block.blockType !== 'comingSoon')
-  if (page.layout.some((block) => block.blockType === 'comingSoon') && !layout.length) {
-    return { ...page, hero: homeStatic.hero, layout: homeStatic.layout, meta: homeStatic.meta }
-  }
-  return { ...page, layout }
+  return result.docs?.[0] || null
 })
