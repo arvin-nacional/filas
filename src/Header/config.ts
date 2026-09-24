@@ -13,6 +13,16 @@ export const Header: GlobalConfig = {
   },
   fields: [
     {
+      name: 'logo',
+      type: 'upload',
+      relationTo: 'media',
+      filterOptions: { mimeType: { contains: 'image' } },
+      admin: {
+        description:
+          'Navbar brand logo. The bundled FILAS horizontal logo is used when no logo is uploaded.',
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
       defaultValue: headerDefaults.navItems,

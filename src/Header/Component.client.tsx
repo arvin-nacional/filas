@@ -33,7 +33,7 @@ export const HeaderClient = ({ data, homePath = '/' }: { data: Header; homePath?
         Skip to content
       </a>
       <div className="mx-auto flex min-h-20 w-[calc(100%-2.5rem)] max-w-7xl flex-wrap items-center justify-between border-b border-filas-line sm:w-[calc(100%-4rem)] md:min-h-24 md:flex-nowrap md:gap-8 lg:w-[calc(100%-7rem)]">
-        <Brand href={homePath} />
+        <Brand href={homePath} logo={data.logo} />
         <button
           className="inline-flex min-h-11 items-center gap-3 py-2 pl-3 font-mono text-xs focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text md:hidden"
           type="button"

@@ -24,6 +24,10 @@ const nextConfig: NextConfig = {
         search: '',
       },
       {
+        pathname: '/filas-horizontal-logo.png',
+        search: '',
+      },
+      {
         pathname: '/api/media/file/**',
       },
     ],
