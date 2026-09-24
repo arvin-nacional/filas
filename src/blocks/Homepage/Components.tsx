@@ -13,101 +13,7 @@ import type {
 } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { siteURL } from '@/components/SiteChrome/defaults'
-
-const sectionLayout = 'scroll-mt-[105px] px-0 py-[108px] [@media(max-width:600px)]:py-[70px]'
-const classes = {
-  container:
-    'mx-auto w-[min(100%_-_112px,1280px)] [@media(max-width:1000px)]:w-[calc(100%_-_64px)] [@media(max-width:600px)]:w-[calc(100%_-_40px)]',
-  eyebrow:
-    'm-0 mb-[35px] flex items-center gap-[10px] text-[11px] leading-[1.7] tracking-[0.12em] text-filas-accent-text uppercase [font-family:var(--font-geist-mono),monospace] [@media(max-width:600px)]:mb-[26px] [@media(max-width:600px)]:text-[10px]',
-  dot: 'h-[6px] w-[6px] shrink-0 rounded-full bg-current',
-  period: 'text-filas-accent',
-  hero: [
-    'scroll-mt-[105px] bg-filas-paper pt-[clamp(70px,9vw,142px)] text-center text-filas-ink min-[1600px]:pt-[140px] [@media(max-width:600px)]:pt-[64px]',
-    '[&>div>p:first-child]:justify-center [&>div>p:first-child]:mb-[26px] [@media(max-width:600px)]:[&>div>p:first-child]:text-[9px] [@media(max-width:600px)]:[&>div>p:first-child]:tracking-[0.09em]',
-  ].join(' '),
-  heroHeading:
-    'mx-auto my-0 max-w-[1100px] text-[clamp(52px,7.3vw,108px)] leading-[1.04] font-medium tracking-[-0.065em] text-balance [@media(max-width:600px)]:text-[clamp(43px,10.5vw,62px)] [@media(max-width:600px)]:leading-[1.08] [@media(max-width:600px)]:tracking-[-0.06em] [@media(max-width:600px)]:[&_br]:hidden [@media(max-width:600px)]:[&>span:first-of-type]:before:content-["_"]',
-  heroDescription:
-    'mx-auto mt-[30px] mb-0 max-w-[570px] text-[17px] leading-[1.8] text-pretty text-filas-muted [@media(max-width:600px)]:mt-[25px] [@media(max-width:600px)]:text-[15px]',
-  actions:
-    'mt-[32px] flex flex-wrap items-center justify-center gap-x-[30px] gap-y-[20px] [@media(max-width:600px)]:mt-[26px] [@media(max-width:600px)]:flex-col [@media(max-width:600px)]:gap-[12px]',
-  button:
-    'inline-flex min-h-[50px] items-center justify-center gap-[22px] rounded-[2px] border border-transparent bg-filas-ink px-[23px] py-[15px] text-[13px] font-medium text-filas-paper no-underline transition-[background,color] duration-180 hover:bg-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-5 focus-visible:outline-filas-accent motion-reduce:transition-none [@media(max-width:600px)]:gap-[24px] [@media(max-width:600px)]:px-[20px]',
-  textLink:
-    'inline-flex min-h-[50px] items-center justify-center gap-[13px] border-b border-filas-line text-[13px] font-medium text-filas-ink no-underline transition-[background,color] duration-180 hover:border-current hover:text-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-5 focus-visible:outline-filas-accent motion-reduce:transition-none [@media(max-width:600px)]:gap-[24px] [@media(max-width:600px)]:px-[20px]',
-  heroBottom:
-    'mt-[88px] grid grid-cols-[1fr_auto_1fr] items-center gap-[30px] border-b border-filas-line py-[25px] text-[10px] leading-[1.8] text-filas-muted [font-family:var(--font-geist-mono),monospace] [&_p]:m-0 [&_p]:text-left [&>span]:text-right [@media(max-width:600px)]:mt-[48px] [@media(max-width:600px)]:grid-cols-[1fr_auto] [@media(max-width:600px)]:gap-[20px] [@media(max-width:600px)]:py-[22px] [@media(max-width:600px)]:[&_p]:max-w-[230px] [@media(max-width:600px)]:[&_p]:text-[9px] [@media(max-width:600px)]:[&>span]:hidden',
-  scrollLink:
-    'grid h-[42px] w-[42px] place-items-center rounded-full border border-filas-line text-filas-ink transition-[border-color] duration-180 hover:border-filas-accent focus-visible:outline-2 focus-visible:outline-offset-5 focus-visible:outline-filas-accent motion-reduce:transition-none',
-  intro: `${sectionLayout} bg-filas-paper text-filas-ink`,
-  heading:
-    'm-0 text-[clamp(35px,4.1vw,59px)] leading-[1.12] font-medium tracking-[-0.045em] text-pretty whitespace-pre-line [@media(max-width:600px)]:text-[37px]',
-  introGrid:
-    'grid grid-cols-[1.05fr_0.8fr] items-start gap-[clamp(40px,10vw,150px)] [&_h2]:max-w-[610px] [@media(max-width:1000px)]:gap-[48px] [@media(max-width:600px)]:grid-cols-1 [@media(max-width:600px)]:gap-[25px]',
-  introCopy:
-    'text-[17px] leading-[1.9] text-filas-muted [&_p]:m-0 [&_p]:text-pretty [&_p+p]:mt-[20px] [@media(max-width:600px)]:[&_p]:text-[15px] [@media(max-width:600px)]:[&_p]:leading-[1.85]',
-  brandStatement:
-    'mt-[50px] flex items-center gap-[28px] bg-filas-surface pt-[16px] pr-[30px] pb-[16px] pl-[13px] [&_p]:m-0 [&_p]:text-[22px] [&_p]:leading-[1.5] [&_p]:tracking-[-0.025em] [&>svg]:shrink-0 [&>svg]:text-filas-accent [@media(max-width:600px)]:mt-[34px] [@media(max-width:600px)]:gap-[16px] [@media(max-width:600px)]:p-[18px_16px] [@media(max-width:600px)]:[&_p]:text-[17px] [@media(max-width:600px)]:[&>svg]:hidden',
-  statementLogo:
-    'h-[90px] w-[90px] shrink-0 object-contain mix-blend-multiply [@media(max-width:600px)]:h-[60px] [@media(max-width:600px)]:w-[60px]',
-  statementLine: 'ml-[24px] h-px flex-1 bg-filas-line [@media(max-width:600px)]:hidden',
-  approach:
-    'scroll-mt-[105px] bg-filas-ink px-0 py-[100px] text-filas-paper [&>div>p:first-child]:text-[#d7937c] [@media(max-width:600px)]:py-[70px]',
-  sectionHeader:
-    'mb-[55px] grid grid-cols-[1.2fr_0.7fr] items-end gap-[80px] [@media(max-width:1000px)]:gap-[40px] [@media(max-width:600px)]:mb-[34px] [@media(max-width:600px)]:grid-cols-1 [@media(max-width:600px)]:gap-[25px]',
-  description:
-    'm-0 max-w-[390px] text-[16px] leading-[1.9] text-pretty text-filas-muted [@media(max-width:600px)]:text-[15px] [@media(max-width:600px)]:leading-[1.85]',
-  approachDescription:
-    'm-0 max-w-[390px] text-[16px] leading-[1.9] text-pretty text-[#bdbbb4] [@media(max-width:600px)]:text-[15px] [@media(max-width:600px)]:leading-[1.85]',
-  steps: [
-    'm-0 mt-[65px] grid list-none grid-cols-[repeat(auto-fit,minmax(210px,1fr))] gap-[32px] p-0 [@media(max-width:1000px)]:grid-cols-2 [@media(max-width:1000px)]:gap-[40px] [@media(max-width:600px)]:mt-[38px] [@media(max-width:600px)]:grid-cols-1 [@media(max-width:600px)]:gap-[30px]',
-    '[&_li]:border-t [&_li]:border-[#494944] [&_li]:pt-[26px] [@media(max-width:600px)]:[&_li]:grid [@media(max-width:600px)]:[&_li]:grid-cols-[35px_1fr] [@media(max-width:600px)]:[&_li]:gap-x-[15px] [@media(max-width:600px)]:[&_li]:pt-[22px]',
-    '[&_h3]:mx-0 [&_h3]:mt-[34px] [&_h3]:mb-[14px] [&_h3]:text-[24px] [&_h3]:leading-[1.3] [&_h3]:font-normal [&_h3]:tracking-[-0.03em] [@media(max-width:600px)]:[&_h3]:mt-0 [@media(max-width:600px)]:[&_h3]:mb-[12px] [@media(max-width:600px)]:[&_h3]:text-[23px]',
-    '[&_p]:m-0 [&_p]:max-w-[265px] [&_p]:text-[14px] [&_p]:leading-[1.85] [&_p]:text-[#bdbbb4] [@media(max-width:1000px)]:[&_p]:max-w-full [@media(max-width:600px)]:[&_p]:text-[14px]',
-  ].join(' '),
-  stepNumber:
-    'text-[12px] font-normal text-[#d7937c] [font-family:var(--font-geist-mono),monospace] [@media(max-width:600px)]:row-span-2 [@media(max-width:600px)]:pt-[5px]',
-  services: `${sectionLayout} bg-filas-paper text-filas-ink`,
-  serviceList: 'border-t border-filas-line',
-  service:
-    'border-b border-filas-line [&[open]_span:last-child]:bg-filas-accent-text [&[open]_span:last-child]:border-filas-accent-text [&[open]_span:last-child]:text-filas-paper [&[open]_span:last-child_svg]:rotate-45',
-  serviceSummaryRow:
-    'grid cursor-pointer list-none grid-cols-[48px_1.15fr_0.85fr_44px] items-center gap-[24px] py-[32px] [&::-webkit-details-marker]:hidden [&::marker]:content-none hover:[&_span:last-child]:bg-filas-accent-text hover:[&_span:last-child]:border-filas-accent-text hover:[&_span:last-child]:text-filas-paper focus-visible:outline-2 focus-visible:outline-offset-5 focus-visible:outline-filas-accent [@media(max-width:1000px)]:grid-cols-[30px_1fr_40px] [@media(max-width:1000px)]:gap-[20px] [@media(max-width:600px)]:grid-cols-[22px_1fr_34px] [@media(max-width:600px)]:gap-[12px] [@media(max-width:600px)]:py-[26px]',
-  serviceNumber:
-    'text-[11px] font-normal text-filas-accent-text [font-family:var(--font-geist-mono),monospace]',
-  serviceTitle:
-    'm-0 text-[clamp(24px,2.4vw,34px)] leading-[1.2] font-normal tracking-[-0.035em] [@media(max-width:600px)]:text-[24px]',
-  serviceSummary: 'text-[14px] leading-[1.5] text-filas-muted [@media(max-width:1000px)]:hidden',
-  serviceToggle:
-    'grid h-[40px] w-[40px] place-items-center rounded-full border border-filas-line transition-[color,background-color] duration-180 motion-reduce:transition-none [&_svg]:transition-transform [&_svg]:duration-180 motion-reduce:[&_svg]:transition-none [@media(max-width:600px)]:h-[32px] [@media(max-width:600px)]:w-[32px]',
-  serviceDetail:
-    'grid grid-cols-[1fr_1fr] gap-[42px] pt-0 pr-[68px] pb-[32px] pl-[72px] [&_p]:m-0 [&_p]:max-w-[480px] [&_p]:text-[15px] [&_p]:leading-[1.8] [&_p]:text-filas-muted [&_ul]:m-0 [&_ul]:flex [&_ul]:list-none [&_ul]:flex-wrap [&_ul]:content-start [&_ul]:gap-[9px] [&_ul]:p-0 [&_li]:border [&_li]:border-filas-line [&_li]:px-[10px] [&_li]:py-[7px] [&_li]:text-[11px] [&_li]:leading-[1.5] [@media(max-width:1000px)]:pr-0 [@media(max-width:1000px)]:pl-[50px] [@media(max-width:600px)]:grid-cols-1 [@media(max-width:600px)]:gap-[22px] [@media(max-width:600px)]:pb-[26px] [@media(max-width:600px)]:pl-[34px] [@media(max-width:600px)]:[&_p]:text-[14px]',
-  audience: `${sectionLayout} bg-filas-surface text-filas-ink`,
-  stages:
-    'grid grid-cols-[repeat(auto-fit,minmax(245px,1fr))] gap-[20px] [@media(max-width:1000px)]:grid-cols-1 [@media(max-width:1000px)]:gap-[16px]',
-  stage:
-    'flex min-h-[340px] flex-col border border-[#d7d3c9] p-[33px_29px] [&_h3]:m-0 [&_h3]:mb-[19px] [&_h3]:text-[clamp(27px,2.6vw,37px)] [&_h3]:leading-[1.2] [&_h3]:font-medium [&_h3]:tracking-[-0.04em] [&_h3_span]:text-filas-accent [@media(max-width:1000px)]:min-h-0 [@media(max-width:600px)]:p-[28px_24px]',
-  featuredStage:
-    'flex min-h-[340px] flex-col border border-[#d7d3c9] border-t-[3px] border-t-filas-accent bg-filas-paper p-[31px_29px_33px] [&_h3]:m-0 [&_h3]:mb-[19px] [&_h3]:text-[clamp(27px,2.6vw,37px)] [&_h3]:leading-[1.2] [&_h3]:font-medium [&_h3]:tracking-[-0.04em] [&_h3_span]:text-filas-accent [@media(max-width:1000px)]:min-h-0 [@media(max-width:600px)]:p-[26px_24px_28px]',
-  stageLabel:
-    'm-0 mb-[35px] text-[10px] leading-[1.8] tracking-[0.04em] text-filas-muted uppercase [font-family:var(--font-geist-mono),monospace] [@media(max-width:1000px)]:mb-[20px]',
-  stageDescription:
-    'm-0 mb-[30px] text-[14px] leading-[1.9] text-filas-muted [@media(max-width:1000px)]:max-w-[650px]',
-  stageArrow: 'mt-auto text-filas-accent-text',
-  clients: `${sectionLayout} border-b border-filas-line bg-filas-paper text-center text-filas-ink [&>div>p]:justify-center`,
-  logos:
-    'm-0 mt-[50px] flex list-none flex-wrap justify-center gap-x-[55px] gap-y-[32px] p-0 [&_li]:grid [&_li]:w-[150px] [&_li]:place-items-center',
-  clientLogo: 'max-h-[90px] w-[150px] object-contain',
-  contact:
-    'scroll-mt-[105px] bg-filas-paper px-0 pt-[120px] pb-[100px] text-center text-filas-ink [&>div>p:first-child]:justify-center [&_h2]:m-0 [&_h2]:text-[clamp(36px,5vw,72px)] [&_h2]:leading-[1.12] [&_h2]:font-medium [&_h2]:tracking-[-0.05em] [&_h2]:text-balance [&_h2]:whitespace-pre-line [@media(max-width:600px)]:py-[78px] [@media(max-width:600px)]:[&_h2]:text-[38px]',
-  contactDescription:
-    'mx-auto mt-[25px] mb-[30px] max-w-[465px] text-[16px] leading-[1.8] text-pretty text-filas-muted [@media(max-width:600px)]:text-[15px]',
-  contactButton:
-    'inline-flex min-h-[50px] items-center justify-center gap-[22px] rounded-[2px] border border-transparent bg-filas-accent-text px-[23px] py-[15px] text-[13px] font-medium text-filas-paper no-underline transition-[background,color] duration-180 hover:bg-filas-ink focus-visible:outline-2 focus-visible:outline-offset-5 focus-visible:outline-filas-accent motion-reduce:transition-none [@media(max-width:600px)]:gap-[24px] [@media(max-width:600px)]:px-[20px]',
-  contactNote:
-    'm-0 mt-[27px] text-[10px] leading-[1.8] text-filas-muted [font-family:var(--font-geist-mono),monospace]',
-}
+import { cn } from '@/utilities/ui'
 
 type PreviewProps = { homePath?: string }
 
@@ -121,39 +27,50 @@ export const GrowthHeroBlock = ({
   footnote,
   homePath,
 }: GrowthHeroProps & PreviewProps) => (
-  <section className={classes.hero} aria-label="Your next chapter with FILAS">
-    <div className={classes.container}>
-      <p className={classes.eyebrow}>
-        <span className={classes.dot} />
+  <section
+    className="scroll-mt-28 bg-filas-paper pt-16 text-center text-filas-ink sm:pt-24 lg:pt-36"
+    aria-label="Your next chapter with FILAS"
+  >
+    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+      <p className="mb-7 flex items-center justify-center gap-2.5 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase">
+        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
         {eyebrow}
       </p>
-      <h1 className={classes.heroHeading}>
+      <h1 className="mx-auto max-w-[1100px] text-5xl leading-none font-medium tracking-tighter text-balance sm:text-6xl lg:text-8xl">
         {heading}
-        <br />
-        <span>{emphasis}</span>
-        <span className={classes.period}>.</span>
+        <br className="hidden sm:inline" />
+        <span className="before:content-['_'] sm:before:content-none">{emphasis}</span>
+        <span className="text-filas-accent">.</span>
       </h1>
-      <p className={classes.heroDescription}>{description}</p>
-      <div className={classes.actions}>
-        <Link className={classes.button} href={siteURL(primaryLink.url, homePath)}>
+      <p className="mx-auto mt-6 max-w-xl text-base leading-loose text-pretty text-filas-muted sm:mt-8 sm:text-lg">
+        {description}
+      </p>
+      <div className="mt-7 flex flex-col flex-wrap items-center justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-x-8 sm:gap-y-5">
+        <Link
+          className="inline-flex min-h-12.5 items-center justify-center gap-6 rounded-xs border border-transparent bg-filas-ink px-5 py-4 text-sm font-medium text-filas-paper no-underline transition-colors duration-200 hover:bg-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none sm:px-6"
+          href={siteURL(primaryLink.url, homePath)}
+        >
           {primaryLink.label}
           <ArrowUpRight size={18} aria-hidden="true" />
         </Link>
-        <Link className={classes.textLink} href={siteURL(secondaryLink.url, homePath)}>
+        <Link
+          className="inline-flex min-h-12.5 items-center justify-center gap-6 border-b border-filas-line px-5 text-sm font-medium text-filas-ink no-underline transition-colors duration-200 hover:border-current hover:text-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none sm:gap-3.5 sm:px-0"
+          href={siteURL(secondaryLink.url, homePath)}
+        >
           {secondaryLink.label}
           <ArrowRight size={17} aria-hidden="true" />
         </Link>
       </div>
-      <div className={classes.heroBottom}>
-        <p>{footnote}</p>
+      <div className="mt-12 grid grid-cols-[1fr_auto] items-center gap-5 border-b border-filas-line py-5.5 font-mono text-xs leading-relaxed text-filas-muted sm:mt-22 sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:py-6">
+        <p className="max-w-60 text-left sm:max-w-none">{footnote}</p>
         <a
           href={siteURL('/#about', homePath)}
           aria-label="Get to know FILAS"
-          className={classes.scrollLink}
+          className="grid h-10.5 w-10.5 place-items-center rounded-full border border-filas-line text-filas-ink transition-colors duration-200 hover:border-filas-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none"
         >
           <ArrowDown size={19} aria-hidden="true" />
         </a>
-        <span>Strategy. Execution. Accountability.</span>
+        <span className="hidden text-right sm:block">Strategy. Execution. Accountability.</span>
       </div>
     </div>
   </section>
@@ -167,17 +84,24 @@ export const GrowthIntroBlock = ({
   supportingText,
   statement,
 }: GrowthIntroProps) => (
-  <section className={classes.intro} id={anchorId}>
-    <div className={classes.container}>
-      <p className={classes.eyebrow}>{eyebrow}</p>
-      <div className={classes.introGrid}>
-        <h2 className={classes.heading}>{heading}</h2>
-        <div className={classes.introCopy}>
+  <section
+    className="scroll-mt-28 bg-filas-paper py-16 text-filas-ink sm:py-24 lg:py-28"
+    id={anchorId}
+  >
+    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
+        {eyebrow}
+      </p>
+      <div className="grid items-start gap-6 sm:grid-cols-[1.05fr_0.8fr] sm:gap-12 lg:gap-24 xl:gap-32">
+        <h2 className="max-w-[610px] text-4xl leading-tight font-medium tracking-tighter text-pretty whitespace-pre-line lg:text-6xl">
+          {heading}
+        </h2>
+        <div className="space-y-5 text-base leading-loose text-pretty text-filas-muted sm:text-lg">
           <p>{description}</p>
           <p>{supportingText}</p>
         </div>
       </div>
-      <div className={classes.brandStatement}>
+      <div className="mt-9 flex items-center gap-4 bg-filas-surface px-4 py-4.5 sm:mt-12 sm:gap-7 sm:py-4 sm:pr-8 sm:pl-3.5">
         <Image
           src="/filas-logo.jpg"
           alt="FILAS"
@@ -185,11 +109,16 @@ export const GrowthIntroBlock = ({
           height={120}
           quality={100}
           sizes="120px"
-          className={classes.statementLogo}
+          className="h-15 w-15 shrink-0 object-contain mix-blend-multiply sm:h-22.5 sm:w-22.5"
         />
-        <p>{statement}</p>
-        <span className={classes.statementLine} aria-hidden="true" />
-        <ArrowUpRight size={28} strokeWidth={1.2} aria-hidden="true" />
+        <p className="text-lg leading-normal tracking-tight sm:text-xl">{statement}</p>
+        <span className="ml-6 hidden h-px flex-1 bg-filas-line sm:block" aria-hidden="true" />
+        <ArrowUpRight
+          size={28}
+          strokeWidth={1.2}
+          aria-hidden="true"
+          className="hidden shrink-0 text-filas-accent sm:block"
+        />
       </div>
     </div>
   </section>
@@ -202,19 +131,30 @@ export const ApproachBlock = ({
   description,
   steps,
 }: ApproachProps) => (
-  <section className={classes.approach} id={anchorId}>
-    <div className={classes.container}>
-      <p className={classes.eyebrow}>{eyebrow}</p>
-      <div className={classes.sectionHeader}>
-        <h2 className={classes.heading}>{heading}</h2>
-        <p className={classes.approachDescription}>{description}</p>
+  <section className="scroll-mt-28 bg-filas-ink py-16 text-filas-paper sm:py-24" id={anchorId}>
+    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-[#d7937c] uppercase sm:mb-9">
+        {eyebrow}
+      </p>
+      <div className="mb-9 grid items-end gap-6 sm:mb-14 sm:grid-cols-[1.2fr_0.7fr] sm:gap-10 lg:gap-20">
+        <h2 className="text-4xl leading-tight font-medium tracking-tighter text-pretty whitespace-pre-line lg:text-6xl">
+          {heading}
+        </h2>
+        <p className="max-w-sm text-base leading-loose text-pretty text-[#bdbbb4]">{description}</p>
       </div>
-      <ol className={classes.steps}>
+      <ol className="mt-10 grid list-none grid-cols-1 gap-8 p-0 sm:mt-16 sm:grid-cols-2 sm:gap-10 lg:grid-cols-[repeat(auto-fit,minmax(210px,1fr))] lg:gap-8">
         {steps.map((step, index) => (
-          <li key={step.id || index}>
-            <span className={classes.stepNumber}>{String(index + 1).padStart(2, '0')}</span>
-            <h3>{step.title}</h3>
-            <p>{step.description}</p>
+          <li
+            className="grid grid-cols-[35px_1fr] gap-x-4 border-t border-[#494944] pt-5.5 sm:block sm:pt-6.5"
+            key={step.id || index}
+          >
+            <span className="row-span-2 pt-1 font-mono text-xs font-normal text-[#d7937c] sm:pt-0">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 className="mb-3 text-2xl leading-tight font-normal tracking-tight sm:mt-9 sm:mb-3.5">
+              {step.title}
+            </h3>
+            <p className="text-sm leading-loose text-[#bdbbb4] lg:max-w-66">{step.description}</p>
           </li>
         ))}
       </ol>
@@ -229,29 +169,56 @@ export const ServicesOverviewBlock = ({
   description,
   services,
 }: ServicesOverviewProps) => (
-  <section className={classes.services} id={anchorId}>
-    <div className={classes.container}>
-      <p className={classes.eyebrow}>{eyebrow}</p>
-      <div className={classes.sectionHeader}>
-        <h2 className={classes.heading}>{heading}</h2>
-        <p className={classes.description}>{description}</p>
+  <section
+    className="scroll-mt-28 bg-filas-paper py-16 text-filas-ink sm:py-24 lg:py-28"
+    id={anchorId}
+  >
+    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
+        {eyebrow}
+      </p>
+      <div className="mb-9 grid items-end gap-6 sm:mb-14 sm:grid-cols-[1.2fr_0.7fr] sm:gap-10 lg:gap-20">
+        <h2 className="text-4xl leading-tight font-medium tracking-tighter text-pretty whitespace-pre-line lg:text-6xl">
+          {heading}
+        </h2>
+        <p className="max-w-sm text-base leading-loose text-pretty text-filas-muted">
+          {description}
+        </p>
       </div>
-      <div className={classes.serviceList}>
+      <div className="border-t border-filas-line">
         {services.map((service, index) => (
-          <details className={classes.service} key={service.id || index}>
-            <summary className={classes.serviceSummaryRow}>
-              <span className={classes.serviceNumber}>{String(index + 1).padStart(2, '0')}</span>
-              <h3 className={classes.serviceTitle}>{service.title}</h3>
-              <span className={classes.serviceSummary}>{service.summary}</span>
-              <span className={classes.serviceToggle}>
-                <Plus size={20} strokeWidth={1.4} aria-hidden="true" />
+          <details className="group border-b border-filas-line" key={service.id || index}>
+            <summary className="group/summary grid cursor-pointer list-none grid-cols-[22px_1fr_34px] items-center gap-3 py-6.5 [&::-webkit-details-marker]:hidden [&::marker]:content-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text sm:grid-cols-[30px_1fr_40px] sm:gap-5 sm:py-8 lg:grid-cols-[48px_1.15fr_0.85fr_44px] lg:gap-6">
+              <span className="font-mono text-xs font-normal text-filas-accent-text">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h3 className="text-2xl leading-tight font-normal tracking-tight lg:text-4xl">
+                {service.title}
+              </h3>
+              <span className="hidden text-sm leading-normal text-filas-muted lg:block">
+                {service.summary}
+              </span>
+              <span className="grid h-8 w-8 place-items-center rounded-full border border-filas-line transition-colors duration-200 group-open:border-filas-accent-text group-open:bg-filas-accent-text group-open:text-filas-paper group-hover/summary:border-filas-accent-text group-hover/summary:bg-filas-accent-text group-hover/summary:text-filas-paper motion-reduce:transition-none sm:h-10 sm:w-10">
+                <Plus
+                  size={20}
+                  strokeWidth={1.4}
+                  aria-hidden="true"
+                  className="transition-transform duration-200 group-open:rotate-45 motion-reduce:transition-none"
+                />
               </span>
             </summary>
-            <div className={classes.serviceDetail}>
-              <p>{service.description}</p>
-              <ul>
+            <div className="grid gap-5.5 pt-0 pr-0 pb-6.5 pl-8.5 sm:pl-12.5 lg:grid-cols-2 lg:gap-10.5 lg:pr-17 lg:pl-18 lg:pb-8">
+              <p className="max-w-[480px] text-sm leading-relaxed text-filas-muted sm:text-base">
+                {service.description}
+              </p>
+              <ul className="flex list-none flex-wrap content-start gap-2.5">
                 {service.capabilities.map((capability, capabilityIndex) => (
-                  <li key={capability.id || capabilityIndex}>{capability.label}</li>
+                  <li
+                    className="border border-filas-line px-2.5 py-1.5 text-xs leading-normal"
+                    key={capability.id || capabilityIndex}
+                  >
+                    {capability.label}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -269,27 +236,45 @@ export const AudienceBlock = ({
   description,
   stages,
 }: AudienceProps) => (
-  <section className={classes.audience} id={anchorId}>
-    <div className={classes.container}>
-      <p className={classes.eyebrow}>{eyebrow}</p>
-      <div className={classes.sectionHeader}>
-        <h2 className={classes.heading}>{heading}</h2>
-        <p className={classes.description}>{description}</p>
+  <section
+    className="scroll-mt-28 bg-filas-surface py-16 text-filas-ink sm:py-24 lg:py-28"
+    id={anchorId}
+  >
+    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
+        {eyebrow}
+      </p>
+      <div className="mb-9 grid items-end gap-6 sm:mb-14 sm:grid-cols-[1.2fr_0.7fr] sm:gap-10 lg:gap-20">
+        <h2 className="text-4xl leading-tight font-medium tracking-tighter text-pretty whitespace-pre-line lg:text-6xl">
+          {heading}
+        </h2>
+        <p className="max-w-sm text-base leading-loose text-pretty text-filas-muted">
+          {description}
+        </p>
       </div>
-      <div className={classes.stages}>
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[repeat(auto-fit,minmax(245px,1fr))] lg:gap-5">
         {stages.map((stage, index) => (
           <article
-            className={stage.featured ? classes.featuredStage : classes.stage}
+            className={cn(
+              'flex flex-col border border-[#d7d3c9] px-6 py-7 lg:min-h-85 lg:px-7 lg:py-8',
+              stage.featured && 'border-t-3 border-t-filas-accent bg-filas-paper',
+            )}
             key={stage.id || index}
           >
-            <p className={classes.stageLabel}>{stage.label}</p>
-            <h3>
+            <p className="mb-5 font-mono text-xs leading-relaxed tracking-wider text-filas-muted uppercase lg:mb-9">
+              {stage.label}
+            </p>
+            <h3 className="mb-5 text-3xl leading-tight font-medium tracking-tight lg:text-4xl">
               {stage.title}
-              <span aria-hidden="true">.</span>
+              <span className="text-filas-accent" aria-hidden="true">
+                .
+              </span>
             </h3>
-            <p className={classes.stageDescription}>{stage.description}</p>
+            <p className="mb-8 max-w-2xl text-sm leading-loose text-filas-muted lg:max-w-none">
+              {stage.description}
+            </p>
             <ArrowUpRight
-              className={classes.stageArrow}
+              className="mt-auto text-filas-accent-text"
               size={26}
               strokeWidth={1.3}
               aria-hidden="true"
@@ -308,17 +293,24 @@ export const ClientLogosBlock = ({ anchorId, eyebrow, heading, clients }: Client
   if (!approvedClients?.length) return null
 
   return (
-    <section className={classes.clients} id={anchorId}>
-      <div className={classes.container}>
-        <p className={classes.eyebrow}>{eyebrow}</p>
-        <h2 className={classes.heading}>{heading}</h2>
-        <ul className={classes.logos}>
+    <section
+      className="scroll-mt-28 border-b border-filas-line bg-filas-paper py-16 text-center text-filas-ink sm:py-24 lg:py-28"
+      id={anchorId}
+    >
+      <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+        <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
+          {eyebrow}
+        </p>
+        <h2 className="text-4xl leading-tight font-medium tracking-tighter text-balance whitespace-pre-line lg:text-6xl">
+          {heading}
+        </h2>
+        <ul className="mt-12 flex list-none flex-wrap justify-center gap-x-14 gap-y-8">
           {approvedClients.map((client, index) => (
-            <li key={client.id || index}>
+            <li className="grid w-[150px] place-items-center" key={client.id || index}>
               <Media
                 resource={client.logo}
                 alt={client.name}
-                imgClassName={classes.clientLogo}
+                imgClassName="max-h-22.5 w-[150px] object-contain"
                 size="180px"
               />
             </li>
@@ -338,19 +330,29 @@ export const ContactInvitationBlock = ({
   note,
   homePath,
 }: ContactInvitationProps & PreviewProps) => (
-  <section className={classes.contact} id={anchorId}>
-    <div className={classes.container}>
-      <p className={classes.eyebrow}>
-        <span className={classes.dot} />
+  <section
+    className="scroll-mt-28 bg-filas-paper py-20 text-center text-filas-ink sm:pt-30 sm:pb-25"
+    id={anchorId}
+  >
+    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+      <p className="mb-7 flex items-center justify-center gap-2.5 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
+        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
         {eyebrow}
       </p>
-      <h2>{heading}</h2>
-      <p className={classes.contactDescription}>{description}</p>
-      <Link className={classes.contactButton} href={siteURL(link.url, homePath)}>
+      <h2 className="text-4xl leading-tight font-medium tracking-tighter text-balance whitespace-pre-line sm:text-5xl lg:text-6xl xl:text-7xl">
+        {heading}
+      </h2>
+      <p className="mx-auto mt-6 mb-8 max-w-md text-base leading-loose text-pretty text-filas-muted">
+        {description}
+      </p>
+      <Link
+        className="inline-flex min-h-12.5 items-center justify-center gap-6 rounded-xs border border-transparent bg-filas-accent-text px-5 py-4 text-sm font-medium text-filas-paper no-underline transition-colors duration-200 hover:bg-filas-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none sm:px-6"
+        href={siteURL(link.url, homePath)}
+      >
         {link.label}
         <ArrowUpRight size={18} aria-hidden="true" />
       </Link>
-      <p className={classes.contactNote}>{note}</p>
+      <p className="mt-7 font-mono text-xs leading-loose text-filas-muted">{note}</p>
     </div>
   </section>
 )
