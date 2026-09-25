@@ -1,14 +1,10 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowDown, ArrowRight, ArrowUpRight, Plus } from 'lucide-react'
+import { ArrowUpRight, Plus } from 'lucide-react'
 
 import type {
-  ApproachBlock as ApproachProps,
   AudienceBlock as AudienceProps,
   ClientLogosBlock as ClientLogosProps,
   ContactInvitationBlock as ContactInvitationProps,
-  GrowthHeroBlock as GrowthHeroProps,
-  GrowthIntroBlock as GrowthIntroProps,
   ServicesOverviewBlock as ServicesOverviewProps,
 } from '@/payload-types'
 import { Media } from '@/components/Media'
@@ -17,150 +13,14 @@ import { cn } from '@/utilities/ui'
 
 type PreviewProps = { homePath?: string }
 
-export const GrowthHeroBlock = ({
-  eyebrow,
-  heading,
-  emphasis,
-  description,
-  primaryLink,
-  secondaryLink,
-  footnote,
-  homePath,
-}: GrowthHeroProps & PreviewProps) => (
-  <section
-    className="scroll-mt-28 bg-filas-paper pt-16 text-center text-filas-ink sm:pt-24 lg:pt-36"
-    aria-label="Your next chapter with FILAS"
-  >
-    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
-      <p className="mb-7 flex items-center justify-center gap-2.5 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase">
-        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-current" />
-        {eyebrow}
-      </p>
-      <h1 className="mx-auto max-w-[1100px] text-5xl leading-none font-medium tracking-tighter text-balance sm:text-6xl lg:text-8xl">
-        {heading}
-        <br className="hidden sm:inline" />
-        <span className="before:content-['_'] sm:before:content-none">{emphasis}</span>
-        <span className="text-filas-accent">.</span>
-      </h1>
-      <p className="mx-auto mt-6 max-w-xl text-base leading-loose text-pretty text-filas-muted sm:mt-8 sm:text-lg">
-        {description}
-      </p>
-      <div className="mt-7 flex flex-col flex-wrap items-center justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-x-8 sm:gap-y-5">
-        <Link
-          className="inline-flex min-h-12.5 items-center justify-center gap-6 rounded-xs border border-transparent bg-filas-ink px-5 py-4 text-sm font-medium text-filas-paper no-underline transition-colors duration-200 hover:bg-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none sm:px-6"
-          href={siteURL(primaryLink.url, homePath)}
-        >
-          {primaryLink.label}
-          <ArrowUpRight size={18} aria-hidden="true" />
-        </Link>
-        <Link
-          className="inline-flex min-h-12.5 items-center justify-center gap-6 border-b border-filas-line px-5 text-sm font-medium text-filas-ink no-underline transition-colors duration-200 hover:border-current hover:text-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none sm:gap-3.5 sm:px-0"
-          href={siteURL(secondaryLink.url, homePath)}
-        >
-          {secondaryLink.label}
-          <ArrowRight size={17} aria-hidden="true" />
-        </Link>
-      </div>
-      <div className="mt-12 grid grid-cols-[1fr_auto] items-center gap-5 border-b border-filas-line py-5.5 font-mono text-xs leading-relaxed text-filas-muted sm:mt-22 sm:grid-cols-[1fr_auto_1fr] sm:gap-8 sm:py-6">
-        <p className="max-w-60 text-left sm:max-w-none">{footnote}</p>
-        <a
-          href={siteURL('/#about', homePath)}
-          aria-label="Get to know FILAS"
-          className="grid h-10.5 w-10.5 place-items-center rounded-full border border-filas-line text-filas-ink transition-colors duration-200 hover:border-filas-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none"
-        >
-          <ArrowDown size={19} aria-hidden="true" />
-        </a>
-        <span className="hidden text-right sm:block">Strategy. Execution. Accountability.</span>
-      </div>
-    </div>
-  </section>
-)
+export { GrowthHeroBlock } from './GrowthHero'
+import { GrowthHeroBlock } from './GrowthHero'
 
-export const GrowthIntroBlock = ({
-  anchorId,
-  eyebrow,
-  heading,
-  description,
-  supportingText,
-  statement,
-}: GrowthIntroProps) => (
-  <section
-    className="scroll-mt-28 bg-filas-paper py-16 text-filas-ink sm:py-24 lg:py-28"
-    id={anchorId}
-  >
-    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
-      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
-        {eyebrow}
-      </p>
-      <div className="grid items-start gap-6 sm:grid-cols-[1.05fr_0.8fr] sm:gap-12 lg:gap-24 xl:gap-32">
-        <h2 className="max-w-[610px] text-4xl leading-tight font-medium tracking-tighter text-pretty whitespace-pre-line lg:text-6xl">
-          {heading}
-        </h2>
-        <div className="space-y-5 text-base leading-loose text-pretty text-filas-muted sm:text-lg">
-          <p>{description}</p>
-          <p>{supportingText}</p>
-        </div>
-      </div>
-      <div className="mt-9 flex items-center gap-4 bg-filas-surface px-4 py-4.5 sm:mt-12 sm:gap-7 sm:py-4 sm:pr-8 sm:pl-3.5">
-        <Image
-          src="/filas-logo.jpg"
-          alt="FILAS"
-          width={120}
-          height={120}
-          quality={100}
-          sizes="120px"
-          className="h-15 w-15 shrink-0 object-contain mix-blend-multiply sm:h-22.5 sm:w-22.5"
-        />
-        <p className="text-lg leading-normal tracking-tight sm:text-xl">{statement}</p>
-        <span className="ml-6 hidden h-px flex-1 bg-filas-line sm:block" aria-hidden="true" />
-        <ArrowUpRight
-          size={28}
-          strokeWidth={1.2}
-          aria-hidden="true"
-          className="hidden shrink-0 text-filas-accent sm:block"
-        />
-      </div>
-    </div>
-  </section>
-)
+export { GrowthIntroBlock } from './GrowthIntro'
+import { GrowthIntroBlock } from './GrowthIntro'
 
-export const ApproachBlock = ({
-  anchorId,
-  eyebrow,
-  heading,
-  description,
-  steps,
-}: ApproachProps) => (
-  <section className="scroll-mt-28 bg-filas-ink py-16 text-filas-paper sm:py-24" id={anchorId}>
-    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
-      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-[#d7937c] uppercase sm:mb-9">
-        {eyebrow}
-      </p>
-      <div className="mb-9 grid items-end gap-6 sm:mb-14 sm:grid-cols-[1.2fr_0.7fr] sm:gap-10 lg:gap-20">
-        <h2 className="text-4xl leading-tight font-medium tracking-tighter text-pretty whitespace-pre-line lg:text-6xl">
-          {heading}
-        </h2>
-        <p className="max-w-sm text-base leading-loose text-pretty text-[#bdbbb4]">{description}</p>
-      </div>
-      <ol className="mt-10 grid list-none grid-cols-1 gap-8 p-0 sm:mt-16 sm:grid-cols-2 sm:gap-10 lg:grid-cols-[repeat(auto-fit,minmax(210px,1fr))] lg:gap-8">
-        {steps.map((step, index) => (
-          <li
-            className="grid grid-cols-[35px_1fr] gap-x-4 border-t border-[#494944] pt-5.5 sm:block sm:pt-6.5"
-            key={step.id || index}
-          >
-            <span className="row-span-2 pt-1 font-mono text-xs font-normal text-[#d7937c] sm:pt-0">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            <h3 className="mb-3 text-2xl leading-tight font-normal tracking-tight sm:mt-9 sm:mb-3.5">
-              {step.title}
-            </h3>
-            <p className="text-sm leading-loose text-[#bdbbb4] lg:max-w-66">{step.description}</p>
-          </li>
-        ))}
-      </ol>
-    </div>
-  </section>
-)
+export { ApproachBlock } from './Approach'
+import { ApproachBlock } from './Approach'
 
 export const ServicesOverviewBlock = ({
   anchorId,

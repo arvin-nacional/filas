@@ -1,4 +1,4 @@
-import type { Block, Field } from 'payload'
+import type { Block, Field, TextField, TextareaField } from 'payload'
 
 import {
   approachDefaults,
@@ -9,7 +9,11 @@ import {
   servicesOverviewDefaults,
 } from './defaults'
 
-const text = (name: string, defaultValue?: string, type: 'text' | 'textarea' = 'text'): Field =>
+const text = (
+  name: string,
+  defaultValue?: string,
+  type: 'text' | 'textarea' = 'text',
+): TextField | TextareaField =>
   type === 'textarea'
     ? { name, type: 'textarea', defaultValue, required: true }
     : { name, type: 'text', defaultValue, required: true }
@@ -74,6 +78,61 @@ export const GrowthHero: Block = {
     action('primaryLink', growthHeroDefaults.primaryLink),
     action('secondaryLink', growthHeroDefaults.secondaryLink),
     text('footnote', growthHeroDefaults.footnote),
+    {
+      name: 'visuals',
+      type: 'group',
+      admin: {
+        description:
+          'Replace either photo with an image from Media. Empty uploads use the generated hero photos.',
+      },
+      fields: [
+        {
+          name: 'mainImage',
+          label: 'Entrepreneur photo',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        {
+          name: 'fulfillmentImage',
+          label: 'Fulfillment photo',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        { name: 'showCards', type: 'checkbox', defaultValue: true },
+        { ...text('progressLabel', 'From potential\nto progress.', 'textarea'), required: false },
+        {
+          ...text('fulfillmentLabel', 'Fulfillment\nthat keeps you\nmoving.', 'textarea'),
+          required: false,
+        },
+        { ...text('marketplaceLabel', 'Across every\nmarketplace.', 'textarea'), required: false },
+        {
+          name: 'marketplaces',
+          type: 'array',
+          maxRows: 4,
+          defaultValue: [
+            { name: 'Shopee' },
+            { name: 'Lazada' },
+            { name: 'TikTok' },
+            { name: 'Shopify' },
+          ],
+          admin: {
+            description:
+              'Editable marketplace names and optional logo uploads. Without a logo, the name is displayed.',
+          },
+          fields: [
+            text('name'),
+            {
+              name: 'logo',
+              type: 'upload',
+              relationTo: 'media',
+              filterOptions: { mimeType: { contains: 'image' } },
+            },
+          ],
+        },
+      ],
+    },
   ],
 }
 
@@ -85,6 +144,40 @@ export const GrowthIntro: Block = {
     ...introFields(growthIntroDefaults),
     text('supportingText', growthIntroDefaults.supportingText, 'textarea'),
     text('statement', growthIntroDefaults.statement),
+    {
+      name: 'visuals',
+      type: 'group',
+      admin: {
+        description:
+          'Replace the supplied section photos with Media uploads. Leave empty to use the bundled photos.',
+      },
+      fields: [
+        {
+          name: 'warehouseImage',
+          label: 'Warehouse photo',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        {
+          name: 'teamImage',
+          label: 'Partnership photo',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        { name: 'cardHeading', type: 'textarea', defaultValue: 'From ambition\nto what’s next.' },
+        {
+          name: 'capabilities',
+          type: 'array',
+          maxRows: 8,
+          defaultValue: ['Strategy', 'Commerce', 'Fulfillment', 'People'].map((label) => ({
+            label,
+          })),
+          fields: [text('label')],
+        },
+      ],
+    },
   ],
 }
 
@@ -94,6 +187,30 @@ export const Approach: Block = {
   labels: { singular: 'Our Approach', plural: 'Approach Sections' },
   fields: [
     ...introFields(approachDefaults),
+    {
+      name: 'visuals',
+      type: 'group',
+      admin: {
+        description:
+          'Replace the supplied photos with Media uploads and edit their overlay labels.',
+      },
+      fields: [
+        {
+          name: 'strategyImage',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        {
+          name: 'executionImage',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        { name: 'strategyLabel', type: 'textarea', defaultValue: 'Strategy\nmeets\nexecution' },
+        { name: 'executionLabel', type: 'textarea', defaultValue: 'Ideas\ninto\nopportunity' },
+      ],
+    },
     {
       name: 'steps',
       type: 'array',

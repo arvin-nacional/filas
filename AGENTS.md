@@ -1,5 +1,10 @@
 # Agents
 
+## Styling
+
+Use Tailwind utility classes for component styling. Do not create or import `.module.css` files.
+Keep global styles and Tailwind theme configuration in the existing global stylesheet.
+
 This project uses the Payload CMS skill at `.agents/skills/payload/`.
 Start with `.agents/skills/payload/SKILL.md` for a quick reference, then see `.agents/skills/payload/reference/` for detailed docs.
 

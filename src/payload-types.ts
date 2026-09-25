@@ -488,6 +488,27 @@ export interface GrowthHeroBlock {
     url: string;
   };
   footnote: string;
+  /**
+   * Replace either photo with an image from Media. Empty uploads use the generated hero photos.
+   */
+  visuals?: {
+    mainImage?: (string | null) | Media;
+    fulfillmentImage?: (string | null) | Media;
+    showCards?: boolean | null;
+    progressLabel?: string | null;
+    fulfillmentLabel?: string | null;
+    marketplaceLabel?: string | null;
+    /**
+     * Editable marketplace names and optional logo uploads. Without a logo, the name is displayed.
+     */
+    marketplaces?:
+      | {
+          name: string;
+          logo?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'growthHero';
@@ -506,6 +527,20 @@ export interface GrowthIntroBlock {
   description: string;
   supportingText: string;
   statement: string;
+  /**
+   * Replace the supplied section photos with Media uploads. Leave empty to use the bundled photos.
+   */
+  visuals?: {
+    warehouseImage?: (string | null) | Media;
+    teamImage?: (string | null) | Media;
+    cardHeading?: string | null;
+    capabilities?:
+      | {
+          label: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'growthIntro';
@@ -522,6 +557,15 @@ export interface ApproachBlock {
   eyebrow: string;
   heading: string;
   description: string;
+  /**
+   * Replace the supplied photos with Media uploads and edit their overlay labels.
+   */
+  visuals?: {
+    strategyImage?: (string | null) | Media;
+    executionImage?: (string | null) | Media;
+    strategyLabel?: string | null;
+    executionLabel?: string | null;
+  };
   steps: {
     title: string;
     description: string;
@@ -1584,6 +1628,23 @@ export interface GrowthHeroBlockSelect<T extends boolean = true> {
         url?: T;
       };
   footnote?: T;
+  visuals?:
+    | T
+    | {
+        mainImage?: T;
+        fulfillmentImage?: T;
+        showCards?: T;
+        progressLabel?: T;
+        fulfillmentLabel?: T;
+        marketplaceLabel?: T;
+        marketplaces?:
+          | T
+          | {
+              name?: T;
+              logo?: T;
+              id?: T;
+            };
+      };
   id?: T;
   blockName?: T;
 }
@@ -1598,6 +1659,19 @@ export interface GrowthIntroBlockSelect<T extends boolean = true> {
   description?: T;
   supportingText?: T;
   statement?: T;
+  visuals?:
+    | T
+    | {
+        warehouseImage?: T;
+        teamImage?: T;
+        cardHeading?: T;
+        capabilities?:
+          | T
+          | {
+              label?: T;
+              id?: T;
+            };
+      };
   id?: T;
   blockName?: T;
 }
@@ -1610,6 +1684,14 @@ export interface ApproachBlockSelect<T extends boolean = true> {
   eyebrow?: T;
   heading?: T;
   description?: T;
+  visuals?:
+    | T
+    | {
+        strategyImage?: T;
+        executionImage?: T;
+        strategyLabel?: T;
+        executionLabel?: T;
+      };
   steps?:
     | T
     | {

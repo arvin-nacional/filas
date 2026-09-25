@@ -18,7 +18,7 @@ export const HeaderClient = ({ data, homePath = '/' }: { data: Header; homePath?
 
   return (
     <header
-      className="sticky top-0 z-30 bg-filas-paper text-filas-ink"
+      className="sticky top-0 z-30 border-b border-filas-line bg-filas-paper text-filas-ink"
       onKeyDown={(event) => {
         if (event.key === 'Escape' && open) {
           setOpen(false)
@@ -32,7 +32,7 @@ export const HeaderClient = ({ data, homePath = '/' }: { data: Header; homePath?
       >
         Skip to content
       </a>
-      <div className="mx-auto flex min-h-20 w-[calc(100%-2.5rem)] max-w-7xl flex-wrap items-center justify-between border-b border-filas-line sm:w-[calc(100%-4rem)] md:min-h-24 md:flex-nowrap md:gap-8 lg:w-[calc(100%-7rem)]">
+      <div className="mx-auto flex min-h-20 w-[calc(100%-2.5rem)] max-w-[1516px] flex-wrap items-center justify-between sm:w-[calc(100%-4rem)] md:min-h-24 md:flex-nowrap md:gap-8 lg:w-[84%]">
         <Brand href={homePath} logo={data.logo} />
         <button
           className="inline-flex min-h-11 items-center gap-3 py-2 pl-3 font-mono text-xs focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text md:hidden"
@@ -67,7 +67,7 @@ export const HeaderClient = ({ data, homePath = '/' }: { data: Header; homePath?
           ))}
           {data.actionURL && data.actionLabel && (
             <Link
-              className="mt-3 inline-flex min-h-12 items-center justify-between gap-6 rounded-xs border border-filas-line px-4 py-3 text-sm text-filas-ink transition-colors hover:border-filas-ink hover:bg-filas-ink hover:text-filas-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none md:mt-0 md:min-h-11 md:text-xs"
+              className="mt-3 inline-flex min-h-12 items-center justify-between gap-6 rounded-xs border border-transparent bg-filas-accent-text px-5 py-3 text-sm text-filas-paper transition-colors hover:border-filas-ink hover:bg-filas-ink hover:text-filas-paper focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text motion-reduce:transition-none md:mt-0 md:min-h-11 md:text-xs"
               href={siteURL(data.actionURL, homePath)}
             >
               {data.actionLabel}

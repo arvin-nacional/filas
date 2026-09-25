@@ -1,0 +1,405 @@
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--filas-paper);
+  color: var(--filas-ink);
+}
+.inner {
+  width: 84%;
+  max-width: 1516px;
+  margin: 0 auto;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  padding: 70px 0 95px;
+}
+.copy {
+  position: relative;
+  z-index: 3;
+  width: 47%;
+}
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--filas-accent-text);
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.eyebrow span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.copy h1 {
+  font-size: clamp(48px, 5.25vw, 94px);
+  font-weight: 500;
+  letter-spacing: -0.065em;
+  line-height: 0.99;
+}
+.period {
+  color: var(--filas-accent);
+}
+.description {
+  margin-top: 34px;
+  max-width: 650px;
+  font-size: clamp(16px, 1.3vw, 23px);
+  line-height: 1.6;
+  color: var(--filas-muted);
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 28px;
+  margin-top: 38px;
+}
+.actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 54px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+.actions a:focus-visible {
+  outline: 2px solid var(--filas-accent-text);
+  outline-offset: 5px;
+}
+.primary {
+  background: var(--filas-accent-text);
+  color: var(--filas-paper);
+  padding: 17px 25px;
+  border-radius: 3px;
+}
+.primary:hover {
+  background: var(--filas-ink);
+}
+.secondary {
+  border-bottom: 1px solid var(--filas-line);
+}
+.secondary:hover {
+  color: var(--filas-accent-text);
+}
+.visual {
+  position: absolute;
+  inset: 0 0 0 45%;
+  z-index: 1;
+}
+.mainPhoto {
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(39% 0, 100% 0, 100% 100%, 34% 100%, 17% 66%);
+}
+.photo {
+  object-fit: cover;
+  object-position: 62% center;
+}
+.ribbon {
+  position: absolute;
+  inset: 0 0 0 -8%;
+  background: linear-gradient(125deg, transparent 25%, #e9e5de 25%, #f5f3ef 40%, transparent 40%);
+}
+.ribbon::after {
+  content: '';
+  position: absolute;
+  left: 7%;
+  top: 19%;
+  width: 17%;
+  height: 45%;
+  background: linear-gradient(170deg, #bc5332, #bc533200 88%);
+  clip-path: polygon(64% 0, 100% 8%, 46% 100%, 0 74%, 0 45%);
+  transform: rotate(8deg);
+}
+.fulfillmentPhoto {
+  position: absolute;
+  width: 31%;
+  height: 46%;
+  left: 10%;
+  top: 34%;
+  border: 3px solid white;
+  border-radius: 16px;
+  overflow: hidden;
+  transform: rotate(14deg);
+  box-shadow: 0 25px 45px #29251d20;
+}
+.fulfillmentPhoto .photo {
+  transform: scale(1.15) rotate(-5deg);
+  object-position: center;
+}
+.card {
+  position: absolute;
+  background: #fcfbf9;
+  box-shadow: 0 12px 40px #29251d15;
+  border-radius: 16px;
+  padding: 22px;
+  font-size: clamp(12px, 1vw, 18px);
+  line-height: 1.2;
+}
+.card p {
+  white-space: pre-line;
+}
+.progress {
+  top: 16%;
+  left: 24%;
+  width: 30%;
+  min-height: 140px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.progress p {
+  flex: 1;
+}
+.bars {
+  width: 49%;
+  height: 96px;
+  display: flex;
+  align-items: end;
+  gap: 8px;
+  align-self: end;
+  margin-top: 3px;
+}
+.bars span {
+  flex: 1;
+  border-radius: 5px;
+  background: var(--filas-accent);
+}
+.fulfillment {
+  left: 10%;
+  top: 62%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 24%;
+  min-width: 165px;
+}
+.fulfillment svg {
+  flex-shrink: 0;
+}
+.marketplace {
+  right: 6%;
+  bottom: 12%;
+  width: 32%;
+}
+.marketplaceHeading {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.marketplaceHeading svg {
+  flex-shrink: 0;
+}
+.marketplaces {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+}
+.marketplaces li {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+}
+.marketplaceName {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 44px;
+  border-radius: 9px;
+  font-size: clamp(8px, 0.64vw, 12px);
+  font-weight: 600;
+  background: #ee542c;
+  color: white;
+  overflow-wrap: anywhere;
+  padding: 3px;
+}
+.marketplaces li:nth-child(2) .marketplaceName {
+  background: #2623c9;
+}
+.marketplaces li:nth-child(3) .marketplaceName {
+  background: #151515;
+}
+.marketplaces li:nth-child(4) .marketplaceName {
+  background: #638c2e;
+}
+.marketplaceLogo {
+  width: 100%;
+  height: 48px;
+  object-fit: contain;
+}
+@media (min-width: 1600px) {
+  .inner {
+    min-height: 770px;
+  }
+  .actions a {
+    font-size: 17px;
+    min-height: 64px;
+  }
+  .eyebrow {
+    font-size: 14px;
+  }
+}
+@media (max-width: 1200px) and (min-width: 1024px) {
+  .copy {
+    width: 49%;
+  }
+  .copy h1 {
+    font-size: 59px;
+  }
+  .card {
+    padding: 16px;
+  }
+  .progress {
+    width: 35%;
+  }
+  .marketplace {
+    width: 37%;
+    right: 3%;
+  }
+}
+@media (max-width: 1023px) {
+  .inner {
+    min-height: 0;
+    padding: 55px 0 35px;
+    width: calc(100% - 48px);
+  }
+  .copy {
+    width: 100%;
+    max-width: 680px;
+  }
+  .copy h1 {
+    font-size: clamp(46px, 8.5vw, 76px);
+    max-width: 660px;
+  }
+  .description {
+    font-size: 18px;
+    max-width: 600px;
+    margin-top: 24px;
+  }
+  .eyebrow {
+    margin-bottom: 25px;
+  }
+  .visual {
+    position: relative;
+    inset: auto;
+    height: 560px;
+    width: 100%;
+  }
+  .mainPhoto {
+    clip-path: polygon(30% 0, 100% 0, 100% 100%, 20% 100%, 9% 65%);
+  }
+  .fulfillmentPhoto {
+    left: 9%;
+    width: 29%;
+  }
+  .progress {
+    left: 24%;
+    top: 9%;
+    width: 32%;
+  }
+  .card {
+    font-size: 15px;
+  }
+  .marketplaceName {
+    font-size: 10px;
+  }
+}
+@media (max-width: 540px) {
+  .inner {
+    width: calc(100% - 40px);
+    padding-top: 38px;
+  }
+  .copy h1 {
+    font-size: clamp(42px, 11vw, 59px);
+  }
+  .eyebrow {
+    font-size: 10px;
+    gap: 8px;
+  }
+  .description {
+    font-size: 16px;
+  }
+  .actions {
+    gap: 14px;
+    margin-top: 26px;
+  }
+  .actions a {
+    min-height: 50px;
+  }
+  .visual {
+    height: 440px;
+  }
+  .mainPhoto {
+    clip-path: polygon(28% 0, 100% 0, 100% 100%, 13% 100%, 0 66%);
+  }
+  .fulfillmentPhoto {
+    width: 36%;
+    height: 43%;
+    left: 6%;
+    top: 35%;
+  }
+  .card {
+    border-radius: 12px;
+    padding: 13px;
+    font-size: 12px;
+  }
+  .progress {
+    left: 4%;
+    top: 6%;
+    width: 45%;
+    min-height: 95px;
+  }
+  .bars {
+    height: 63px;
+    gap: 5px;
+  }
+  .fulfillment {
+    left: 4%;
+    top: 68%;
+    width: 39%;
+    min-width: 0;
+    gap: 7px;
+  }
+  .fulfillment svg {
+    width: 24px;
+  }
+  .marketplace {
+    width: 46%;
+    right: 4%;
+    bottom: 5%;
+  }
+  .marketplaceHeading {
+    gap: 10px;
+  }
+  .marketplaceHeading svg {
+    width: 26px;
+  }
+  .marketplaces {
+    gap: 5px;
+    margin-top: 14px;
+  }
+  .marketplaceName {
+    font-size: 7px;
+    min-height: 32px;
+    border-radius: 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .actions a {
+    transition: none;
+  }
+}
