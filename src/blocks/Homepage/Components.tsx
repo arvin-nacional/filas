@@ -148,14 +148,16 @@ export const AudienceBlock = ({
 
 export const ClientLogosBlock = ({ anchorId, eyebrow, heading, clients }: ClientLogosProps) => {
   const approvedClients = clients?.filter(
-    (client) => client.approved && typeof client.logo === 'object' && client.logo.url,
+    (client) =>
+      client.approved && client.logo && typeof client.logo === 'object' && client.logo.url,
   )
   if (!approvedClients?.length) return null
 
   return (
     <section
-      className="scroll-mt-28 border-b border-filas-line bg-filas-paper py-16 text-center text-filas-ink sm:py-24 lg:py-28"
+      className="scroll-mt-28 border-y border-filas-line bg-filas-paper py-14 text-center text-filas-ink sm:py-20"
       id={anchorId}
+      aria-label={heading}
     >
       <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
         <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
@@ -164,14 +166,19 @@ export const ClientLogosBlock = ({ anchorId, eyebrow, heading, clients }: Client
         <h2 className="text-4xl leading-tight font-medium tracking-tighter text-balance whitespace-pre-line lg:text-6xl">
           {heading}
         </h2>
-        <ul className="mt-12 flex list-none flex-wrap justify-center gap-x-14 gap-y-8">
+        <ul className="mt-10 grid list-none grid-cols-2 gap-px overflow-hidden rounded-xl border border-filas-line bg-filas-line p-0 sm:grid-cols-3 lg:mt-12 lg:grid-cols-6">
           {approvedClients.map((client, index) => (
-            <li className="grid w-[150px] place-items-center" key={client.id || index}>
+            <li
+              className="flex h-32 items-center justify-center bg-filas-paper px-6 py-7 sm:h-36 lg:px-5"
+              key={client.id || index}
+            >
               <Media
                 resource={client.logo}
                 alt={client.name}
-                imgClassName="max-h-22.5 w-[150px] object-contain"
-                size="180px"
+                className="flex h-full w-full items-center justify-center"
+                pictureClassName="flex h-full w-full items-center justify-center"
+                imgClassName="h-auto max-h-20 w-auto max-w-full object-contain"
+                size="(min-width: 1024px) 180px, (min-width: 640px) 28vw, 42vw"
               />
             </li>
           ))}

@@ -140,20 +140,24 @@ export const LeadershipBlock = ({
         </h2>
         <p className="max-w-sm self-end text-lg leading-loose text-filas-muted">{description}</p>
       </div>
-      <ul className="mt-10 grid list-none grid-cols-1 gap-9 sm:mt-15 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-13 lg:grid-cols-3">
+      <ul className="mt-10 flex list-none flex-wrap justify-center gap-x-8 gap-y-9 p-0 sm:mt-15 sm:gap-y-13">
         {people.map((person, index) => (
-          <li key={person.id || index}>
-            <article>
+          <li
+            className="w-full sm:w-[calc((100%-2rem)/2)] lg:w-[calc((100%-6rem)/4)]"
+            key={person.id || index}
+          >
+            <article className="text-left">
               {typeof person.photo === 'object' && person.photo?.url ? (
                 <Media
                   resource={person.photo}
-                  className="aspect-[4/3] overflow-hidden bg-[#e9e4dc]"
-                  imgClassName="aspect-[4/3] h-full w-full object-cover"
-                  size="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw"
+                  className="aspect-square overflow-hidden bg-[#e9e4dc]"
+                  pictureClassName="block h-full w-full"
+                  imgClassName="h-full w-full object-cover object-top"
+                  size="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                 />
               ) : (
                 <div
-                  className="flex aspect-[4/3] items-center justify-center overflow-hidden border-b-3 border-filas-accent bg-[#e9e4dc] text-[#a49a8d]"
+                  className="flex aspect-square items-center justify-center overflow-hidden border-b-3 border-filas-accent bg-[#e9e4dc] text-[#a49a8d]"
                   aria-hidden="true"
                 >
                   <span className="text-[5.25rem] leading-none font-normal tracking-tighter sm:text-6xl lg:text-8xl">
