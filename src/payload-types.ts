@@ -220,6 +220,9 @@ export interface Page {
     | ContactHeroBlock
     | ContactInquiryBlock
     | ContactNextStepsBlock
+    | PartnersHeroBlock
+    | PartnerStagesBlock
+    | PartnershipFitBlock
     | ComingSoonBlock
     | CallToActionBlock
     | ContentBlock
@@ -683,6 +686,14 @@ export interface AboutHeroBlock {
   heading: string;
   emphasis: string;
   description: string;
+  commitment?: string | null;
+  /**
+   * Upload replacement images or leave empty to use the supplied team and operations photos.
+   */
+  visuals?: {
+    teamImage?: (string | null) | Media;
+    operationsImage?: (string | null) | Media;
+  };
   id?: string | null;
   blockName?: string | null;
   blockType: 'aboutHero';
@@ -720,12 +731,12 @@ export interface PurposeBlock {
   heading: string;
   missionLabel: string;
   /**
-   * Suggested draft copy. Replace with the approved FILAS mission before launch.
+   * Describe the integrated team and services supporting your customers.
    */
   mission: string;
   visionLabel: string;
   /**
-   * Suggested draft copy. Replace with the approved FILAS vision before launch.
+   * Describe how FILAS supports brands through their stages of growth.
    */
   vision: string;
   id?: string | null;
@@ -1078,6 +1089,66 @@ export interface ContactNextStepsBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'contactNextSteps';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersHeroBlock".
+ */
+export interface PartnersHeroBlock {
+  eyebrow: string;
+  heading: string;
+  emphasis: string;
+  description: string;
+  note: string;
+  /**
+   * Optional brand or team photo. Leave empty for the decorative growth graphic.
+   */
+  image?: (string | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partnersHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnerStagesBlock".
+ */
+export interface PartnerStagesBlock {
+  eyebrow: string;
+  heading: string;
+  description: string;
+  stages: {
+    label: string;
+    title: string;
+    description: string;
+    needs: string;
+    support: {
+      label: string;
+      id?: string | null;
+    }[];
+    featured?: boolean | null;
+    image?: (string | null) | Media;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partnerStages';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnershipFitBlock".
+ */
+export interface PartnershipFitBlock {
+  eyebrow: string;
+  heading: string;
+  description: string;
+  qualities: {
+    title: string;
+    description: string;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partnershipFit';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1585,6 +1656,9 @@ export interface PagesSelect<T extends boolean = true> {
         contactHero?: T | ContactHeroBlockSelect<T>;
         contactInquiry?: T | ContactInquiryBlockSelect<T>;
         contactNextSteps?: T | ContactNextStepsBlockSelect<T>;
+        partnersHero?: T | PartnersHeroBlockSelect<T>;
+        partnerStages?: T | PartnerStagesBlockSelect<T>;
+        partnershipFit?: T | PartnershipFitBlockSelect<T>;
         comingSoon?: T | ComingSoonBlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
@@ -1796,6 +1870,13 @@ export interface AboutHeroBlockSelect<T extends boolean = true> {
   heading?: T;
   emphasis?: T;
   description?: T;
+  commitment?: T;
+  visuals?:
+    | T
+    | {
+        teamImage?: T;
+        operationsImage?: T;
+      };
   id?: T;
   blockName?: T;
 }
@@ -1973,6 +2054,66 @@ export interface ContactNextStepsBlockSelect<T extends boolean = true> {
   eyebrow?: T;
   heading?: T;
   steps?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnersHeroBlock_select".
+ */
+export interface PartnersHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  emphasis?: T;
+  description?: T;
+  note?: T;
+  image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnerStagesBlock_select".
+ */
+export interface PartnerStagesBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  stages?:
+    | T
+    | {
+        label?: T;
+        title?: T;
+        description?: T;
+        needs?: T;
+        support?:
+          | T
+          | {
+              label?: T;
+              id?: T;
+            };
+        featured?: T;
+        image?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnershipFitBlock_select".
+ */
+export interface PartnershipFitBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  qualities?:
     | T
     | {
         title?: T;

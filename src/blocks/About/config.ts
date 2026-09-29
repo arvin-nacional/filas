@@ -38,6 +38,29 @@ export const AboutHero: Block = {
     text('heading', aboutHeroDefaults.heading),
     text('emphasis', aboutHeroDefaults.emphasis),
     text('description', aboutHeroDefaults.description, true),
+    { name: 'commitment', type: 'text', defaultValue: aboutHeroDefaults.commitment },
+    {
+      name: 'visuals',
+      type: 'group',
+      admin: {
+        description:
+          'Upload replacement images or leave empty to use the supplied team and operations photos.',
+      },
+      fields: [
+        {
+          name: 'teamImage',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        {
+          name: 'operationsImage',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+      ],
+    },
   ],
 }
 
@@ -63,21 +86,21 @@ export const CompanyStory: Block = {
 export const Purpose: Block = {
   slug: 'purpose',
   interfaceName: 'PurposeBlock',
-  labels: { singular: 'Mission & Vision', plural: 'Mission & Vision Sections' },
+  labels: { singular: 'Our Commitment', plural: 'Commitment Sections' },
   fields: [
     ...section(purposeDefaults),
     text('missionLabel', purposeDefaults.missionLabel),
     {
       ...text('mission', purposeDefaults.mission, true),
       admin: {
-        description: 'Suggested draft copy. Replace with the approved FILAS mission before launch.',
+        description: 'Describe the integrated team and services supporting your customers.',
       },
     },
     text('visionLabel', purposeDefaults.visionLabel),
     {
       ...text('vision', purposeDefaults.vision, true),
       admin: {
-        description: 'Suggested draft copy. Replace with the approved FILAS vision before launch.',
+        description: 'Describe how FILAS supports brands through their stages of growth.',
       },
     },
   ],

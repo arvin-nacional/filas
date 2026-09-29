@@ -1,138 +1,139 @@
+// Adapted from FILAS - An Overview of our Solutions.pdf, pages 2–5 and 19–23.
 export const growthHeroDefaults = {
-  eyebrow: 'Your next chapter starts here',
-  heading: 'You have built something',
-  emphasis: 'worth growing',
+  eyebrow: 'Your end-to-end e-commerce partner',
+  heading: 'One team.',
+  emphasis: 'End-to-end system.',
   description:
-    'FILAS helps you take it further. We bring strategy, commerce, creative, and fulfillment together to support your next stage of growth.',
+    'We integrate and operate your e-commerce ecosystem, from generating demand and managing stores to fulfilling every order. Faster decisions. Tighter coordination. Support that grows with your business.',
   primaryLink: { label: "Let's talk about your brand", url: '/#contact' },
-  secondaryLink: { label: 'Explore our capabilities', url: '/#services' },
-  footnote: 'First to Execute. Last to See Things Through.',
+  secondaryLink: { label: 'Explore our solutions', url: '/#services' },
+  footnote: 'Every brand is a VIP, regardless of its size today.',
 }
 
 export const growthIntroDefaults = {
   anchorId: 'about',
-  eyebrow: '01 / A partner in your progress',
-  heading: 'Growth brings possibility. And a lot of moving parts.',
+  eyebrow: '01 / Growth without the complexity',
+  heading: 'E-commerce is dozens of jobs. Happening all at once.',
   description:
-    'More orders. More channels. More to bring together. As your brand grows, the things that got you here need room to grow, too.',
+    'Content, ads, store management, inventory, fulfillment, customer service, returns, and reporting. Every stage of growth brings more people, processes, and moving parts to manage.',
   supportingText:
-    'We get to know your business, build on what is working, and connect the strategy, systems, and people that help you move forward.',
-  statement: 'Your ambition. Our shared commitment.',
+    'FILAS brings them together in one coordinated team, giving you back the attention and resources to focus on growing your business.',
+  statement: 'Manage one partner. Keep your focus on growth.',
 }
 
 export const approachDefaults = {
   anchorId: 'approach',
-  eyebrow: '02 / How we work',
-  heading: 'We listen first.\nThen get to work.',
-  description: 'Good partnerships start with understanding. Ours is built to go the distance.',
+  eyebrow: '02 / Built around your business',
+  heading: 'Choose the support\nyou need.',
+  description:
+    'Start with your goals. We bring together the platforms, fulfillment setup, and growth services that fit your brand.',
   steps: [
     {
-      title: 'Listen',
+      title: 'Choose your channels',
       description:
-        'We start with your story. What you have built, what is working, and where you want to go.',
+        'Identify the e-commerce platforms that best fit your products, customers, and business goals.',
     },
     {
-      title: 'Optimize',
+      title: 'Set up fulfillment',
       description:
-        'Together, we find the opportunities and build a practical plan around your business.',
+        'Choose fulfillment at ART’s facility, an ART team in your warehouse, or technology for your own operations.',
     },
     {
-      title: 'Execute',
+      title: 'Build demand',
       description:
-        'We bring the right people, systems, and capabilities together to turn the plan into progress.',
+        'Add the support you need: paid media, creators, affiliates, social content, live selling, or a brand website.',
     },
     {
-      title: 'Stay accountable',
+      title: 'Track and improve',
       description:
-        'We stay involved, work through the challenges, and keep moving forward with you.',
+        'Review sales, conversion, and inventory movement. Turn performance data into clear decisions and ongoing improvements.',
     },
   ],
 }
 
 export const servicesOverviewDefaults = {
   anchorId: 'services',
-  eyebrow: '03 / Connected capabilities',
-  heading: 'All the moving parts.\nMoving together.',
+  eyebrow: '03 / Our solutions',
+  heading: 'All the moving parts.\nOne connected team.',
   description:
-    'The support your brand needs, connected by one partner. Start where you are. Build from there.',
+    'Demand generation, store management, and warehousing and fulfillment, working together across your e-commerce ecosystem.',
   services: [
     {
-      title: 'Commerce & channels',
-      summary: 'Show up where your customers are.',
+      title: 'Demand generation',
+      summary: 'Bring more people to your store.',
       description:
-        'Bring your stores and sales channels together with hands-on support for the everyday work of e-commerce.',
+        'From market research and entry planning to paid media, creators, and live selling, we manage the channels that drive discovery and demand. FILAS Studios supports content production and livestream commerce.',
       capabilities: [
-        { label: 'Shopee & Lazada' },
-        { label: 'TikTok Shop' },
-        { label: 'Brand websites & D2C' },
-        { label: 'Retail store management' },
-      ],
+        'Market research & entry planning',
+        'Content strategy & design',
+        'Meta ads',
+        'Creators & affiliates',
+        'Live selling',
+        'FILAS Studios',
+        'Social media management',
+      ].map((label) => ({ label })),
     },
     {
-      title: 'Fulfillment & systems',
-      summary: 'Keep your operations ready for growth.',
+      title: 'Store management',
+      summary: 'Turn attention into transactions.',
       description:
-        'Connect storage, orders, and delivery with the systems and operational support that help your business keep moving.',
+        'We manage the daily work of your online stores, from product listings and page designs to campaigns, vouchers, chat support, and reporting. Promotions are planned, executed, and optimized across the full funnel.',
       capabilities: [
-        { label: 'Storage & warehousing' },
-        { label: 'Fulfillment & logistics' },
-        { label: 'Warehouse Management Systems' },
-        { label: 'Order Management Systems' },
-      ],
+        'Product listings & page design',
+        'Ads, promotions & campaigns',
+        'Chat support',
+        'Virtual bundling',
+        'Analytics & monthly reporting',
+        'Logistics coordination',
+        'Returns & refund claims',
+      ].map((label) => ({ label })),
     },
     {
-      title: 'Content & activation',
-      summary: 'Give people a reason to connect.',
+      title: 'Warehousing & fulfillment',
+      summary: 'Keep every order moving.',
       description:
-        'Bring your brand to life through creative, content, and experiences that meet your audience online and on the ground.',
+        'Storage, picking, verification, packing, recording, and quality control follow a controlled process. Our systems give you real-time visibility across inventory, orders, and fulfillment.',
       capabilities: [
-        { label: 'Social media management' },
-        { label: 'Creative concepts & execution' },
-        { label: 'Online & on-ground activations' },
-        { label: 'Affiliate management' },
-        { label: 'Live selling' },
-      ],
-    },
-    {
-      title: 'Business support',
-      summary: 'Find a way through the next step.',
-      description:
-        'Talk to us about the practical support your business needs to enter a market or take its next step.',
-      capabilities: [
-        { label: 'Importer on Record' },
-        { label: 'Seller on Record' },
-        { label: 'Value-added services' },
-      ],
+        'Fulfilled by ART',
+        'Managed by ART',
+        'Tech by ART',
+        'Storage & regulatory compliance',
+        'Picking & custom packing',
+        'Nationwide last-mile delivery',
+        'Reverse logistics',
+        'Freight forwarding',
+        'Metro Manila express delivery',
+      ].map((label) => ({ label })),
     },
   ],
 }
 
 export const audienceDefaults = {
   anchorId: 'partners',
-  eyebrow: '04 / Who we work with',
-  heading: 'A partner for\nyour next stage.',
+  eyebrow: '04 / Every brand is a VIP',
+  heading: 'Support for every\nstage of growth.',
   description:
-    'You do not need to have it all figured out. Wherever your brand is today, we can start there.',
+    'Choose only where you need us. Wherever you are in your growth journey, there is a FILAS solution for you.',
   stages: [
     {
-      label: 'Building your foundation',
+      label: 'Build your foundation',
       title: 'Start-ups',
       description:
-        'You are finding your audience and building your first channels. Let’s put the right foundations in place.',
+        'Choose your platforms, prepare your storefront, and put a fulfillment setup in place. Start with the services your brand needs today.',
       featured: false,
     },
     {
-      label: 'Ready for what is next',
+      label: 'Coordinate the moving parts',
       title: 'Scale-ups',
       description:
-        'Your brand is growing, and so is the complexity. Let’s connect the moving parts and make room for your next chapter.',
+        'Bring growing order volumes, campaigns, inventory, and customer support together through one experienced team.',
       featured: true,
     },
     {
-      label: 'Strengthening your ecosystem',
+      label: 'Strengthen your operations',
       title: 'Enterprise brands',
       description:
-        'You know where you want to go. We bring focused expertise and hands-on support to the parts that need it.',
+        'Add specialist execution, fulfillment capacity, or order and warehouse technology to your existing operations.',
       featured: false,
     },
   ],
@@ -140,10 +141,10 @@ export const audienceDefaults = {
 
 export const contactInvitationDefaults = {
   anchorId: 'contact',
-  eyebrow: 'Let’s take the next step',
-  heading: 'Tell us where you are.\nLet’s work out what comes next.',
+  eyebrow: 'Let’s build your solution',
+  heading: 'Your next stage.\nOne committed partner.',
   description:
-    'Bring your ambition, your questions, and the challenges on your mind. We’re here to listen.',
+    'Tell us about your brand and where you want to grow. We will help you choose the platforms, fulfillment setup, and services that fit.',
   link: { label: 'Start a conversation', url: '/contact' },
-  note: 'Every brand deserves a committed partner.',
+  note: 'Guided and supported, every step of the way.',
 }

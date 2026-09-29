@@ -1,159 +1,178 @@
-// Draft service copy based on the website proposal's capability inventory.
+// Adapted from FILAS - An Overview of our Solutions.pdf, pages 5–17 and 21.
 export const capabilityGroups = [
   {
     anchorId: 'commerce',
-    eyebrow: '01 / Commerce & channels',
-    heading: 'Show up where\nyour customers are.',
+    eyebrow: '01 / Store management',
+    heading: 'Every touchpoint.\nReady for conversion.',
     description:
-      'Connect your marketplace presence, brand website, and retail channels with practical support for the everyday work of selling.',
+      'Storefronts, product displays, and promotions that build desire and simplify decisions. We manage the day-to-day work that keeps your stores moving.',
     tone: 'paper' as const,
     services: [
       {
-        title: 'Shopee & Lazada',
+        title: 'Product listings & page design',
         description:
-          'Support for marketplace storefronts, product listings, and day-to-day store management.',
+          'Manage product listings, storefronts, and product pages so customers can discover your range and make buying decisions.',
       },
       {
-        title: 'TikTok Shop',
+        title: 'Ads, promotions & campaigns',
         description:
-          'Bring your shop, content, and selling activity together on a channel built around discovery.',
+          'Plan, execute, and optimize platform campaigns and vouchers, coordinating visibility, timing, and performance tracking.',
       },
       {
-        title: 'Brand websites & D2C',
+        title: 'Chat support & virtual bundling',
         description:
-          'Build a direct connection with your customers through a brand-owned online store.',
+          'Support customers as they shop and bring complementary products together through virtual bundles.',
       },
       {
-        title: 'Retail store management',
+        title: 'Returns & logistics coordination',
         description:
-          'Coordinate your retail presence with the wider needs of your brand and sales channels.',
+          'Coordinate logistics and handle the filing of returns and refund claims as part of everyday store operations.',
+      },
+      {
+        title: 'Analytics & monthly reporting',
+        description:
+          'Track store performance and turn sales and conversion data into clear insights for your next decisions.',
       },
     ],
   },
   {
     anchorId: 'fulfillment',
-    eyebrow: '02 / Fulfillment & systems',
-    heading: 'Keep the promise\nbeyond the checkout.',
+    eyebrow: '02 / Warehousing & fulfillment',
+    heading: 'Real infrastructure.\nReliable execution.',
     description:
-      'Connect inventory, orders, and delivery so the work behind the scenes supports the experience your customers expect.',
+      'Storage, picking, verification, packing, recording, and quality control are designed to reduce errors and protect your products at every step.',
     tone: 'surface' as const,
     services: [
       {
-        title: 'Storage & warehousing',
+        title: 'Fulfilled by ART (FBA)',
         description:
-          'Organize the storage and handling of your products around the needs of your business.',
+          'Store your products in ART’s facility. Our experienced team handles picking, packing, and shipping, with a setup that scales as your brand grows.',
       },
       {
-        title: 'Fulfillment & logistics',
-        description: 'Coordinate the steps from receiving an order to preparing it for delivery.',
-      },
-      {
-        title: 'Warehouse Management Systems',
-        description: 'Support the systems that help your team manage stock and warehouse activity.',
-      },
-      {
-        title: 'Order Management Systems',
+        title: 'Managed by ART (MBA)',
         description:
-          'Bring order information and operational workflows together across your channels.',
+          'An ART team operates fulfillment in your facility, tailoring the setup to your workflow and integrating with your existing processes.',
+      },
+      {
+        title: 'Tech by ART (TBA)',
+        description:
+          'Order and warehouse management systems with real-time tracking, reporting, analytics, and automated workflows for faster order processing.',
+      },
+      {
+        title: 'Storage & delivery services',
+        description:
+          'Storage solutions and regulatory compliance, custom packaging, nationwide last-mile delivery, reverse logistics, and freight forwarding.',
+      },
+      {
+        title: 'Express delivery',
+        description:
+          'Quick-commerce fulfillment capabilities support express deliveries within Metro Manila.',
       },
     ],
   },
   {
     anchorId: 'content',
-    eyebrow: '03 / Content & activation',
-    heading: 'Give people a reason\nto connect.',
+    eyebrow: '03 / Demand generation',
+    heading: 'Bring people\nto your store.',
     description:
-      'Turn your brand story into creative work, content, and experiences that meet your audience online and on the ground.',
+      'We manage the growth channels around your e-commerce platforms, supported by FILAS Studios, our space for content production and livestream commerce.',
     tone: 'paper' as const,
     services: [
       {
-        title: 'Social media management',
-        description: 'Plan and manage a social presence that gives your brand a consistent voice.',
-      },
-      {
-        title: 'Creative concepts & execution',
+        title: 'Market research & entry planning',
         description:
-          'Develop ideas and bring them to life through creative work shaped around your brand.',
+          'Build a plan around your market, audience, and the channels that fit your business.',
       },
       {
-        title: 'Online & on-ground activations',
+        title: 'Content strategy & design',
         description:
-          'Create opportunities for people to discover, experience, and engage with your brand.',
+          'Connect your content, creative design, and social media activity around your brand and products.',
       },
       {
-        title: 'Affiliate management',
+        title: 'Paid media',
         description:
-          'Coordinate affiliate activity as part of your wider content and commerce plan.',
+          'Manage Meta ads and connect demand generation with your store promotions and campaigns.',
       },
       {
-        title: 'Live selling',
-        description: 'Bring product storytelling and selling together through live experiences.',
+        title: 'Creators & affiliates',
+        description:
+          'Source and manage creators and affiliates who help bring your products to new audiences.',
+      },
+      {
+        title: 'Live selling & FILAS Studios',
+        description:
+          'Bring product storytelling and live commerce together with dedicated content production and livestream space.',
+      },
+      {
+        title: 'Website design & creation',
+        description:
+          'Create a brand website as part of the growth services that support your e-commerce presence.',
       },
     ],
   },
   {
     anchorId: 'business-support',
-    eyebrow: '04 / Business support',
-    heading: 'Find a way through\nthe next step.',
+    eyebrow: '04 / Visibility & performance',
+    heading: 'See what is happening.\nKnow what comes next.',
     description:
-      'Explore the practical support your business needs as it enters a market, opens a channel, or takes on a new challenge.',
+      'We track performance across your e-commerce ecosystem, from sales and conversion to inventory movement, so you can make better decisions and grow profitably.',
     tone: 'surface' as const,
     services: [
       {
-        title: 'Importer on Record',
+        title: 'Real-time visibility',
         description:
-          'Discuss your import requirements and the scope of support appropriate to your products and market.',
+          'Proprietary systems connect inventory, orders, and fulfillment so your team can see what needs attention.',
       },
       {
-        title: 'Seller on Record',
+        title: 'Performance analysis',
         description:
-          'Explore a selling arrangement suited to your business needs and chosen channels.',
+          'Review sales, conversion, and inventory movement together to understand where growth is coming from.',
       },
       {
-        title: 'Value-added services',
+        title: 'Coordinated execution',
         description:
-          'Talk through the gaps in your current setup and identify where additional support could help.',
+          'One integrated team connects growth strategy, proactive campaign execution, and regular analytics.',
       },
     ],
   },
 ]
 
 export const capabilitiesHeroDefaults = {
-  eyebrow: 'Our capabilities',
-  heading: 'All the moving parts.',
-  emphasis: 'Moving together.',
+  eyebrow: 'Our solutions',
+  heading: 'One team.',
+  emphasis: 'End-to-end system.',
   description:
-    'Strategy, commerce, creative, and fulfillment. The capabilities your brand needs, connected by a partner who sees the whole picture.',
-  navigationLabel: 'Explore our capabilities',
+    'Generate demand. Manage your stores. Fulfill your orders. Choose the support you need, connected through one e-commerce partner.',
+  navigationLabel: 'Explore our solutions',
   links: [
-    { label: 'Commerce & channels', anchorId: 'commerce' },
-    { label: 'Fulfillment & systems', anchorId: 'fulfillment' },
-    { label: 'Content & activation', anchorId: 'content' },
-    { label: 'Business support', anchorId: 'business-support' },
+    { label: 'Store management', anchorId: 'commerce' },
+    { label: 'Warehousing & fulfillment', anchorId: 'fulfillment' },
+    { label: 'Demand generation', anchorId: 'content' },
+    { label: 'Visibility & performance', anchorId: 'business-support' },
   ],
 }
 
 export const connectedCapabilitiesDefaults = {
   anchorId: 'connected-capabilities',
-  eyebrow: 'One connected partnership',
-  heading: 'Your business works together.\nYour support should, too.',
+  eyebrow: 'Case studies / Results in practice',
+  heading: 'Different categories.\nConsistent execution.',
   description:
-    'Start with the support you need today. Build the connections that make your next stage possible.',
+    'Selected results reported in the FILAS solutions overview. Each case reflects its own category and reporting period.',
   connections: [
     {
-      title: 'From attention to action',
+      title: 'FMCG / 4.3× sales in one year',
       description:
-        'Connect content and activation with the channels where customers can discover and buy your products.',
+        'Orders grew 4.2× while average order value rose from ₱464 to ₱480. Sales and orders grew together with a stable basket value.',
     },
     {
-      title: 'From an order to an experience',
+      title: 'Pet care / 3.6× sales in one year',
       description:
-        'Bring commerce, inventory, and fulfillment into the same conversation, so plans account for what happens after a sale.',
+        'Orders doubled and average order value increased 71%. Growth came from more transactions and larger baskets.',
     },
     {
-      title: 'From a plan to everyday progress',
+      title: 'Pharmaceuticals / 46% sales growth in one month',
       description:
-        'Align your priorities, people, and systems around practical next steps and clear responsibilities.',
+        'Orders grew 28% and average basket size increased 14%, improving both transaction volume and the value of each purchase.',
     },
   ],
 }

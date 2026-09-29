@@ -1,5 +1,4 @@
 import type {
-  AboutHeroBlock as AboutHeroProps,
   CompanyStoryBlock as CompanyStoryProps,
   LeadershipBlock as LeadershipProps,
   PurposeBlock as PurposeProps,
@@ -7,23 +6,8 @@ import type {
 } from '@/payload-types'
 import { Media } from '@/components/Media'
 
-export const AboutHeroBlock = ({ eyebrow, heading, emphasis, description }: AboutHeroProps) => (
-  <section className="scroll-mt-28 border-b border-filas-line bg-filas-paper py-18 text-center text-filas-ink sm:pt-24 sm:pb-20 lg:pt-36 lg:pb-32">
-    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
-      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase sm:mb-9">
-        {eyebrow}
-      </p>
-      <h1 className="mx-auto max-w-[1000px] text-5xl leading-none font-medium tracking-tighter text-balance sm:text-6xl lg:text-8xl">
-        {heading}
-        <br />
-        <span className="text-filas-accent-text">{emphasis}</span>
-      </h1>
-      <p className="mx-auto mt-9 max-w-xl text-base leading-loose text-filas-muted sm:text-lg">
-        {description}
-      </p>
-    </div>
-  </section>
-)
+export { AboutHeroBlock } from './AboutHero'
+import { AboutHeroBlock } from './AboutHero'
 
 export const CompanyStoryBlock = ({
   anchorId,

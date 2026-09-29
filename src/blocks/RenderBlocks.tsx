@@ -12,12 +12,14 @@ import { homepageComponents } from '@/blocks/Homepage/Components'
 import { aboutComponents } from '@/blocks/About/Components'
 import { capabilitiesComponents } from '@/blocks/Capabilities/Components'
 import { contactComponents } from '@/blocks/Contact/Components'
+import { partnerComponents } from '@/blocks/Partners/Components'
 
 const blockComponents = {
   ...homepageComponents,
   ...aboutComponents,
   ...capabilitiesComponents,
   ...contactComponents,
+  ...partnerComponents,
   archive: ArchiveBlock,
   content: ContentBlock,
   comingSoon: ComingSoonBlock,

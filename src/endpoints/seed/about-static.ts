@@ -18,7 +18,7 @@ export const aboutStatic: RequiredDataFromCollectionSlug<'pages'> = {
   layout: [
     { blockType: 'aboutHero', blockName: 'About FILAS', ...aboutHeroDefaults },
     { blockType: 'companyStory', blockName: 'The FILAS promise', ...companyStoryDefaults },
-    { blockType: 'purpose', blockName: 'Mission and vision', ...purposeDefaults },
+    { blockType: 'purpose', blockName: 'Our commitment', ...purposeDefaults },
     { blockType: 'values', blockName: 'Our principles', ...valuesDefaults },
     { blockType: 'leadership', blockName: 'Our people', ...leadershipDefaults },
     {

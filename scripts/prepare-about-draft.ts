@@ -51,13 +51,14 @@ try {
     if (
       saved._status !== 'draft' ||
       saved.layout.length !== 6 ||
-      team?.people.length !== 6 ||
+      team?.people.length !==
+        aboutStatic.layout.find((block) => block.blockType === 'leadership')?.people.length ||
       visible.docs.length
     ) {
       throw new Error('About draft verification failed. Review the saved page before publishing.')
     }
     console.log(
-      `Saved and verified private About FILAS draft (${created.id}): six sections and six team members.`,
+      `Saved and verified private About FILAS draft (${created.id}): six sections and ${team?.people.length} team members.`,
     )
   }
 } finally {

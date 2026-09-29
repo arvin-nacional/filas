@@ -24,7 +24,7 @@ function render(props: HeroProps) {
 describe('Editable growth hero', () => {
   it('renders generated photos and editable-card defaults for existing pages without visuals', () => {
     const element = render(base)
-    expect(element.querySelector('h1')?.textContent).toContain('worth growing')
+    expect(element.querySelector('h1')?.textContent).toContain(growthHeroDefaults.emphasis)
     expect(element.querySelectorAll('img')).toHaveLength(2)
     expect(element.querySelector('img')?.getAttribute('src')).toBe('/hero/entrepreneur.png')
     expect(element.textContent).toContain('From potential')

@@ -26,7 +26,7 @@ export const capabilitiesStatic: RequiredDataFromCollectionSlug<'pages'> = {
     })),
     {
       blockType: 'connectedCapabilities',
-      blockName: 'How it comes together',
+      blockName: 'Case studies',
       ...connectedCapabilitiesDefaults,
     },
     {
@@ -48,6 +48,6 @@ export const capabilitiesStatic: RequiredDataFromCollectionSlug<'pages'> = {
   meta: {
     title: 'Our Capabilities',
     description:
-      'Explore FILAS capabilities in commerce, fulfillment, content, activation, and business support, connected through one committed partnership.',
+      'Explore FILAS demand generation, store management, ART fulfillment solutions, and performance insights through one end-to-end e-commerce partner.',
   },
 }

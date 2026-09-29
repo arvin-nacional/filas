@@ -17,8 +17,8 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
   _status: 'published',
   hero: { type: 'none' },
   layout: [
-    { blockType: 'growthHero', blockName: 'Your next chapter', ...growthHeroDefaults },
-    { blockType: 'growthIntro', blockName: 'A partner in your progress', ...growthIntroDefaults },
+    { blockType: 'growthHero', blockName: 'One team, end-to-end system', ...growthHeroDefaults },
+    { blockType: 'growthIntro', blockName: 'Growth without the complexity', ...growthIntroDefaults },
     { blockType: 'approach', blockName: 'How we work', ...approachDefaults },
     {
       blockType: 'servicesOverview',
@@ -35,6 +35,6 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
   meta: {
     title: 'FILAS - First to Execute. Last to See Things Through.',
     description:
-      'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
+      'FILAS connects demand generation, store management, and warehousing and fulfillment through one team. Every brand is a VIP, at every stage of growth.',
   },
 }
