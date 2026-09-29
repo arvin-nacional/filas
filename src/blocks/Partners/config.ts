@@ -1,5 +1,10 @@
 import type { Block, TextField, TextareaField } from 'payload'
-import { partnersHeroDefaults, partnerStagesDefaults, partnershipFitDefaults } from './defaults'
+import {
+  partnersHeroDefaults,
+  partnerStagesDefaults,
+  partnershipFitDefaults,
+  partnerResultsDefaults,
+} from './defaults'
 
 const text = (name: string, defaultValue?: string, multiline = false): TextField | TextareaField =>
   multiline
@@ -22,7 +27,8 @@ export const PartnersHero: Block = {
       relationTo: 'media',
       filterOptions: { mimeType: { contains: 'image' } },
       admin: {
-        description: 'Optional brand or team photo. Leave empty for the decorative growth graphic.',
+        description:
+          'Wide product image. Leave empty to use the product lineup from the FILAS solutions overview.',
       },
     },
   ],
@@ -47,7 +53,11 @@ export const PartnerStages: Block = {
         text('label'),
         text('title'),
         text('description', undefined, true),
-        text('needs', undefined, true),
+        {
+          name: 'needs',
+          type: 'textarea',
+          admin: { description: 'Legacy supporting copy; not displayed in the compact cards.' },
+        },
         {
           name: 'support',
           type: 'array',
@@ -88,4 +98,44 @@ export const PartnershipFit: Block = {
   ],
 }
 
-export const partnerBlocks = [PartnersHero, PartnerStages, PartnershipFit]
+export const PartnerResults: Block = {
+  slug: 'partnerResults',
+  interfaceName: 'PartnerResultsBlock',
+  labels: { singular: 'Partner Case Studies', plural: 'Partner Case Studies' },
+  fields: [
+    text('eyebrow', partnerResultsDefaults.eyebrow),
+    text('heading', partnerResultsDefaults.heading, true),
+    text('description', partnerResultsDefaults.description, true),
+    text('note', partnerResultsDefaults.note, true),
+    {
+      name: 'cases',
+      type: 'array',
+      required: true,
+      minRows: 1,
+      maxRows: 6,
+      defaultValue: partnerResultsDefaults.cases,
+      fields: [
+        text('category'),
+        text('metric'),
+        text('metricLabel'),
+        text('period'),
+        text('description'),
+        text('detail', undefined, true),
+        {
+          name: 'image',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+        },
+        {
+          name: 'imagePosition',
+          type: 'select',
+          defaultValue: 'center',
+          options: ['left', 'center', 'right'],
+        },
+      ],
+    },
+  ],
+}
+
+export const partnerBlocks = [PartnersHero, PartnerResults, PartnerStages, PartnershipFit]

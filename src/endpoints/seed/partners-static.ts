@@ -2,9 +2,9 @@ import type { RequiredDataFromCollectionSlug } from 'payload'
 import {
   partnersHeroDefaults,
   partnerStagesDefaults,
-  partnershipFitDefaults,
+  partnerResultsDefaults,
+  partnerContactDefaults,
 } from '@/blocks/Partners/defaults'
-import { contactInvitationDefaults } from '@/blocks/Homepage/defaults'
 
 // Editable draft template; never a public route fallback.
 export const partnersStatic: RequiredDataFromCollectionSlug<'pages'> = {
@@ -14,9 +14,9 @@ export const partnersStatic: RequiredDataFromCollectionSlug<'pages'> = {
   hero: { type: 'none' },
   layout: [
     { blockType: 'partnersHero', ...partnersHeroDefaults },
+    { blockType: 'partnerResults', ...partnerResultsDefaults },
     { blockType: 'partnerStages', ...partnerStagesDefaults },
-    { blockType: 'partnershipFit', ...partnershipFitDefaults },
-    { blockType: 'contactInvitation', ...contactInvitationDefaults },
+    { blockType: 'contactInvitation', ...partnerContactDefaults },
   ],
   meta: {
     title: 'Who we work with',

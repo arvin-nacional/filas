@@ -14,9 +14,10 @@ import {
 import { partnerBlocks } from '@/blocks/Partners/config'
 
 describe('Who we work with blocks', () => {
-  it('registers three distinct page blocks', () => {
+  it('registers the partner page blocks', () => {
     expect(partnerBlocks.map((block) => block.slug)).toEqual([
       'partnersHero',
+      'partnerResults',
       'partnerStages',
       'partnershipFit',
     ])
@@ -26,7 +27,7 @@ describe('Who we work with blocks', () => {
       createElement(PartnersHeroBlock, { ...partnersHeroDefaults, blockType: 'partnersHero' }),
     )
     expect(html).toContain(partnersHeroDefaults.emphasis)
-    expect(html).not.toContain('<img')
+    expect(html).toContain('/partners/product-lineup.png')
   })
   it('renders configured growth stages and support areas', () => {
     const html = renderToStaticMarkup(

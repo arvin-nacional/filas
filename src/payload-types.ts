@@ -221,6 +221,7 @@ export interface Page {
     | ContactInquiryBlock
     | ContactNextStepsBlock
     | PartnersHeroBlock
+    | PartnerResultsBlock
     | PartnerStagesBlock
     | PartnershipFitBlock
     | ComingSoonBlock
@@ -1101,12 +1102,36 @@ export interface PartnersHeroBlock {
   description: string;
   note: string;
   /**
-   * Optional brand or team photo. Leave empty for the decorative growth graphic.
+   * Wide product image. Leave empty to use the product lineup from the FILAS solutions overview.
    */
   image?: (string | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'partnersHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnerResultsBlock".
+ */
+export interface PartnerResultsBlock {
+  eyebrow: string;
+  heading: string;
+  description: string;
+  note: string;
+  cases: {
+    category: string;
+    metric: string;
+    metricLabel: string;
+    period: string;
+    description: string;
+    detail: string;
+    image?: (string | null) | Media;
+    imagePosition?: ('left' | 'center' | 'right') | null;
+    id?: string | null;
+  }[];
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'partnerResults';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1120,7 +1145,10 @@ export interface PartnerStagesBlock {
     label: string;
     title: string;
     description: string;
-    needs: string;
+    /**
+     * Legacy supporting copy; not displayed in the compact cards.
+     */
+    needs?: string | null;
     support: {
       label: string;
       id?: string | null;
@@ -1657,6 +1685,7 @@ export interface PagesSelect<T extends boolean = true> {
         contactInquiry?: T | ContactInquiryBlockSelect<T>;
         contactNextSteps?: T | ContactNextStepsBlockSelect<T>;
         partnersHero?: T | PartnersHeroBlockSelect<T>;
+        partnerResults?: T | PartnerResultsBlockSelect<T>;
         partnerStages?: T | PartnerStagesBlockSelect<T>;
         partnershipFit?: T | PartnershipFitBlockSelect<T>;
         comingSoon?: T | ComingSoonBlockSelect<T>;
@@ -2074,6 +2103,31 @@ export interface PartnersHeroBlockSelect<T extends boolean = true> {
   description?: T;
   note?: T;
   image?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PartnerResultsBlock_select".
+ */
+export interface PartnerResultsBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  description?: T;
+  note?: T;
+  cases?:
+    | T
+    | {
+        category?: T;
+        metric?: T;
+        metricLabel?: T;
+        period?: T;
+        description?: T;
+        detail?: T;
+        image?: T;
+        imagePosition?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }
