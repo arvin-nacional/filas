@@ -7,6 +7,9 @@ export const capabilityGroups = [
     description:
       'Storefronts, product displays, and promotions that build desire and simplify decisions. We manage the day-to-day work that keeps your stores moving.',
     tone: 'paper' as const,
+    visual: 'storefronts' as const,
+    visualCaption:
+      'Marketplace storefronts, product creative, and promotional work from the FILAS portfolio.',
     services: [
       {
         title: 'Product listings & page design',
@@ -19,9 +22,13 @@ export const capabilityGroups = [
           'Plan, execute, and optimize platform campaigns and vouchers, coordinating visibility, timing, and performance tracking.',
       },
       {
-        title: 'Chat support & virtual bundling',
+        title: 'Customer chat support',
+        description: 'Help customers with product questions and buying decisions as they shop.',
+      },
+      {
+        title: 'Virtual bundles & merchandising',
         description:
-          'Support customers as they shop and bring complementary products together through virtual bundles.',
+          'Bring complementary products together and organize your range around how customers shop.',
       },
       {
         title: 'Returns & logistics coordination',
@@ -42,21 +49,24 @@ export const capabilityGroups = [
     description:
       'Storage, picking, verification, packing, recording, and quality control are designed to reduce errors and protect your products at every step.',
     tone: 'surface' as const,
+    visual: 'fulfillment' as const,
+    visualCaption:
+      'ART operations: storage, picking and verification, packing and recording, and day-to-day execution.',
     services: [
       {
-        title: 'Fulfilled by ART (FBA)',
+        title: 'Your stock. ART’s facility.',
         description:
-          'Store your products in ART’s facility. Our experienced team handles picking, packing, and shipping, with a setup that scales as your brand grows.',
+          'Fulfilled by ART (FBA): store your products in ART’s warehouse. The team handles picking, packing, and shipping. For brands that want fulfillment handled end to end.',
       },
       {
-        title: 'Managed by ART (MBA)',
+        title: 'Your facility. ART’s team.',
         description:
-          'An ART team operates fulfillment in your facility, tailoring the setup to your workflow and integrating with your existing processes.',
+          'Managed by ART (MBA): an ART team operates in your facility, fitting the setup to your workflow. For brands with warehouse space that need an experienced operations team.',
       },
       {
-        title: 'Tech by ART (TBA)',
+        title: 'Your operations. ART’s technology.',
         description:
-          'Order and warehouse management systems with real-time tracking, reporting, analytics, and automated workflows for faster order processing.',
+          'Tech by ART (TBA): order and warehouse management systems, tracking, analytics, and automated workflows. For brands running their own fulfillment team.',
       },
       {
         title: 'Storage & delivery services',
@@ -77,6 +87,9 @@ export const capabilityGroups = [
     description:
       'We manage the growth channels around your e-commerce platforms, supported by FILAS Studios, our space for content production and livestream commerce.',
     tone: 'paper' as const,
+    visual: 'demand' as const,
+    visualCaption:
+      'Creator content, livestream production, and platform marketing examples from FILAS.',
     services: [
       {
         title: 'Market research & entry planning',
@@ -113,10 +126,13 @@ export const capabilityGroups = [
   {
     anchorId: 'business-support',
     eyebrow: '04 / Visibility & performance',
-    heading: 'See what is happening.\nKnow what comes next.',
+    heading: 'One view across\nyour operations.',
     description:
-      'We track performance across your e-commerce ecosystem, from sales and conversion to inventory movement, so you can make better decisions and grow profitably.',
+      'Visibility connects every service: store performance, demand generation, inventory, and fulfillment. Use one coordinated view to decide what needs attention next.',
     tone: 'surface' as const,
+    visual: 'dashboard' as const,
+    visualCaption:
+      'ART’s order and warehouse management interface, as shown in the FILAS solutions overview.',
     services: [
       {
         title: 'Real-time visibility',
@@ -161,16 +177,40 @@ export const connectedCapabilitiesDefaults = {
   connections: [
     {
       title: 'FMCG / 4.3× sales in one year',
+      category: 'FMCG',
+      period: '1 year',
+      result: '4.3×',
+      resultLabel: 'Sales compared with baseline',
+      metrics: [
+        { value: '4.2×', label: 'Orders' },
+        { value: '₱464 → ₱480', label: 'Average order value' },
+      ],
       description:
         'Orders grew 4.2× while average order value rose from ₱464 to ₱480. Sales and orders grew together with a stable basket value.',
     },
     {
       title: 'Pet care / 3.6× sales in one year',
+      category: 'Pet care',
+      period: '1 year',
+      result: '3.6×',
+      resultLabel: 'Sales compared with baseline',
+      metrics: [
+        { value: '2×', label: 'Orders' },
+        { value: '+71%', label: 'Average order value' },
+      ],
       description:
         'Orders doubled and average order value increased 71%. Growth came from more transactions and larger baskets.',
     },
     {
       title: 'Pharmaceuticals / 46% sales growth in one month',
+      category: 'Pharmaceuticals',
+      period: '1 month',
+      result: '+46%',
+      resultLabel: 'Sales growth',
+      metrics: [
+        { value: '+28%', label: 'Orders' },
+        { value: '+14%', label: 'Average basket size' },
+      ],
       description:
         'Orders grew 28% and average basket size increased 14%, improving both transaction volume and the value of each purchase.',
     },

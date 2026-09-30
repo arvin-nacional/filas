@@ -67,6 +67,12 @@ export const CapabilityDetail: Block = {
   fields: [
     ...section(capabilityGroups[0]),
     {
+      name: 'visual',
+      type: 'select',
+      options: ['storefronts', 'demand', 'fulfillment', 'dashboard'],
+    },
+    { name: 'visualCaption', type: 'text' },
+    {
       name: 'tone',
       type: 'select',
       defaultValue: 'paper',
@@ -105,7 +111,15 @@ export const ConnectedCapabilities: Block = {
       minRows: 1,
       maxRows: 6,
       defaultValue: connectedCapabilitiesDefaults.connections,
-      fields: [text('title'), text('description', undefined, true)],
+      fields: [
+        text('title'),
+        text('description', undefined, true),
+        { name: 'category', type: 'text' },
+        { name: 'period', type: 'text' },
+        { name: 'result', type: 'text' },
+        { name: 'resultLabel', type: 'text' },
+        { name: 'metrics', type: 'array', maxRows: 3, fields: [text('value'), text('label')] },
+      ],
     },
   ],
 }

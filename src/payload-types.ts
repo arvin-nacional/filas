@@ -824,6 +824,8 @@ export interface CapabilityDetailBlock {
   eyebrow: string;
   heading: string;
   description: string;
+  visual?: ('storefronts' | 'demand' | 'fulfillment' | 'dashboard') | null;
+  visualCaption?: string | null;
   tone: 'paper' | 'surface';
   /**
    * Add one block per capability group, with its own heading, section anchor, and services.
@@ -852,6 +854,17 @@ export interface ConnectedCapabilitiesBlock {
   connections: {
     title: string;
     description: string;
+    category?: string | null;
+    period?: string | null;
+    result?: string | null;
+    resultLabel?: string | null;
+    metrics?:
+      | {
+          value: string;
+          label: string;
+          id?: string | null;
+        }[]
+      | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -2010,6 +2023,8 @@ export interface CapabilityDetailBlockSelect<T extends boolean = true> {
   eyebrow?: T;
   heading?: T;
   description?: T;
+  visual?: T;
+  visualCaption?: T;
   tone?: T;
   services?:
     | T
@@ -2035,6 +2050,17 @@ export interface ConnectedCapabilitiesBlockSelect<T extends boolean = true> {
     | {
         title?: T;
         description?: T;
+        category?: T;
+        period?: T;
+        result?: T;
+        resultLabel?: T;
+        metrics?:
+          | T
+          | {
+              value?: T;
+              label?: T;
+              id?: T;
+            };
         id?: T;
       };
   id?: T;
