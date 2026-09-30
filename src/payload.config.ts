@@ -4,6 +4,7 @@ import path from 'path'
 import { buildConfig, PayloadRequest } from 'payload'
 import { fileURLToPath } from 'url'
 import { s3Storage } from '@payloadcms/storage-s3'
+import { resendAdapter } from '@payloadcms/email-resend'
 
 import { Categories } from './collections/Categories'
 import { Media } from './collections/Media'
@@ -20,6 +21,14 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  email:
+    process.env.RESEND_API_KEY && process.env.RESEND_FROM_ADDRESS
+      ? resendAdapter({
+          apiKey: process.env.RESEND_API_KEY,
+          defaultFromAddress: process.env.RESEND_FROM_ADDRESS,
+          defaultFromName: process.env.RESEND_FROM_NAME || 'FILAS',
+        })
+      : undefined,
   admin: {
     meta: {
       titleSuffix: ' | FILAS - First to Execute. Last to See Things Through.',

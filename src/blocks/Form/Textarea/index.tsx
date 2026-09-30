@@ -45,7 +45,15 @@ export const Textarea: React.FC<
         defaultValue={defaultValue}
         id={name}
         rows={rows}
-        {...register(name, { required: required })}
+        maxLength={5000}
+        aria-required={required || undefined}
+        aria-invalid={Boolean(errors[name])}
+        aria-describedby={errors[name] ? `${name}-error` : undefined}
+        {...register(name, {
+          required,
+          validate: (value) =>
+            !required || Boolean(String(value || '').trim()) || 'This field is required',
+        })}
       />
 
       {errors[name] && <Error name={name} />}

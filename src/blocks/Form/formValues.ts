@@ -13,5 +13,7 @@ export const getSubmissionData = (fields: FormFieldBlock[] = [], values: Record<
   fields.flatMap((field) => {
     if (!('name' in field) || !field.name) return []
     const value = values[field.name] ?? ''
-    return [{ field: field.name, value: Array.isArray(value) ? value.join(', ') : String(value) }]
+    return [
+      { field: field.name, value: Array.isArray(value) ? value.join(', ') : String(value).trim() },
+    ]
   })

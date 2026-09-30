@@ -48,12 +48,20 @@ export const Select: React.FC<
         control={control}
         defaultValue={defaultValue}
         name={name}
-        render={({ field: { onChange, value } }) => {
+        render={({ field: { onChange, onBlur, ref, value } }) => {
           const controlledValue = options.find((t) => t.value === value)
 
           return (
             <SelectComponent onValueChange={(val) => onChange(val)} value={controlledValue?.value}>
-              <SelectTrigger className={inputClassName} id={name}>
+              <SelectTrigger
+                className={inputClassName}
+                id={name}
+                ref={ref}
+                onBlur={onBlur}
+                aria-required={required || undefined}
+                aria-invalid={Boolean(errors[name])}
+                aria-describedby={errors[name] ? `${name}-error` : undefined}
+              >
                 <SelectValue placeholder={label} />
               </SelectTrigger>
               <SelectContent>

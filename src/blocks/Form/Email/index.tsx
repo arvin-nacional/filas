@@ -42,7 +42,19 @@ export const Email: React.FC<
         defaultValue={defaultValue}
         id={name}
         type="email"
-        {...register(name, { pattern: /^\S[^\s@]*@\S+$/, required })}
+        autoComplete="email"
+        inputMode="email"
+        autoCapitalize="none"
+        spellCheck={false}
+        maxLength={254}
+        aria-required={required || undefined}
+        aria-invalid={Boolean(errors[name])}
+        aria-describedby={errors[name] ? `${name}-error` : undefined}
+        {...register(name, {
+          setValueAs: (value) => (typeof value === 'string' ? value.trim() : value),
+          pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Enter a valid email address' },
+          required,
+        })}
       />
 
       {errors[name] && <Error name={name} />}

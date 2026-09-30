@@ -7,12 +7,12 @@ import type {
 import { FormBlock } from '@/blocks/Form/Component'
 
 export const ContactHeroBlock = ({ eyebrow, heading, emphasis, description }: HeroProps) => (
-  <section className="scroll-mt-28 border-b border-filas-line bg-filas-paper py-16 text-center text-filas-ink sm:pt-24 sm:pb-20 lg:pt-30">
-    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+  <section className="scroll-mt-28 border-b border-filas-line bg-filas-paper py-12 text-center text-filas-ink sm:py-16">
+    <div className="mx-auto w-full max-w-348 px-5 sm:px-8 lg:px-14">
       <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase">
         {eyebrow}
       </p>
-      <h1 className="text-5xl leading-none font-medium tracking-tighter text-balance sm:text-6xl lg:text-8xl">
+      <h1 className="text-4xl leading-[1.05] font-medium tracking-tighter text-balance sm:text-6xl lg:text-7xl">
         {heading}
         <br />
         <span className="text-filas-accent-text">{emphasis}</span>
@@ -55,12 +55,9 @@ export const ContactInquiryBlock = ({
       : null
 
   return (
-    <section
-      className="scroll-mt-28 bg-filas-paper py-16 text-filas-ink md:pt-24 md:pb-28"
-      id={anchorId}
-    >
-      <div className="mx-auto grid w-full max-w-[1392px] items-start gap-9 px-5 sm:px-8 md:grid-cols-[1fr_1.3fr] md:gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-14">
-        <div className="max-w-xl">
+    <section className="scroll-mt-28 bg-filas-paper py-12 text-filas-ink md:py-16" id={anchorId}>
+      <div className="mx-auto grid w-full max-w-348 items-start gap-9 px-5 sm:px-8 md:grid-cols-[1fr_1.3fr] md:gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-14">
+        <div className="max-w-xl md:sticky md:top-28">
           <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase">
             {eyebrow}
           </p>
@@ -68,6 +65,17 @@ export const ContactInquiryBlock = ({
             {heading}
           </h2>
           <p className="mt-6 text-lg leading-relaxed text-filas-muted">{description}</p>
+          <div className="mt-8 rounded-xl border border-filas-line p-5 sm:p-6">
+            <h3 className="text-base font-medium">A useful starting point</h3>
+            <ul className="mt-4 list-disc space-y-3 pl-5 text-sm leading-relaxed text-filas-muted">
+              <li>What you sell and where you sell it</li>
+              <li>Your next goal or biggest operational challenge</li>
+              <li>The support you need, even if you are still exploring</li>
+            </ul>
+            <p className="mt-5 border-t border-filas-line pt-4 text-sm leading-relaxed">
+              You can start with one service or a connected, end-to-end solution.
+            </p>
+          </div>
           {(email || phone || address) && (
             <div className="mt-12 border-t border-filas-line pt-7">
               <h3 className="mb-5 text-base font-medium">{detailsHeading}</h3>
@@ -95,13 +103,29 @@ export const ContactInquiryBlock = ({
             </div>
           )}
         </div>
-        <div className="min-w-0 border border-filas-line bg-filas-surface px-5 py-6 sm:p-7 lg:p-10">
+        <div className="min-w-0 rounded-2xl border border-filas-line bg-filas-surface px-5 py-6 sm:p-7 lg:p-9">
           <h3 className="text-3xl leading-tight font-medium tracking-tight">{formHeading}</h3>
           <p className="mt-3 mb-8 text-sm leading-relaxed text-filas-muted">{formNote}</p>
           {publicForm ? (
             <FormBlock form={publicForm as FormType} enableIntro={false} variant="contact" />
           ) : (
-            <p role="status">The inquiry form is currently unavailable. Please try again later.</p>
+            <p role="status">
+              The inquiry form is currently unavailable.{' '}
+              {email ? (
+                <a className="underline underline-offset-4" href={`mailto:${email}`}>
+                  Email us instead.
+                </a>
+              ) : phone ? (
+                <a
+                  className="underline underline-offset-4"
+                  href={`tel:${phone.replace(/[^+\d]/g, '')}`}
+                >
+                  Call us instead.
+                </a>
+              ) : (
+                'Please try again later.'
+              )}
+            </p>
           )}
           <p className="mt-6 text-xs leading-relaxed text-filas-muted">
             {privacyNote}
@@ -125,7 +149,7 @@ export const ContactInquiryBlock = ({
 
 export const ContactNextStepsBlock = ({ anchorId, eyebrow, heading, steps }: NextStepsProps) => (
   <section className="scroll-mt-28 bg-filas-surface py-16 text-filas-ink md:py-24" id={anchorId}>
-    <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
+    <div className="mx-auto w-full max-w-348 px-5 sm:px-8 lg:px-14">
       <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase">
         {eyebrow}
       </p>

@@ -11,6 +11,7 @@ vi.mock('@/components/RichText', () => ({
 
 import { FormBlock } from '@/blocks/Form/Component'
 import { getFormDefaults, getSubmissionData } from '@/blocks/Form/formValues'
+import { validateSubmission } from '@/blocks/Form/validateSubmission'
 
 const form: Form = {
   id: 'inquiry-test',
@@ -51,6 +52,68 @@ const submit = () =>
   fireEvent.submit(screen.getByRole('button', { name: 'Send inquiry' }).closest('form')!)
 
 describe('Contact inquiry form', () => {
+  it('validates required fields, email syntax, and unexpected answers on the server', () => {
+    expect(validateSubmission(form.fields || [], [])).toContain('required')
+    expect(validateSubmission(form.fields || [], [{ field: 'name', value: '  ' }])).toContain(
+      'required',
+    )
+    expect(
+      validateSubmission(form.fields || [], [
+        { field: 'name', value: 'Visitor' },
+        { field: 'email', value: 'bad@address' },
+      ]),
+    ).toContain('valid email')
+    expect(
+      validateSubmission(form.fields || [], [{ field: 'unexpected', value: 'ignored?' }]),
+    ).toBe('Invalid form answers.')
+    expect(
+      validateSubmission(form.fields || [], [
+        { field: 'name', value: 'Visitor' },
+        { field: 'name', value: 'Duplicate' },
+      ]),
+    ).toBe('Invalid form answers.')
+    expect(
+      validateSubmission(form.fields || [], [
+        { field: 'name', value: 'Visitor' },
+        { field: 'email', value: 'visitor@example.com' },
+        { field: 'commerce', value: 'false' },
+      ]),
+    ).toBeUndefined()
+  })
+
+  it('gives an accessible email error and rejects whitespace-only names', async () => {
+    const fetchMock = vi.fn()
+    vi.stubGlobal('fetch', fetchMock)
+    render(createElement(FormBlock, { form, enableIntro: false, variant: 'contact' }))
+    fireEvent.change(screen.getByLabelText(/Your name/), { target: { value: '   ' } })
+    fireEvent.change(screen.getByLabelText(/Email address/), { target: { value: 'invalid' } })
+    submit()
+    await waitFor(() => expect(screen.getByText('Enter a valid email address')).toBeTruthy())
+    expect(screen.getByLabelText(/Email address/).getAttribute('aria-describedby')).toBe(
+      'email-error',
+    )
+    expect(screen.getByLabelText(/Email address/).getAttribute('aria-invalid')).toBe('true')
+    expect(screen.getByText('This field is required')).toBeTruthy()
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
+  it('handles an HTML server error without losing entered values', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({
+        ok: false,
+        status: 502,
+        json: async () => {
+          throw new SyntaxError('Not JSON')
+        },
+      }),
+    )
+    render(createElement(FormBlock, { form, enableIntro: false, variant: 'contact' }))
+    fillRequired()
+    submit()
+    await waitFor(() => expect(screen.getByRole('alert').textContent).toContain('Please try again'))
+    expect((screen.getByLabelText(/Your name/) as HTMLInputElement).value).toBe('Test visitor')
+  })
   it('initializes named values, excludes schema data, and serializes checkbox values', () => {
     expect(getFormDefaults(form.fields)).toEqual({ name: '', email: '', commerce: false })
     expect(

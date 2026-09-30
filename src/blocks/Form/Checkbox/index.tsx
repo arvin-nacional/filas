@@ -22,16 +22,22 @@ export const Checkbox: React.FC<
 
   return (
     <Width width={width}>
-      <div className="flex items-center gap-2">
+      <div className="flex min-h-11 items-center gap-3">
         <CheckboxUi
           defaultChecked={defaultValue}
           id={name}
+          aria-required={required || undefined}
+          aria-invalid={Boolean(errors[name])}
+          aria-describedby={errors[name] ? `${name}-error` : undefined}
           {...props}
           onCheckedChange={(checked) => {
-            setValue(props.name, checked)
+            setValue(props.name, checked === true, { shouldValidate: true, shouldDirty: true })
           }}
         />
-        <Label className={labelClassName} htmlFor={name}>
+        <Label
+          className={`flex min-h-11 flex-1 cursor-pointer items-center ${labelClassName || ''}`}
+          htmlFor={name}
+        >
           {required && (
             <span className="required">
               * <span className="sr-only">(required)</span>

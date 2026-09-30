@@ -41,8 +41,25 @@ export const Text: React.FC<
         className={inputClassName}
         defaultValue={defaultValue}
         id={name}
-        type="text"
-        {...register(name, { required })}
+        type={/phone|mobile|telephone/i.test(name) ? 'tel' : 'text'}
+        autoComplete={
+          /phone|mobile|telephone/i.test(name)
+            ? 'tel'
+            : /company|brand/i.test(name)
+              ? 'organization'
+              : /name/i.test(name)
+                ? 'name'
+                : undefined
+        }
+        maxLength={200}
+        aria-required={required || undefined}
+        aria-invalid={Boolean(errors[name])}
+        aria-describedby={errors[name] ? `${name}-error` : undefined}
+        {...register(name, {
+          required,
+          validate: (value) =>
+            !required || Boolean(String(value || '').trim()) || 'This field is required',
+        })}
       />
       {errors[name] && <Error name={name} />}
     </Width>
