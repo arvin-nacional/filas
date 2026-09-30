@@ -594,6 +594,8 @@ export interface ServicesOverviewBlock {
   services: {
     title: string;
     summary: string;
+    url?: string | null;
+    example?: ('demand' | 'storefronts' | 'fulfillment') | null;
     description: string;
     capabilities: {
       label: string;
@@ -622,6 +624,7 @@ export interface AudienceBlock {
     title: string;
     description: string;
     featured?: boolean | null;
+    url?: string | null;
     id?: string | null;
   }[];
   id?: string | null;
@@ -1832,6 +1835,8 @@ export interface ServicesOverviewBlockSelect<T extends boolean = true> {
     | {
         title?: T;
         summary?: T;
+        url?: T;
+        example?: T;
         description?: T;
         capabilities?:
           | T
@@ -1860,6 +1865,7 @@ export interface AudienceBlockSelect<T extends boolean = true> {
         title?: T;
         description?: T;
         featured?: T;
+        url?: T;
         id?: T;
       };
   id?: T;

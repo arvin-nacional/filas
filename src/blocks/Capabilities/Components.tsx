@@ -1,5 +1,6 @@
 import { ArrowDownRight } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { cn } from '@/utilities/ui'
 import type {
   CapabilitiesHeroBlock as HeroProps,
@@ -189,14 +190,19 @@ export const ConnectedCapabilitiesBlock = ({
               )}
             </div>
             {connection.result && (
-              <div className="my-8">
-                <p className="text-7xl font-medium leading-none tracking-tighter text-filas-accent-text xl:text-8xl">
+              <div className={anchorId === 'home-results' ? 'my-5' : 'my-8'}>
+                <p
+                  className={cn(
+                    'font-medium leading-none tracking-tighter text-filas-accent-text',
+                    anchorId === 'home-results' ? 'text-6xl xl:text-7xl' : 'text-7xl xl:text-8xl',
+                  )}
+                >
                   {connection.result}
                 </p>
                 <p className="mt-3 text-sm text-filas-muted">{connection.resultLabel}</p>
               </div>
             )}
-            {Boolean(connection.metrics?.length) && (
+            {anchorId !== 'home-results' && Boolean(connection.metrics?.length) && (
               <dl className="mb-6 grid grid-cols-2 gap-4 border-y border-filas-line py-5">
                 {connection.metrics?.map((metric, metricIndex) => (
                   <div key={metric.id || metricIndex}>
@@ -208,12 +214,25 @@ export const ConnectedCapabilitiesBlock = ({
                 ))}
               </dl>
             )}
-            <p className="mt-auto text-sm leading-relaxed text-filas-muted">
+            <p
+              className={cn(
+                'mt-auto text-sm leading-relaxed text-filas-muted',
+                anchorId === 'home-results' && 'hidden',
+              )}
+            >
               {connection.description}
             </p>
           </li>
         ))}
       </ul>
+      {anchorId === 'home-results' && (
+        <Link
+          href="/services#connected-capabilities"
+          className="mt-7 inline-flex min-h-11 items-center gap-3 font-medium text-filas-accent-text underline underline-offset-4 focus-visible:outline-2"
+        >
+          Explore the case studies <ArrowDownRight size={18} aria-hidden="true" />
+        </Link>
+      )}
     </div>
   </section>
 )

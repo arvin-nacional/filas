@@ -1,4 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 
 import type { Footer } from '@/payload-types'
 import { Brand } from '@/components/Brand'
@@ -12,7 +13,14 @@ export const FooterContent = ({
   data: Partial<Footer>
   homePath?: string
 }) => {
-  const navItems = data.navItems?.length ? data.navItems : footerDefaults.navItems
+  const legacyLinks: Record<string, { url: string; label: string }> = {
+    '/#about': { url: '/about', label: 'About FILAS' },
+    '/#services': { url: '/services', label: 'Our Services' },
+    '/#partners': { url: '/partners', label: 'Who we work with' },
+  }
+  const navItems = (data.navItems?.length ? data.navItems : footerDefaults.navItems).map(
+    (item) => ({ ...item, link: { ...item.link, ...(legacyLinks[item.link.url || ''] || {}) } }),
+  )
   return (
     <footer className="bg-filas-surface text-filas-ink">
       <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
@@ -38,12 +46,12 @@ export const FooterContent = ({
                 className="inline-flex items-center gap-4 text-sm leading-relaxed wrap-anywhere hover:text-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text sm:text-xs"
               />
             ))}
-            <a
+            <Link
               className="inline-flex items-center gap-4 text-sm leading-relaxed wrap-anywhere hover:text-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text sm:text-xs"
-              href={siteURL('/#contact', homePath)}
+              href="/contact"
             >
               Let’s talk <ArrowUpRight size={15} aria-hidden="true" />
-            </a>
+            </Link>
             {data.email && (
               <a
                 className="inline-flex items-center gap-4 text-sm leading-relaxed wrap-anywhere hover:text-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text sm:text-xs"

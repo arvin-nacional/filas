@@ -1,9 +1,9 @@
 import type { Footer, Header } from '@/payload-types'
 
 export const navigationDefaults = [
-  { link: { type: 'custom' as const, label: 'About FILAS', url: '/#about' } },
-  { link: { type: 'custom' as const, label: 'Our capabilities', url: '/#services' } },
-  { link: { type: 'custom' as const, label: 'Who we work with', url: '/#partners' } },
+  { link: { type: 'custom' as const, label: 'About FILAS', url: '/about' } },
+  { link: { type: 'custom' as const, label: 'Our Services', url: '/services' } },
+  { link: { type: 'custom' as const, label: 'Who we work with', url: '/partners' } },
 ]
 
 export const headerDefaults = {

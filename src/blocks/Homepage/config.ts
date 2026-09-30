@@ -239,6 +239,8 @@ export const ServicesOverview: Block = {
       fields: [
         text('title'),
         text('summary'),
+        { name: 'url', type: 'text', label: 'Solution page link' },
+        { name: 'example', type: 'select', options: ['demand', 'storefronts', 'fulfillment'] },
         text('description', undefined, 'textarea'),
         {
           name: 'capabilities',
@@ -271,6 +273,7 @@ export const Audience: Block = {
         text('title'),
         text('description', undefined, 'textarea'),
         { name: 'featured', type: 'checkbox', defaultValue: false, label: 'Highlight this stage' },
+        { name: 'url', type: 'text', label: 'Learn more link' },
       ],
     },
   ],

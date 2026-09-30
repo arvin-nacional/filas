@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowUpRight, Plus } from 'lucide-react'
 
 import type {
@@ -52,9 +53,14 @@ export const ServicesOverviewBlock = ({
               <span className="font-mono text-xs font-normal text-filas-accent-text">
                 {String(index + 1).padStart(2, '0')}
               </span>
-              <h3 className="text-2xl leading-tight font-normal tracking-tight lg:text-4xl">
-                {service.title}
-              </h3>
+              <div>
+                <h3 className="text-2xl leading-tight font-normal tracking-tight lg:text-4xl">
+                  {service.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-filas-muted lg:hidden">
+                  {service.summary}
+                </p>
+              </div>
               <span className="hidden text-sm leading-normal text-filas-muted lg:block">
                 {service.summary}
               </span>
@@ -68,9 +74,30 @@ export const ServicesOverviewBlock = ({
               </span>
             </summary>
             <div className="grid gap-5.5 pt-0 pr-0 pb-6.5 pl-8.5 sm:pl-12.5 lg:grid-cols-2 lg:gap-10.5 lg:pr-17 lg:pl-18 lg:pb-8">
-              <p className="max-w-[480px] text-sm leading-relaxed text-filas-muted sm:text-base">
-                {service.description}
-              </p>
+              <div>
+                {service.example && (
+                  <Image
+                    src={`/solutions/${service.example}.webp`}
+                    alt={`${service.title} examples from the FILAS solutions overview`}
+                    width={1672}
+                    height={941}
+                    unoptimized
+                    className="mb-5 h-auto w-full"
+                  />
+                )}
+                <p className="max-w-[480px] text-sm leading-relaxed text-filas-muted sm:text-base">
+                  {service.description}
+                </p>
+                {service.url && (
+                  <Link
+                    href={service.url}
+                    className="mt-5 inline-flex min-h-11 items-center gap-3 text-sm font-medium text-filas-accent-text underline underline-offset-4 focus-visible:outline-2"
+                  >
+                    Explore {service.title.toLowerCase()}{' '}
+                    <ArrowUpRight size={16} aria-hidden="true" />
+                  </Link>
+                )}
+              </div>
               <ul className="flex list-none flex-wrap content-start gap-2.5">
                 {service.capabilities.map((capability, capabilityIndex) => (
                   <li
@@ -133,12 +160,15 @@ export const AudienceBlock = ({
             <p className="mb-8 max-w-2xl text-sm leading-loose text-filas-muted lg:max-w-none">
               {stage.description}
             </p>
-            <ArrowUpRight
-              className="mt-auto text-filas-accent-text"
-              size={26}
-              strokeWidth={1.3}
-              aria-hidden="true"
-            />
+            {stage.url && (
+              <Link
+                href={stage.url}
+                className="mt-auto inline-flex min-h-11 items-center gap-3 text-sm font-medium text-filas-accent-text underline underline-offset-4 focus-visible:outline-2"
+              >
+                Explore support for {stage.title.toLowerCase().replace(/\.$/, '')}{' '}
+                <ArrowUpRight size={20} aria-hidden="true" />
+              </Link>
+            )}
           </article>
         ))}
       </div>
@@ -155,7 +185,7 @@ export const ClientLogosBlock = ({ anchorId, eyebrow, heading, clients }: Client
 
   return (
     <section
-      className="scroll-mt-28 border-y border-filas-line bg-filas-paper py-14 text-center text-filas-ink sm:py-20"
+      className="scroll-mt-28 border-y border-filas-line bg-filas-paper py-9 text-center text-filas-ink sm:py-12"
       id={anchorId}
       aria-label={heading}
     >
@@ -169,7 +199,7 @@ export const ClientLogosBlock = ({ anchorId, eyebrow, heading, clients }: Client
         <ul className="mt-10 grid list-none grid-cols-2 gap-px overflow-hidden rounded-xl border border-filas-line bg-filas-line p-0 sm:grid-cols-3 lg:mt-12 lg:grid-cols-6">
           {approvedClients.map((client, index) => (
             <li
-              className="flex h-32 items-center justify-center bg-filas-paper px-6 py-7 sm:h-36 lg:px-5"
+              className="flex h-20 items-center justify-center bg-filas-paper px-4 py-4 sm:h-24 lg:px-5"
               key={client.id || index}
             >
               <Media
