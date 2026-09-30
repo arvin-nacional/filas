@@ -10,6 +10,7 @@ import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/
 import { searchFields } from '@/search/fieldOverrides'
 import { beforeSyncWithSearch } from '@/search/beforeSync'
 import { validateFormSubmission } from '@/hooks/validateFormSubmission'
+import { styleFormEmails } from '@/utilities/formEmailLayout'
 
 import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -57,6 +58,7 @@ export const plugins: Plugin[] = [
     generateURL,
   }),
   formBuilderPlugin({
+    beforeEmail: styleFormEmails,
     formSubmissionOverrides: {
       hooks: { beforeValidate: [validateFormSubmission] },
     },
