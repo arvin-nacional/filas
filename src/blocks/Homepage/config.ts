@@ -136,6 +136,99 @@ export const GrowthHero: Block = {
   ],
 }
 
+export const EcosystemHero: Block = {
+  slug: 'ecosystemHero',
+  interfaceName: 'EcosystemHeroBlock',
+  labels: { singular: 'Ecosystem Hero', plural: 'Ecosystem Heroes' },
+  fields: [
+    text('eyebrow', growthHeroDefaults.eyebrow),
+    text('heading', growthHeroDefaults.heading),
+    text('emphasis', growthHeroDefaults.emphasis),
+    text('description', growthHeroDefaults.description, 'textarea'),
+    action('primaryLink', growthHeroDefaults.primaryLink),
+    action('secondaryLink', growthHeroDefaults.secondaryLink),
+    text('footnote', growthHeroDefaults.footnote),
+    {
+      name: 'visuals',
+      type: 'group',
+      admin: {
+        description:
+          'A sculpted FILAS ecosystem illustration with three service titles. Leave Artwork empty to use the bundled image.',
+      },
+      fields: [
+        {
+          name: 'artworkImage',
+          label: 'Ecosystem artwork',
+          type: 'upload',
+          relationTo: 'media',
+          filterOptions: { mimeType: { contains: 'image' } },
+          admin: {
+            description:
+              'Optional replacement artwork. A square image with a transparent background works best.',
+          },
+        },
+        {
+          name: 'showCards',
+          label: 'Show service titles and channels',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+        {
+          ...text('progressLabel', 'Content, creators & campaigns.', 'textarea'),
+          label: 'Demand annotation',
+          required: false,
+          admin: {
+            hidden: true,
+            description: 'Preserved annotation copy, unused by the title-only design.',
+          },
+        },
+        {
+          ...text('marketplaceLabel', 'Listings, campaigns & customer care.', 'textarea'),
+          label: 'Store annotation',
+          required: false,
+          admin: {
+            hidden: true,
+            description: 'Preserved annotation copy, unused by the title-only design.',
+          },
+        },
+        {
+          ...text('fulfillmentLabel', 'Inventory, packing & delivery.', 'textarea'),
+          label: 'Fulfillment annotation',
+          required: false,
+          admin: {
+            hidden: true,
+            description: 'Preserved annotation copy, unused by the title-only design.',
+          },
+        },
+        {
+          name: 'marketplaces',
+          type: 'array',
+          maxRows: 4,
+          defaultValue: [
+            { name: 'Shopee' },
+            { name: 'Lazada' },
+            { name: 'TikTok' },
+            { name: 'Shopify' },
+          ],
+          admin: {
+            description:
+              'Editable channel names and optional logo uploads. Without a logo, the name is displayed.',
+          },
+          fields: [
+            text('name'),
+            {
+              name: 'logo',
+              type: 'upload',
+              relationTo: 'media',
+              filterOptions: { mimeType: { contains: 'image' } },
+            },
+          ],
+        },
+      ],
+    },
+  ],
+}
+
 export const GrowthIntro: Block = {
   slug: 'growthIntro',
   interfaceName: 'GrowthIntroBlock',
@@ -325,6 +418,7 @@ export const ContactInvitation: Block = {
 
 export const homepageBlocks = [
   GrowthHero,
+  EcosystemHero,
   GrowthIntro,
   Approach,
   ServicesOverview,

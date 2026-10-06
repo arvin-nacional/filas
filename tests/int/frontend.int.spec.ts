@@ -2,11 +2,16 @@ import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-const { findPage } = vi.hoisted(() => ({ findPage: vi.fn() }))
+const { findPage, draftState } = vi.hoisted(() => ({
+  findPage: vi.fn(),
+  draftState: { enabled: false },
+}))
 
 vi.mock('payload', () => ({ getPayload: vi.fn(async () => ({ find: findPage })) }))
 vi.mock('@payload-config', () => ({ default: {} }))
-vi.mock('next/headers', () => ({ draftMode: vi.fn(async () => ({ isEnabled: false })) }))
+vi.mock('next/headers', () => ({
+  draftMode: vi.fn(async () => ({ isEnabled: draftState.enabled })),
+}))
 vi.mock('@/components/PayloadRedirects', () => ({ PayloadRedirects: vi.fn(() => null) }))
 vi.mock('@/utilities/generateMeta', () => ({ generateMeta: vi.fn(async () => ({})) }))
 vi.mock('@/components/LivePreviewListener', () => ({ LivePreviewListener: () => null }))
@@ -14,7 +19,9 @@ vi.mock('@/app/(frontend)/[slug]/page.client', () => ({ default: () => null }))
 vi.mock('@/blocks/RenderBlocks', () => ({ RenderBlocks: vi.fn(() => null) }))
 vi.mock('@/heros/RenderHero', () => ({ RenderHero: vi.fn(() => null) }))
 vi.mock('@/components/RichText', () => ({ default: () => null }))
-vi.mock('@/blocks/Homepage/Components', () => ({ homepageComponents: { growthHero: () => null } }))
+vi.mock('@/blocks/Homepage/Components', () => ({
+  homepageComponents: { growthHero: () => null, ecosystemHero: () => null },
+}))
 
 import Page, { generateMetadata } from '@/app/(frontend)/[slug]/page'
 import { RenderBlocks } from '@/blocks/RenderBlocks'
@@ -25,6 +32,7 @@ import { generateMeta } from '@/utilities/generateMeta'
 
 beforeEach(() => {
   vi.clearAllMocks()
+  draftState.enabled = false
 })
 
 describe('Low Impact hero', () => {
@@ -72,6 +80,12 @@ describe('CMS page rendering', () => {
         { blockType: 'content', columns: [] },
       ],
     },
+    {
+      layout: [
+        { blockType: 'ecosystemHero', heading: 'Saved ecosystem heading' },
+        { blockType: 'content', columns: [] },
+      ],
+    },
   ])('preserves the saved homepage hero and layout: $layout', async ({ layout }) => {
     const savedPage = {
       slug: 'home',
@@ -86,4 +100,27 @@ describe('CMS page rendering', () => {
     expect(vi.mocked(RenderBlocks).mock.calls[0]?.[0].blocks).toBe(savedPage.layout)
     expect(vi.mocked(RenderHero).mock.calls[0]?.[0]).toEqual(savedPage.hero)
   })
+
+  it.each(['growthHero', 'ecosystemHero'])(
+    'keeps links inside the authenticated draft preview for %s',
+    async (blockType) => {
+      draftState.enabled = true
+      const savedPage = {
+        slug: 'homepage-design',
+        hero: { type: 'none' },
+        layout: [{ blockType, heading: 'Client preview heading' }],
+      }
+      findPage.mockResolvedValue({ docs: [savedPage] })
+
+      renderToStaticMarkup(await Page({ params: Promise.resolve({ slug: savedPage.slug }) }))
+
+      expect(vi.mocked(RenderBlocks).mock.calls[0]?.[0]).toMatchObject({
+        blocks: savedPage.layout,
+        homePath: '/homepage-design',
+      })
+      expect(findPage).toHaveBeenCalledWith(
+        expect.objectContaining({ draft: true, overrideAccess: true }),
+      )
+    },
+  )
 })

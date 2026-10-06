@@ -59,9 +59,11 @@ export default async function Page({ params: paramsPromise }: Args) {
 
   const { hero, layout } = page
   const hasHomepageBlocks = layout.some((block) => block.blockType in homepageComponents)
-  const hasGrowthHero = layout.some((block) => block.blockType === 'growthHero')
+  const hasHomepageHero = layout.some(
+    (block) => block.blockType === 'growthHero' || block.blockType === 'ecosystemHero',
+  )
   const homePath =
-    draft && hasGrowthHero && slug !== 'home' ? `/${encodeURIComponent(decodedSlug)}` : '/'
+    draft && hasHomepageHero && slug !== 'home' ? `/${encodeURIComponent(decodedSlug)}` : '/'
 
   return (
     <div className={hasHomepageBlocks ? undefined : ''}>

@@ -203,6 +203,7 @@ export interface Page {
   };
   layout: (
     | GrowthHeroBlock
+    | EcosystemHeroBlock
     | GrowthIntroBlock
     | ApproachBlock
     | ServicesOverviewBlock
@@ -516,6 +517,66 @@ export interface GrowthHeroBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'growthHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EcosystemHeroBlock".
+ */
+export interface EcosystemHeroBlock {
+  eyebrow: string;
+  heading: string;
+  emphasis: string;
+  description: string;
+  primaryLink: {
+    label: string;
+    /**
+     * A site path (/contact), section link (/#services), https:// URL, or mailto: address.
+     */
+    url: string;
+  };
+  secondaryLink: {
+    label: string;
+    /**
+     * A site path (/contact), section link (/#services), https:// URL, or mailto: address.
+     */
+    url: string;
+  };
+  footnote: string;
+  /**
+   * A sculpted FILAS ecosystem illustration with three service titles. Leave Artwork empty to use the bundled image.
+   */
+  visuals?: {
+    /**
+     * Optional replacement artwork. A square image with a transparent background works best.
+     */
+    artworkImage?: (string | null) | Media;
+    showCards?: boolean | null;
+    /**
+     * Preserved annotation copy, unused by the title-only design.
+     */
+    progressLabel?: string | null;
+    /**
+     * Preserved annotation copy, unused by the title-only design.
+     */
+    marketplaceLabel?: string | null;
+    /**
+     * Preserved annotation copy, unused by the title-only design.
+     */
+    fulfillmentLabel?: string | null;
+    /**
+     * Editable channel names and optional logo uploads. Without a logo, the name is displayed.
+     */
+    marketplaces?:
+      | {
+          name: string;
+          logo?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'ecosystemHero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1680,6 +1741,7 @@ export interface PagesSelect<T extends boolean = true> {
     | T
     | {
         growthHero?: T | GrowthHeroBlockSelect<T>;
+        ecosystemHero?: T | EcosystemHeroBlockSelect<T>;
         growthIntro?: T | GrowthIntroBlockSelect<T>;
         approach?: T | ApproachBlockSelect<T>;
         servicesOverview?: T | ServicesOverviewBlockSelect<T>;
@@ -1753,6 +1815,47 @@ export interface GrowthHeroBlockSelect<T extends boolean = true> {
         progressLabel?: T;
         fulfillmentLabel?: T;
         marketplaceLabel?: T;
+        marketplaces?:
+          | T
+          | {
+              name?: T;
+              logo?: T;
+              id?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "EcosystemHeroBlock_select".
+ */
+export interface EcosystemHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  emphasis?: T;
+  description?: T;
+  primaryLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  secondaryLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  footnote?: T;
+  visuals?:
+    | T
+    | {
+        artworkImage?: T;
+        showCards?: T;
+        progressLabel?: T;
+        marketplaceLabel?: T;
+        fulfillmentLabel?: T;
         marketplaces?:
           | T
           | {

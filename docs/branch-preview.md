@@ -59,7 +59,7 @@ remain accessible only through the normal authenticated Payload preview flow.
 
 Under Pages > Home > Content, arrange:
 
-1. Growth Hero
+1. Growth Hero (original photo design) or Ecosystem Hero (SVG illustration)
 2. Growth Introduction
 3. Our Approach
 4. Services Overview
@@ -68,7 +68,11 @@ Under Pages > Home > Content, arrange:
 
 Approved Client Logos is an optional seventh block. It renders only approved
 rows with populated image assets. Each block's text, lists, and relevant links
-are editable. Growth Hero replaces the generic page hero when present.
+are editable. Either hero replaces the generic page hero when present. Use one
+hero block per page. To switch designs, add the desired block, manually transfer
+the page's copy, links, and marketplace content, then remove the previous hero
+before publishing. See [hero choices and assets](../src/blocks/Homepage/HERO-ASSETS.md)
+for the editable visual options.
 
 Default section anchors are `about`, `services`, `partners`, and `contact`.
 Keep anchors unique and match the Header/Footer links to them. The contact CTA

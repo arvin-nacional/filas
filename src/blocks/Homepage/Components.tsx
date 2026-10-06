@@ -16,6 +16,9 @@ type PreviewProps = { homePath?: string }
 export { GrowthHeroBlock } from './GrowthHero'
 import { GrowthHeroBlock } from './GrowthHero'
 
+export { EcosystemHeroBlock } from './EcosystemHero'
+import { EcosystemHeroBlock } from './EcosystemHero'
+
 export { GrowthIntroBlock } from './GrowthIntro'
 import { GrowthIntroBlock } from './GrowthIntro'
 
@@ -226,6 +229,7 @@ export const ContactInvitationBlock = ({
 
 export const homepageComponents = {
   growthHero: GrowthHeroBlock,
+  ecosystemHero: EcosystemHeroBlock,
   growthIntro: GrowthIntroBlock,
   approach: ApproachBlock,
   servicesOverview: ServicesOverviewBlock,
