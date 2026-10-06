@@ -28,7 +28,7 @@ try {
         ...(block.anchorId === 'fulfillment'
           ? {
               description:
-                'FILAS brings together e-commerce services and ART fulfillment solutions. Choose the facility, team, or technology setup that fits your operations.',
+                'FILAS brings together e-commerce and fulfillment services. Choose the facility, team, or technology setup that fits your operations.',
             }
           : {}),
       }
@@ -49,7 +49,7 @@ try {
           {
             title: 'Choose your fulfillment setup',
             description:
-              'Use ART’s facility, bring an ART team into yours, or equip your own team with ART technology.',
+              'Use FILAS’s facility, bring a FILAS team into yours, or equip your own team with FILAS technology.',
           },
           {
             title: 'Add your growth services',

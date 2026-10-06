@@ -48,6 +48,6 @@ export const capabilitiesStatic: RequiredDataFromCollectionSlug<'pages'> = {
   meta: {
     title: 'Our Capabilities',
     description:
-      'Explore FILAS demand generation, store management, ART fulfillment solutions, and performance insights through one end-to-end e-commerce partner.',
+      'Explore FILAS demand generation, store management, FILAS fulfillment solutions, and performance insights through one end-to-end e-commerce partner.',
   },
 }

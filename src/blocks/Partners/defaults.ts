@@ -28,9 +28,9 @@ export const partnerStagesDefaults = {
       'Adding specialist capacity, improving visibility, or integrating fulfillment with an established operation.',
     ][index],
     support: [
-      ['Market research & entry planning', 'Product listings & store design', 'Fulfilled by ART'],
+      ['Market research & entry planning', 'Product listings & store design', 'Fulfilled by FILAS'],
       ['Campaigns, creators & affiliates', 'Store management & reporting', 'Scalable fulfillment'],
-      ['Managed by ART', 'Tech by ART', 'Performance analysis & execution'],
+      ['Managed by FILAS', 'Tech by FILAS', 'Performance analysis & execution'],
     ][index].map((label) => ({ label })),
   })),
 }

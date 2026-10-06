@@ -34,7 +34,7 @@ export const CapabilitiesHeroBlock = ({
         <figure className="m-0">
           <Image
             src="/solutions/operations.webp"
-            alt="ART fulfillment team, warehouse facilities, and packing operations"
+            alt="FILAS fulfillment team, warehouse facilities, and packing operations"
             width={1464}
             height={688}
             priority

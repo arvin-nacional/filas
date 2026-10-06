@@ -36,7 +36,7 @@ export const approachDefaults = {
     {
       title: 'Set up fulfillment',
       description:
-        'Choose fulfillment at ART’s facility, an ART team in your warehouse, or technology for your own operations.',
+        'Choose fulfillment at FILAS’s facility, a FILAS team in your warehouse, or technology for your own operations.',
     },
     {
       title: 'Build demand',
@@ -94,9 +94,9 @@ export const servicesOverviewDefaults = {
       description:
         'Storage, picking, verification, packing, recording, and quality control follow a controlled process. Our systems give you real-time visibility across inventory, orders, and fulfillment.',
       capabilities: [
-        'Fulfilled by ART',
-        'Managed by ART',
-        'Tech by ART',
+        'Fulfilled by FILAS',
+        'Managed by FILAS',
+        'Tech by FILAS',
         'Storage & regulatory compliance',
         'Picking & custom packing',
         'Nationwide last-mile delivery',

@@ -51,22 +51,22 @@ export const capabilityGroups = [
     tone: 'surface' as const,
     visual: 'fulfillment' as const,
     visualCaption:
-      'ART operations: storage, picking and verification, packing and recording, and day-to-day execution.',
+      'FILAS operations: storage, picking and verification, packing and recording, and day-to-day execution.',
     services: [
       {
-        title: 'Your stock. ART’s facility.',
+        title: 'Your stock. FILAS’s facility.',
         description:
-          'Fulfilled by ART (FBA): store your products in ART’s warehouse. The team handles picking, packing, and shipping. For brands that want fulfillment handled end to end.',
+          'Fulfilled by FILAS: store your products in FILAS’s warehouse. The team handles picking, packing, and shipping. For brands that want fulfillment handled end to end.',
       },
       {
-        title: 'Your facility. ART’s team.',
+        title: 'Your facility. FILAS’s team.',
         description:
-          'Managed by ART (MBA): an ART team operates in your facility, fitting the setup to your workflow. For brands with warehouse space that need an experienced operations team.',
+          'Managed by FILAS: a FILAS team operates in your facility, fitting the setup to your workflow. For brands with warehouse space that need an experienced operations team.',
       },
       {
-        title: 'Your operations. ART’s technology.',
+        title: 'Your operations. FILAS’s technology.',
         description:
-          'Tech by ART (TBA): order and warehouse management systems, tracking, analytics, and automated workflows. For brands running their own fulfillment team.',
+          'Tech by FILAS: order and warehouse management systems, tracking, analytics, and automated workflows. For brands running their own fulfillment team.',
       },
       {
         title: 'Storage & delivery services',
@@ -132,7 +132,7 @@ export const capabilityGroups = [
     tone: 'surface' as const,
     visual: 'dashboard' as const,
     visualCaption:
-      'ART’s order and warehouse management interface, as shown in the FILAS solutions overview.',
+      'FILAS’s order and warehouse management interface, as shown in the FILAS solutions overview.',
     services: [
       {
         title: 'Real-time visibility',
