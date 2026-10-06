@@ -4,6 +4,8 @@ import type { Footer } from '@/payload-types'
 import { Brand } from '@/components/Brand'
 import { CMSLink } from '@/components/Link'
 import { footerDefaults, siteURL } from '@/components/SiteChrome/defaults'
+import { isSocialURL } from './socialLinks'
+import { SocialIcon } from './SocialIcon'
 
 export const FooterContent = ({
   data,
@@ -13,6 +15,9 @@ export const FooterContent = ({
   homePath?: string
 }) => {
   const navItems = data.navItems?.length ? data.navItems : footerDefaults.navItems
+  const socialLinks = (data.socialLinks ?? footerDefaults.socialLinks).filter(
+    ({ label, url }) => label.trim() && isSocialURL(url),
+  )
   return (
     <footer className="bg-filas-surface text-filas-ink">
       <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
@@ -22,6 +27,23 @@ export const FooterContent = ({
             <p className="mt-6 text-sm leading-loose whitespace-pre-line text-filas-muted">
               {data.description || footerDefaults.description}
             </p>
+            {socialLinks.length > 0 && (
+              <nav aria-label="Social media" className="mt-6 flex flex-wrap gap-2">
+                {socialLinks.map(({ label, url }, index) => (
+                  <a
+                    key={index}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${label} (opens in a new tab)`}
+                    title={label}
+                    className="inline-flex size-11 items-center justify-center rounded-full border border-filas-line transition-colors hover:border-filas-accent-text hover:text-filas-accent-text focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text"
+                  >
+                    <SocialIcon url={url} />
+                  </a>
+                ))}
+              </nav>
+            )}
           </div>
           <p className="text-3xl leading-snug font-normal tracking-tight whitespace-pre-line">
             {data.promise || footerDefaults.promise}

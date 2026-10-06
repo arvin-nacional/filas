@@ -4,6 +4,7 @@ import { link } from '@/fields/link'
 import { revalidateFooter } from './hooks/revalidateFooter'
 import { authenticated } from '@/access/authenticated'
 import { footerDefaults } from '@/components/SiteChrome/defaults'
+import { isSocialURL } from './socialLinks'
 
 export const Footer: GlobalConfig = {
   slug: 'footer',
@@ -28,6 +29,34 @@ export const Footer: GlobalConfig = {
           RowLabel: '@/Footer/RowLabel#RowLabel',
         },
       },
+    },
+    {
+      name: 'socialLinks',
+      type: 'array',
+      label: 'Social media links',
+      labels: { singular: 'Social link', plural: 'Social links' },
+      defaultValue: footerDefaults.socialLinks,
+      admin: {
+        description:
+          'Add, reorder, or remove links to Facebook, Instagram, LinkedIn, TikTok, or any other site. Remove all rows to hide social links.',
+      },
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          required: true,
+          admin: { placeholder: 'e.g. Instagram' },
+        },
+        {
+          name: 'url',
+          type: 'text',
+          label: 'URL',
+          required: true,
+          admin: { placeholder: 'https://www.instagram.com/your-profile/' },
+          validate: (value: unknown) =>
+            isSocialURL(value) || 'Enter a full URL starting with https:// or http://.',
+        },
+      ],
     },
     { name: 'description', type: 'textarea', defaultValue: footerDefaults.description },
     { name: 'promise', type: 'textarea', defaultValue: footerDefaults.promise },

@@ -1,4 +1,5 @@
 import type { Footer, Header } from '@/payload-types'
+import { defaultSocialLinks } from '@/Footer/socialLinks'
 
 export const navigationDefaults = [
   { link: { type: 'custom' as const, label: 'About FILAS', url: '/#about' } },
@@ -14,6 +15,7 @@ export const headerDefaults = {
 
 export const footerDefaults = {
   navItems: navigationDefaults,
+  socialLinks: defaultSocialLinks,
   description: 'Your e-commerce enabler.\nYour partner in what comes next.',
   promise: 'First to Execute.\nLast to See Things Through.',
   note: 'Built on partnership. Driven by progress.',

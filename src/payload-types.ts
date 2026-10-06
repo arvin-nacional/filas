@@ -2804,6 +2804,16 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  /**
+   * Add, reorder, or remove links to Facebook, Instagram, LinkedIn, TikTok, or any other site. Remove all rows to hide social links.
+   */
+  socialLinks?:
+    | {
+        label: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
   description?: string | null;
   promise?: string | null;
   note?: string | null;
@@ -2857,6 +2867,13 @@ export interface FooterSelect<T extends boolean = true> {
               url?: T;
               label?: T;
             };
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        label?: T;
+        url?: T;
         id?: T;
       };
   description?: T;
