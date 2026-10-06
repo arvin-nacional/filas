@@ -142,7 +142,7 @@ export const createEcosystemScene = (
 
   const ground = new THREE.Mesh(
     new THREE.PlaneGeometry(12, 12),
-    new THREE.ShadowMaterial({ color: 0x5b4934, opacity: 0.07 }),
+    new THREE.ShadowMaterial({ color: 0x5b4934, opacity: 0.07, depthWrite: false }),
   )
   ground.position.z = -0.18
   ground.receiveShadow = true
@@ -162,8 +162,9 @@ export const createEcosystemScene = (
   const dotMaterials = colors.map(
     (color) => new THREE.MeshBasicMaterial({ color, transparent: true }),
   )
-  const dots = [2.55, 0.5, -1.1, -2].map((angle, index) => {
-    const dot = new THREE.Mesh(dotGeometry, dotMaterials[index % 3])
+  const dots = colors.map((_, index) => {
+    const angle = ((1 - index) * Math.PI * 2) / 3
+    const dot = new THREE.Mesh(dotGeometry, dotMaterials[index])
     dot.position.set(Math.cos(angle) * 2.7, Math.sin(angle) * 2.7, 0.06)
     orbit.add(dot)
     return dot
