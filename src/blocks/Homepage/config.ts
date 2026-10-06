@@ -229,6 +229,41 @@ export const EcosystemHero: Block = {
   ],
 }
 
+export const AnimatedEcosystemHero: Block = {
+  slug: 'animatedEcosystemHero',
+  interfaceName: 'AnimatedEcosystemHeroBlock',
+  labels: { singular: 'Animated Ecosystem Hero', plural: 'Animated Ecosystem Heroes' },
+  fields: [
+    text('eyebrow', growthHeroDefaults.eyebrow),
+    text('heading', growthHeroDefaults.heading),
+    text('emphasis', growthHeroDefaults.emphasis),
+    text('description', growthHeroDefaults.description, 'textarea'),
+    action('primaryLink', growthHeroDefaults.primaryLink),
+    action('secondaryLink', growthHeroDefaults.secondaryLink),
+    {
+      name: 'visuals',
+      type: 'group',
+      admin: {
+        description: 'An animated commerce loop with editable service titles.',
+      },
+      fields: [
+        {
+          name: 'enableAnimation',
+          label: 'Enable animation',
+          type: 'checkbox',
+          defaultValue: true,
+        },
+        { ...text('demandTitle', 'Demand generation'), label: 'Demand title' },
+        { ...text('storeTitle', 'Store management'), label: 'Store title' },
+        {
+          ...text('fulfillmentTitle', 'Warehousing & fulfillment'),
+          label: 'Fulfillment title',
+        },
+      ],
+    },
+  ],
+}
+
 export const GrowthIntro: Block = {
   slug: 'growthIntro',
   interfaceName: 'GrowthIntroBlock',
@@ -419,6 +454,7 @@ export const ContactInvitation: Block = {
 export const homepageBlocks = [
   GrowthHero,
   EcosystemHero,
+  AnimatedEcosystemHero,
   GrowthIntro,
   Approach,
   ServicesOverview,

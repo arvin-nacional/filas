@@ -204,6 +204,7 @@ export interface Page {
   layout: (
     | GrowthHeroBlock
     | EcosystemHeroBlock
+    | AnimatedEcosystemHeroBlock
     | GrowthIntroBlock
     | ApproachBlock
     | ServicesOverviewBlock
@@ -577,6 +578,42 @@ export interface EcosystemHeroBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'ecosystemHero';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnimatedEcosystemHeroBlock".
+ */
+export interface AnimatedEcosystemHeroBlock {
+  eyebrow: string;
+  heading: string;
+  emphasis: string;
+  description: string;
+  primaryLink: {
+    label: string;
+    /**
+     * A site path (/contact), section link (/#services), https:// URL, or mailto: address.
+     */
+    url: string;
+  };
+  secondaryLink: {
+    label: string;
+    /**
+     * A site path (/contact), section link (/#services), https:// URL, or mailto: address.
+     */
+    url: string;
+  };
+  /**
+   * An animated commerce loop with editable service titles.
+   */
+  visuals: {
+    enableAnimation?: boolean | null;
+    demandTitle: string;
+    storeTitle: string;
+    fulfillmentTitle: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'animatedEcosystemHero';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1742,6 +1779,7 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         growthHero?: T | GrowthHeroBlockSelect<T>;
         ecosystemHero?: T | EcosystemHeroBlockSelect<T>;
+        animatedEcosystemHero?: T | AnimatedEcosystemHeroBlockSelect<T>;
         growthIntro?: T | GrowthIntroBlockSelect<T>;
         approach?: T | ApproachBlockSelect<T>;
         servicesOverview?: T | ServicesOverviewBlockSelect<T>;
@@ -1863,6 +1901,38 @@ export interface EcosystemHeroBlockSelect<T extends boolean = true> {
               logo?: T;
               id?: T;
             };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AnimatedEcosystemHeroBlock_select".
+ */
+export interface AnimatedEcosystemHeroBlockSelect<T extends boolean = true> {
+  eyebrow?: T;
+  heading?: T;
+  emphasis?: T;
+  description?: T;
+  primaryLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  secondaryLink?:
+    | T
+    | {
+        label?: T;
+        url?: T;
+      };
+  visuals?:
+    | T
+    | {
+        enableAnimation?: T;
+        demandTitle?: T;
+        storeTitle?: T;
+        fulfillmentTitle?: T;
       };
   id?: T;
   blockName?: T;

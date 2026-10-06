@@ -60,7 +60,10 @@ export default async function Page({ params: paramsPromise }: Args) {
   const { hero, layout } = page
   const hasHomepageBlocks = layout.some((block) => block.blockType in homepageComponents)
   const hasHomepageHero = layout.some(
-    (block) => block.blockType === 'growthHero' || block.blockType === 'ecosystemHero',
+    (block) =>
+      block.blockType === 'growthHero' ||
+      block.blockType === 'ecosystemHero' ||
+      block.blockType === 'animatedEcosystemHero',
   )
   const homePath =
     draft && hasHomepageHero && slug !== 'home' ? `/${encodeURIComponent(decodedSlug)}` : '/'

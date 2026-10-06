@@ -19,6 +19,9 @@ import { GrowthHeroBlock } from './GrowthHero'
 export { EcosystemHeroBlock } from './EcosystemHero'
 import { EcosystemHeroBlock } from './EcosystemHero'
 
+export { AnimatedEcosystemHeroBlock } from './AnimatedEcosystemHero'
+import { AnimatedEcosystemHeroBlock } from './AnimatedEcosystemHero'
+
 export { GrowthIntroBlock } from './GrowthIntro'
 import { GrowthIntroBlock } from './GrowthIntro'
 
@@ -230,6 +233,7 @@ export const ContactInvitationBlock = ({
 export const homepageComponents = {
   growthHero: GrowthHeroBlock,
   ecosystemHero: EcosystemHeroBlock,
+  animatedEcosystemHero: AnimatedEcosystemHeroBlock,
   growthIntro: GrowthIntroBlock,
   approach: ApproachBlock,
   servicesOverview: ServicesOverviewBlock,

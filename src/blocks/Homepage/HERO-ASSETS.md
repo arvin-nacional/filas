@@ -1,23 +1,48 @@
 # Homepage hero choices
 
-Payload offers two selectable hero blocks. Use one hero block per page, placed
+Payload offers three selectable hero blocks. Use one hero block per page, placed
 first in the Layout field under Pages → your homepage → Content.
 
 - **Growth Hero** keeps the original entrepreneur and fulfillment photos with
   overlay cards.
 - **Ecosystem Hero** uses generated sculptural artwork with three service titles
   and marketplace callouts.
+- **Animated Ecosystem Hero** uses a live Three.js commerce loop with service
+  icons and three editable titles.
 
-Both blocks have editable headline, emphasis, description, footnote, links,
-marketplace names, and optional marketplace logos. An entry without a logo displays
-its name. Up to four marketplace entries are supported.
+All three blocks have editable eyebrow, headline, emphasis, description, and
+links. Growth Hero and Ecosystem Hero also have a footnote, marketplace names,
+and optional marketplace logos. An entry without a logo displays its name.
+Up to four marketplace entries are supported.
 
 To switch designs, add the desired hero block at the top of Layout, manually copy
 the page's headline, emphasis, description, footnote, links, and marketplace content
-from the existing hero, then remove the previous hero. Review the service titles or
-card copy for the chosen design and preview before publishing. Replacing the
+from the existing hero where supported, then remove the previous hero.
+Animated Ecosystem Hero has no footnote or marketplace fields. Review the service
+titles or card copy for the chosen design and preview before publishing. Replacing the
 block does not automatically transfer its values. Existing Growth Hero blocks
 continue to display the original design without a database migration or seed.
+
+## Animated Ecosystem Hero
+
+Choose Animated Ecosystem Hero in Layout to use the animated loop design. In its
+Visuals group, edit Demand title, Store title, and Fulfillment title. Their defaults
+are “Demand generation”, “Store management”, and “Warehousing & fulfillment”.
+“Enable animation” controls motion while retaining the same visual composition.
+This option uses a Three.js scene and has no artwork upload, footnote, or channel
+fields. Adding the option does not replace existing hero blocks or alter saved pages.
+
+The Three.js arrows enter in sequence—Demand, Store, then Fulfillment—fading in
+and settling before their service labels appear and orbit motion begins.
+The center uses the emblem from the existing FILAS logo asset, revealed as the
+three arrows finish assembling.
+Entrance progress pauses while the section is offscreen or the browser tab is hidden;
+visitors can also pause motion. Reduced-motion preferences or disabled animation
+show the completed loop as soon as WebGL is ready. Loading shows no generated
+image; the bundled artwork loads only if WebGL fails or its context is lost.
+
+The development-only preview is `/hero-preview/animated`. It uses default copy
+without changing CMS pages and returns 404 outside development.
 
 ## Growth Hero photo assets
 
