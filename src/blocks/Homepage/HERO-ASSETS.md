@@ -38,8 +38,22 @@ The center uses the emblem from the existing FILAS logo asset, revealed as the
 three arrows finish assembling.
 Entrance progress pauses while the section is offscreen or the browser tab is hidden;
 visitors can also pause motion. Reduced-motion preferences or disabled animation
-show the completed loop as soon as WebGL is ready. Loading shows no generated
-image; the bundled artwork loads only if WebGL fails or its context is lost.
+show the completed loop as soon as WebGL is ready. The generated sculpture image
+loads only if WebGL fails or its context is lost.
+
+The animated design also includes a generated commerce background behind the live
+circle: a dotted world map, analytics and storefront panels, and a fulfillment
+conveyor. It fades in as the loop finishes assembling. Its transparent center
+keeps the native emblem clear, and its decorative panels contain no readable
+claims or metrics. It adds no icons beneath the calls to action. Asset details
+and the generation prompt are in `src/blocks/Homepage/COMMERCE-BACKGROUND.md`.
+
+To control this layer in Payload, open Pages → your homepage → Content → Layout →
+Animated Ecosystem Hero → Visuals and use “Show background” (`showBackground`).
+It defaults to enabled, including for existing pages without a saved value.
+Uncheck it to hide the map, panels, and conveyor while keeping the circle, emblem,
+service labels, and orbit dots. Recheck it to restore the background; the asset
+is retained when hidden.
 
 The development-only preview is `/hero-preview/animated`. It uses default copy
 without changing CMS pages and returns 404 outside development.

@@ -607,6 +607,10 @@ export interface AnimatedEcosystemHeroBlock {
    */
   visuals: {
     enableAnimation?: boolean | null;
+    /**
+     * Show the map, commerce panels, and fulfillment backdrop behind the circle.
+     */
+    showBackground?: boolean | null;
     demandTitle: string;
     storeTitle: string;
     fulfillmentTitle: string;
@@ -1930,6 +1934,7 @@ export interface AnimatedEcosystemHeroBlockSelect<T extends boolean = true> {
     | T
     | {
         enableAnimation?: T;
+        showBackground?: T;
         demandTitle?: T;
         storeTitle?: T;
         fulfillmentTitle?: T;

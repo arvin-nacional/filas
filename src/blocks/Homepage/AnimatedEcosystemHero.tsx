@@ -60,6 +60,7 @@ export const AnimatedEcosystemHeroBlock = ({
         </div>
         <AnimatedEcosystemScene
           enableAnimation={visuals?.enableAnimation !== false}
+          showBackground={visuals?.showBackground !== false}
           demandTitle={visuals?.demandTitle || 'Demand generation'}
           storeTitle={visuals?.storeTitle || 'Store management'}
           fulfillmentTitle={visuals?.fulfillmentTitle || 'Warehousing & fulfillment'}

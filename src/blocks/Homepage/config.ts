@@ -253,6 +253,16 @@ export const AnimatedEcosystemHero: Block = {
           type: 'checkbox',
           defaultValue: true,
         },
+        {
+          name: 'showBackground',
+          label: 'Show background',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description:
+              'Show the map, commerce panels, and fulfillment backdrop behind the circle.',
+          },
+        },
         { ...text('demandTitle', 'Demand generation'), label: 'Demand title' },
         { ...text('storeTitle', 'Store management'), label: 'Store title' },
         {

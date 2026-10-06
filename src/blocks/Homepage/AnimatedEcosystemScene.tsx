@@ -8,6 +8,7 @@ import type { EcosystemSceneController } from './ecosystem-three'
 
 type SceneProps = {
   enableAnimation: boolean
+  showBackground: boolean
   demandTitle: string
   storeTitle: string
   fulfillmentTitle: string
@@ -32,6 +33,7 @@ const titleLines = (title: string, index: number) => {
 
 export const AnimatedEcosystemScene = ({
   enableAnimation,
+  showBackground,
   demandTitle,
   storeTitle,
   fulfillmentTitle,
@@ -157,6 +159,23 @@ export const AnimatedEcosystemScene = ({
       onPointerLeave={() => sceneRef.current?.setPointer(0, 0)}
     >
       <div className="relative aspect-square">
+        {showBackground && (
+          <div
+            aria-hidden="true"
+            data-ecosystem-background="commerce"
+            className={`pointer-events-none absolute top-1/2 left-1/2 aspect-[6/5] w-[120%] -translate-x-1/2 -translate-y-1/2 opacity-[var(--ecosystem-reveal,0)] lg:[mask-image:linear-gradient(to_right,transparent_0%,transparent_9%,#000_17%,#000_100%)] xl:w-[150%] 2xl:[mask-image:none] ${enableAnimation ? 'transition-opacity duration-700 ease-out motion-reduce:transition-none' : ''}`}
+          >
+            <Image
+              src="/hero/ecosystem-commerce-background.webp"
+              alt=""
+              fill
+              unoptimized
+              loading="eager"
+              sizes="(min-width: 1280px) 840px, (min-width: 640px) 672px, 120vw"
+              className="object-contain"
+            />
+          </div>
+        )}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-[7%] rounded-full bg-[radial-gradient(ellipse_at_56%_70%,#c5bba833,transparent_70%)]"
@@ -190,7 +209,7 @@ export const AnimatedEcosystemScene = ({
             type="button"
             onClick={() => setPaused(!paused)}
             aria-label={paused ? 'Play animation' : 'Pause animation'}
-            className="absolute right-0 bottom-0 inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-[11px] text-filas-muted transition-colors hover:bg-filas-surface hover:text-filas-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-filas-accent-text motion-reduce:transition-none"
+            className="absolute right-0 bottom-0 inline-flex min-h-11 items-center gap-2 rounded-full border border-filas-line/70 bg-filas-paper/95 px-3 text-[11px] text-filas-muted shadow-[0_2px_12px_#1c1c1b08] transition-colors hover:bg-filas-surface hover:text-filas-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-filas-accent-text motion-reduce:transition-none"
           >
             {paused ? (
               <Play size={12} aria-hidden="true" />

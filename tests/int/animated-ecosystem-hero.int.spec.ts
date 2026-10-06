@@ -98,7 +98,7 @@ describe('Editable animated ecosystem hero', () => {
   })
 
   it.each([true, false])(
-    'preserves the animation option (%s) while rendering native loading content without an image',
+    'preserves the animation option (%s) without using the sculpture image during loading',
     (enableAnimation) => {
       const element = render({ ...base, visuals: { ...base.visuals, enableAnimation } })
       const figure = element.querySelector('figure')
@@ -106,8 +106,19 @@ describe('Editable animated ecosystem hero', () => {
       expect(figure?.getAttribute('data-animation')).toBe('paused')
       expect(figure?.getAttribute('data-renderer')).toBe('loading')
       expect(figure?.getAttribute('data-entrance')).toBe('waiting')
-      expect(element.querySelector('img')).toBeNull()
-      expect(element.querySelector('link[rel="preload"][as="image"]')).toBeNull()
+      expect(element.querySelector('img[src*="/hero/ecosystem-sculpture.webp"]')).toBeNull()
+      expect(
+        element.querySelector(
+          'link[rel="preload"][as="image"][href*="/hero/ecosystem-sculpture.webp"]',
+        ),
+      ).toBeNull()
+      const backgrounds = element.querySelectorAll('[data-ecosystem-background="commerce"]')
+      expect(backgrounds).toHaveLength(1)
+      expect(backgrounds[0]?.getAttribute('aria-hidden')).toBe('true')
+      expect(backgrounds[0]?.querySelector('img')?.getAttribute('alt')).toBe('')
+      expect(
+        element.querySelectorAll('img[src="/hero/ecosystem-commerce-background.webp"]'),
+      ).toHaveLength(1)
       expect(figure?.querySelector('canvas')?.getAttribute('aria-hidden')).toBe('true')
       const buttons = [...(figure?.querySelectorAll('button') ?? [])]
       expect(buttons.map((button) => button.textContent)).toEqual([
@@ -115,13 +126,58 @@ describe('Editable animated ecosystem hero', () => {
         'Store management',
         'Warehousing & fulfillment',
       ])
+      expect(element.querySelectorAll('button')).toHaveLength(3)
       expect(buttons.every((button) => button.getAttribute('aria-pressed') === 'false')).toBe(true)
       expect(element.querySelector('button[aria-label="Pause animation"]')).toBeNull()
       expect(element.querySelector('button[aria-label="Play animation"]')).toBeNull()
     },
   )
 
-  it('enables animation by default without depending on the older hero controls', () => {
+  it.each([true, null, undefined])(
+    'shows the decorative background unless the setting (%s) explicitly disables it',
+    (showBackground) => {
+      const element = render({ ...base, visuals: { ...base.visuals, showBackground } })
+      expect(element.querySelectorAll('[data-ecosystem-background="commerce"]')).toHaveLength(1)
+      expect(
+        element.querySelectorAll('img[src="/hero/ecosystem-commerce-background.webp"]'),
+      ).toHaveLength(1)
+    },
+  )
+
+  it('removes only the background when disabled while preserving the scene and calls to action', () => {
+    const element = render({
+      ...base,
+      visuals: { ...base.visuals, showBackground: false },
+      homePath: '/animated-hero-design',
+    })
+    expect(element.querySelector('[data-ecosystem-background="commerce"]')).toBeNull()
+    expect(element.querySelector('img[src*="/hero/ecosystem-commerce-background.webp"]')).toBeNull()
+    expect(
+      element.querySelector(
+        'link[rel="preload"][as="image"][href*="/hero/ecosystem-commerce-background.webp"]',
+      ),
+    ).toBeNull()
+    expect(element.querySelector('canvas')?.getAttribute('aria-hidden')).toBe('true')
+    expect(element.querySelector('svg[data-brand-emblem="filas"]')).not.toBeNull()
+    expect([...element.querySelectorAll('button')].map((button) => button.textContent)).toEqual([
+      'Demand generation',
+      'Store management',
+      'Warehousing & fulfillment',
+    ])
+    const links = [...element.querySelectorAll('a')]
+    expect(
+      links
+        .find((link) => link.textContent?.includes(base.primaryLink.label))
+        ?.getAttribute('href'),
+    ).toBe('/animated-hero-design#contact')
+    expect(
+      links
+        .find((link) => link.textContent?.includes(base.secondaryLink.label))
+        ?.getAttribute('href'),
+    ).toBe('/animated-hero-design#services')
+  })
+
+  it('defaults to enabled animation and background without using the older hero controls', () => {
     const element = render({
       ...base,
       visuals: {
@@ -141,6 +197,13 @@ describe('Editable animated ecosystem hero', () => {
     expect(animation?.type).toBe('checkbox')
     if (animation?.type !== 'checkbox') throw new Error('Animation setting is missing')
     expect(animation.defaultValue).toBe(true)
+    const background = visuals.fields.find(
+      (field) => 'name' in field && field.name === 'showBackground',
+    )
+    expect(background?.type).toBe('checkbox')
+    if (background?.type !== 'checkbox') throw new Error('Background setting is missing')
+    expect(background.label).toBe('Show background')
+    expect(background.defaultValue).toBe(true)
     expect(visuals.fields.some((field) => 'name' in field && field.name === 'showCards')).toBe(
       false,
     )
