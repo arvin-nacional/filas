@@ -148,9 +148,9 @@ export const ContactInquiryBlock = ({
 }
 
 export const ContactNextStepsBlock = ({ anchorId, eyebrow, heading, steps }: NextStepsProps) => (
-  <section className="scroll-mt-28 bg-filas-surface py-16 text-filas-ink md:py-24" id={anchorId}>
+  <section className="scroll-mt-28 bg-filas-ink py-16 text-filas-paper md:py-24" id={anchorId}>
     <div className="mx-auto w-full max-w-348 px-5 sm:px-8 lg:px-14">
-      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-filas-accent-text uppercase">
+      <p className="mb-7 font-mono text-xs leading-relaxed tracking-widest text-[#e6a48a] uppercase">
         {eyebrow}
       </p>
       <h2 className="text-4xl leading-tight font-medium tracking-tighter text-balance whitespace-pre-line lg:text-5xl">
@@ -158,9 +158,9 @@ export const ContactNextStepsBlock = ({ anchorId, eyebrow, heading, steps }: Nex
       </h2>
       <ol className="mt-14 grid list-none gap-9 p-0 md:grid-cols-3 md:gap-7 lg:gap-12">
         {steps.map((step, index) => (
-          <li className="border-t border-filas-line pt-6" key={step.id || index}>
+          <li className="border-t border-[#4b4843] pt-6" key={step.id || index}>
             <span
-              className="font-mono text-xs leading-normal text-filas-accent-text"
+              className="font-mono text-xs leading-normal text-[#e6a48a]"
               aria-hidden="true"
             >
               {String(index + 1).padStart(2, '0')}
@@ -168,7 +168,7 @@ export const ContactNextStepsBlock = ({ anchorId, eyebrow, heading, steps }: Nex
             <h3 className="mt-6 mb-3 text-2xl leading-tight font-medium tracking-tight">
               {step.title}
             </h3>
-            <p className="text-base leading-loose text-filas-muted">{step.description}</p>
+            <p className="text-base leading-loose text-[#c8c4bd]">{step.description}</p>
           </li>
         ))}
       </ol>
