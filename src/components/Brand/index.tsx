@@ -1,21 +1,9 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
 import Link from 'next/link'
 
-import type { Media as MediaType } from '@/payload-types'
-
-export const Brand = ({
-  href = '/',
-  logo,
-}: {
-  href?: string
-  logo?: MediaType | string | number | null
-}) => {
-  const [failed, setFailed] = useState(false)
-  const source =
-    !failed && typeof logo === 'object' && logo?.url ? logo.url : '/filas-horizontal-logo.png'
+export const Brand = ({ href = '/' }: { href?: string }) => {
   return (
     <Link
       href={href}
@@ -23,13 +11,14 @@ export const Brand = ({
       aria-label="FILAS home"
     >
       <Image
-        src={source}
+        src="/filas-horizontal-logo.png"
         alt="FILAS"
         width={149}
         height={32}
-        quality={100}
-        unoptimized
-        onError={() => setFailed(true)}
+        quality={90}
+        priority
+        sizes="149px"
+        style={{ width: 'auto' }}
         className="h-8 w-auto"
       />
     </Link>

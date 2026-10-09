@@ -2927,10 +2927,6 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  */
 export interface Header {
   id: string;
-  /**
-   * Navbar brand logo. The bundled FILAS horizontal logo is used when no logo is uploaded.
-   */
-  logo?: (string | null) | Media;
   navItems?:
     | {
         link: {
@@ -3007,7 +3003,6 @@ export interface Footer {
  * via the `definition` "header_select".
  */
 export interface HeaderSelect<T extends boolean = true> {
-  logo?: T;
   navItems?:
     | T
     | {

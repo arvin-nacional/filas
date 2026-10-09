@@ -27,13 +27,13 @@ export const HeaderClient = ({ data, homePath = '/' }: { data: Header; homePath?
       }}
     >
       <a
-        className="absolute top-3 left-3 z-50 -translate-y-[200%] bg-filas-ink px-5 py-3 text-filas-paper focus:translate-y-0"
+        className="absolute top-3 left-3 z-50 translate-y-[-200%] bg-filas-ink px-5 py-3 text-filas-paper focus:translate-y-0"
         href="#main-content"
       >
         Skip to content
       </a>
-      <div className="mx-auto flex min-h-20 w-[calc(100%-2.5rem)] max-w-[1516px] flex-wrap items-center justify-between sm:w-[calc(100%-4rem)] md:min-h-24 md:flex-nowrap md:gap-8 lg:w-[84%]">
-        <Brand href={homePath} logo={data.logo} />
+      <div className="mx-auto flex min-h-20 w-[calc(100%-2.5rem)] max-w-379 flex-wrap items-center justify-between sm:w-[calc(100%-4rem)] md:min-h-24 md:flex-nowrap md:gap-8 lg:w-[84%]">
+        <Brand href={homePath} />
         <button
           className="inline-flex min-h-11 items-center gap-3 py-2 pl-3 font-mono text-xs focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-filas-accent-text md:hidden"
           type="button"
