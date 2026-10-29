@@ -66,12 +66,14 @@ try {
     ...(replyIndex >= 0 ? emails[replyIndex] : {}),
     emailTo: '{{email}}',
     emailFrom: `FILAS <${sender}>`,
-    replyTo: recipient,
+    replyTo: 'nas.arcayan@filas.ph',
     subject: 'We’ve received your inquiry | FILAS',
     message: message([
       'Hi {{contactName}},',
       'Thank you for reaching out to FILAS. We’ve received your inquiry about {{company}}.',
       'Our team will review what you shared and get in touch to discuss your goals and the next steps.',
+      'Here is a copy of your response for your records:',
+      '{{*:table}}',
       'Have anything to add? Reply to this email and it will reach our team.',
       'We look forward to learning more about your brand.',
       'The FILAS team',
@@ -93,7 +95,11 @@ try {
       overrideAccess: true,
       data: { emails },
     })
-    if (!saved.emails?.some((email) => email.emailTo === '{{email}}'))
+    if (
+      !saved.emails?.some(
+        (email) => email.emailTo === '{{email}}' && email.replyTo === 'nas.arcayan@filas.ph',
+      )
+    )
       throw new Error('Auto-reply was not saved')
     console.log('Saved branded notification and auto-reply templates. No email sent.')
   } else
