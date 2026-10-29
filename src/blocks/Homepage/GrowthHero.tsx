@@ -113,9 +113,8 @@ export const GrowthHeroBlock = ({
         {showCards && (
           <>
             <div className="absolute bg-[#fcfbf9] shadow-[0_12px_40px_#29251d15] rounded-[16px] p-[22px] text-[clamp(12px,_1vw,_18px)] leading-[1.2] [&_p]:whitespace-pre-line min-[1024px]:max-[1201px]:p-4 max-[1024px]:text-[15px] max-[541px]:rounded-[12px] max-[541px]:p-[13px] max-[541px]:text-[12px] top-[16%] left-[24%] w-[30%] min-h-35 flex justify-between gap-[10px] [&_p]:flex-1 min-[1024px]:max-[1201px]:w-[35%] max-[1024px]:left-[24%] max-[1024px]:top-[9%] max-[1024px]:w-[32%] max-[541px]:left-[4%] max-[541px]:top-[6%] max-[541px]:w-[45%] max-[541px]:min-h-[95px]">
-              <p>{visuals?.progressLabel ?? 'From potential\nto progress.'}</p>
               <div
-                className="w-[49%] h-24 flex items-end gap-2 self-end mt-[3px] [&_span]:flex-1 [&_span]:rounded-[5px] [&_span]:bg-filas-accent max-[541px]:h-[63px] max-[541px]:gap-[5px]"
+                className="w-full h-24 flex items-end gap-2 self-end mt-[3px] [&_span]:flex-1 [&_span]:rounded-[5px] [&_span]:bg-filas-accent max-[541px]:h-[63px] max-[541px]:gap-[5px]"
                 aria-hidden="true"
               >
                 {[20, 38, 58, 80, 100].map((height, i) => (
@@ -123,14 +122,12 @@ export const GrowthHeroBlock = ({
                 ))}
               </div>
             </div>
-            <div className="absolute bg-[#fcfbf9] shadow-[0_12px_40px_#29251d15] rounded-[16px] p-[22px] text-[clamp(12px,_1vw,_18px)] leading-[1.2] [&_p]:whitespace-pre-line min-[1024px]:max-[1201px]:p-4 max-[1024px]:text-[15px] max-[541px]:rounded-[12px] max-[541px]:p-[13px] max-[541px]:text-[12px] left-[10%] top-[62%] flex items-center gap-[13px] w-[24%] min-w-[165px] [&_svg]:shrink-0 max-[541px]:left-[4%] max-[541px]:top-[68%] max-[541px]:w-[39%] max-[541px]:min-w-0 max-[541px]:gap-[7px] max-[541px]:[&_svg]:w-6">
+            <div className="absolute bg-[#fcfbf9] shadow-[0_12px_40px_#29251d15] rounded-[16px] p-[22px] text-[clamp(12px,_1vw,_18px)] leading-[1.2] [&_p]:whitespace-pre-line min-[1024px]:max-[1201px]:p-4 max-[1024px]:text-[15px] max-[541px]:rounded-[12px] max-[541px]:p-[13px] max-[541px]:text-[12px] left-[10%] top-[62%] flex items-center gap-[13px] w-fit [&_svg]:shrink-0 max-[541px]:left-[4%] max-[541px]:top-[68%] max-[541px]:gap-[7px] max-[541px]:[&_svg]:w-6">
               <Package size={32} strokeWidth={1.2} aria-hidden="true" />
-              <p>{visuals?.fulfillmentLabel ?? 'Fulfillment\nthat keeps you\nmoving.'}</p>
             </div>
             <div className="absolute bg-[#fcfbf9] shadow-[0_12px_40px_#29251d15] rounded-[16px] p-[22px] text-[clamp(12px,_1vw,_18px)] leading-[1.2] [&_p]:whitespace-pre-line min-[1024px]:max-[1201px]:p-4 max-[1024px]:text-[15px] max-[541px]:rounded-[12px] max-[541px]:p-[13px] max-[541px]:text-[12px] right-[6%] bottom-[12%] w-[32%] min-[1024px]:max-[1201px]:w-[37%] min-[1024px]:max-[1201px]:right-[3%] max-[541px]:w-[46%] max-[541px]:right-[4%] max-[541px]:bottom-[5%]">
-              <div className="flex gap-5 items-center [&_svg]:shrink-0 max-[541px]:gap-[10px] max-[541px]:[&_svg]:w-[26px]">
+              <div className="flex justify-center items-center [&_svg]:shrink-0 max-[541px]:gap-[10px] max-[541px]:[&_svg]:w-[26px]">
                 <ShoppingCart size={36} strokeWidth={1.2} aria-hidden="true" />
-                <p>{visuals?.marketplaceLabel ?? 'Across every\nmarketplace.'}</p>
               </div>
               {marketplaces.length > 0 && (
                 <ul className="grid grid-cols-[repeat(4,_minmax(0,_1fr))] list-none gap-2 [margin:22px_0_0] p-0 [&_li]:min-w-0 [&_li]:grid [&_li]:place-items-center [&_li:nth-child(2)_span]:bg-[#2623c9] [&_li:nth-child(3)_span]:bg-[#151515] [&_li:nth-child(4)_span]:bg-[#638c2e] max-[541px]:gap-[5px] max-[541px]:mt-[14px]">

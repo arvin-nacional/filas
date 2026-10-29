@@ -22,12 +22,14 @@ function render(props: HeroProps) {
 }
 
 describe('Editable growth hero', () => {
-  it('renders generated photos and editable-card defaults for existing pages without visuals', () => {
+  it('renders generated photos and visual cards without competing slogans', () => {
     const element = render(base)
     expect(element.querySelector('h1')?.textContent).toContain(growthHeroDefaults.emphasis)
     expect(element.querySelectorAll('img')).toHaveLength(2)
     expect(element.querySelector('img')?.getAttribute('src')).toBe('/hero/entrepreneur.png')
-    expect(element.textContent).toContain('From potential')
+    expect(element.textContent).not.toContain('From potential')
+    expect(element.textContent).not.toContain('Fulfillment that keeps you')
+    expect(element.textContent).not.toContain('Across every')
     expect(element.textContent).toContain('Shopify')
   })
 
@@ -40,15 +42,19 @@ describe('Editable growth hero', () => {
     expect(element.textContent).not.toContain('From potential')
   })
 
-  it('renders custom card copy and marketplace logo uploads', () => {
+  it('omits saved card slogans and renders marketplace logo uploads', () => {
     const element = render({
       ...base,
       visuals: {
         progressLabel: 'Build your next chapter',
+        fulfillmentLabel: 'A fulfillment slogan',
+        marketplaceLabel: 'A marketplace slogan',
         marketplaces: [{ name: 'Our marketplace', logo: photo }],
       },
     })
-    expect(element.textContent).toContain('Build your next chapter')
+    expect(element.textContent).not.toContain('Build your next chapter')
+    expect(element.textContent).not.toContain('A fulfillment slogan')
+    expect(element.textContent).not.toContain('A marketplace slogan')
     expect(element.querySelector('img[alt="Our marketplace"]')?.getAttribute('src')).toContain(
       '/api/media/file/custom.png',
     )
