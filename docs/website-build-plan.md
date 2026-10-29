@@ -80,7 +80,7 @@ Draft hero copy for the first design:
 >
 > **Let's talk about your brand** · Explore our capabilities
 
-Keep “First to Execute. Last to See Things Through.” as the enduring brand promise in the About story and footer. Lead the homepage with the visitor's growth needs.
+Use “Your End-to-End E-commerce Partner” as the only brand tagline across the website. Lead the homepage with the visitor's growth needs.
 
 Draft closing invitation: “Tell us where you are. Let's work out what comes next.” Copy remains subject to content review; this plan is not a full corporate copywriting deliverable.
 

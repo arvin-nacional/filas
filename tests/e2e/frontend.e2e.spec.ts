@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('Frontend', () => {
   test('can load homepage', async ({ page }) => {
     await page.goto('http://localhost:3000')
-    const siteTitle = 'FILAS - First to Execute. Last to See Things Through.'
+    const siteTitle = 'FILAS | Your End-to-End E-commerce Partner'
     const siteDescription =
       'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.'
     await expect(page).toHaveTitle(siteTitle)

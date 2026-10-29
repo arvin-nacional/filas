@@ -1,4 +1,4 @@
-# FILAS - First to Execute. Last to See Things Through.
+# FILAS | Your End-to-End E-commerce Partner
 
 The FILAS website is built with Payload CMS and Next.js, based on the official [Payload website template](https://github.com/payloadcms/payload/blob/3.x/templates/website).
 

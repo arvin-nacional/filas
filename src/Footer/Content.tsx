@@ -46,7 +46,7 @@ export const FooterContent = ({
             )}
           </div>
           <p className="text-3xl leading-snug font-normal tracking-tight whitespace-pre-line">
-            {data.promise || footerDefaults.promise}
+            {footerDefaults.promise}
           </p>
           <nav
             aria-label="Footer navigation"

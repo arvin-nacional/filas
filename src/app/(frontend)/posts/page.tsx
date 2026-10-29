@@ -58,6 +58,6 @@ export default async function Page() {
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Posts | FILAS - First to Execute. Last to See Things Through.',
+    title: 'Posts | FILAS | Your End-to-End E-commerce Partner',
   }
 }

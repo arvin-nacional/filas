@@ -42,7 +42,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 export const metadata: Metadata = {
   ...(process.env.VERCEL_ENV === 'preview' ? { robots: { index: false, follow: false } } : {}),
-  title: 'FILAS - First to Execute. Last to See Things Through.',
+  title: 'FILAS | Your End-to-End E-commerce Partner',
   description:
     'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
   metadataBase: new URL(getServerSideURL()),

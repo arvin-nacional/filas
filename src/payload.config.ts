@@ -31,7 +31,7 @@ export default buildConfig({
       : undefined,
   admin: {
     meta: {
-      titleSuffix: ' | FILAS - First to Execute. Last to See Things Through.',
+      titleSuffix: ' | FILAS | Your End-to-End E-commerce Partner',
       description:
         'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
       icons: { icon: '/filas-logo.jpg' },

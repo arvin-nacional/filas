@@ -1,6 +1,6 @@
 // Adapted from FILAS - An Overview of our Solutions.pdf, pages 2–5 and 19–23.
 export const growthHeroDefaults = {
-  eyebrow: 'Your end-to-end e-commerce partner',
+  eyebrow: 'Your End-to-End E-commerce Partner',
   heading: 'One team.',
   emphasis: 'End-to-end system.',
   description:

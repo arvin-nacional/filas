@@ -33,7 +33,7 @@ export const homeStatic: RequiredDataFromCollectionSlug<'pages'> = {
     },
   ],
   meta: {
-    title: 'FILAS - First to Execute. Last to See Things Through.',
+    title: 'FILAS | Your End-to-End E-commerce Partner',
     description:
       'FILAS connects demand generation, store management, and warehousing and fulfillment through one team. Every brand is a VIP, at every stage of growth.',
   },

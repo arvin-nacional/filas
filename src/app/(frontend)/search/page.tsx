@@ -83,6 +83,6 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'Search | FILAS - First to Execute. Last to See Things Through.',
+    title: 'Search | FILAS | Your End-to-End E-commerce Partner',
   }
 }

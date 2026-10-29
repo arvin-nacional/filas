@@ -15,7 +15,7 @@ const defaultOpenGraph: Metadata['openGraph'] = {
     },
   ],
   siteName: 'FILAS',
-  title: 'FILAS - First to Execute. Last to See Things Through.',
+  title: 'FILAS | Your End-to-End E-commerce Partner',
 }
 
 export const mergeOpenGraph = (og?: Metadata['openGraph']): Metadata['openGraph'] => {

@@ -10,7 +10,7 @@ const BeforeDashboard: React.FC = () => {
   return (
     <div className={baseClass}>
       <Banner className={`${baseClass}__banner`} type="success">
-        <h4>FILAS - First to Execute. Last to See Things Through.</h4>
+        <h4>FILAS | Your End-to-End E-commerce Partner</h4>
       </Banner>
       Here&apos;s what to do next:
       <ul className={`${baseClass}__instructions`}>

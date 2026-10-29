@@ -17,7 +17,7 @@ export const footerDefaults = {
   navItems: navigationDefaults,
   socialLinks: defaultSocialLinks,
   description: 'Your e-commerce enabler.\nYour partner in what comes next.',
-  promise: 'First to Execute.\nLast to See Things Through.',
+  promise: 'Your End-to-End E-commerce Partner',
   note: 'Built on partnership. Driven by progress.',
 } satisfies Omit<Footer, 'id' | 'createdAt' | 'updatedAt'>
 

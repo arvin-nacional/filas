@@ -47,7 +47,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
                   format: 0,
                   mode: 'normal',
                   style: '',
-                  text: 'FILAS - First to Execute. Last to See Things Through.',
+                  text: 'FILAS | Your End-to-End E-commerce Partner',
                   version: 1,
                 },
               ],
@@ -669,7 +669,7 @@ export const home: (args: HomeArgs) => RequiredDataFromCollectionSlug<'pages'> =
       description:
         'FILAS is an end-to-end e-commerce enabler and growth partner helping brands scale through strategy, technology, fulfillment, creative, and execution.',
       image: heroImage.id,
-      title: 'FILAS - First to Execute. Last to See Things Through.',
+      title: 'FILAS | Your End-to-End E-commerce Partner',
     },
     title: 'Home',
   }

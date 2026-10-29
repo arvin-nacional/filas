@@ -26,7 +26,7 @@ export const generateMeta = async (args: {
 
   const ogImage = getImageURL(doc?.meta?.image)
 
-  const siteTitle = 'FILAS - First to Execute. Last to See Things Through.'
+  const siteTitle = 'FILAS | Your End-to-End E-commerce Partner'
   const metaTitle = doc?.meta?.title
   const title = metaTitle
     ? metaTitle.endsWith(siteTitle)

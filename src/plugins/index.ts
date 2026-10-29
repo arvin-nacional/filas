@@ -16,7 +16,7 @@ import { Page, Post } from '@/payload-types'
 import { getServerSideURL } from '@/utilities/getURL'
 
 const generateTitle: GenerateTitle<Post | Page> = ({ doc }) => {
-  const siteTitle = 'FILAS - First to Execute. Last to See Things Through.'
+  const siteTitle = 'FILAS | Your End-to-End E-commerce Partner'
   return doc?.title ? `${doc.title} | ${siteTitle}` : siteTitle
 }
 
