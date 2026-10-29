@@ -21,10 +21,13 @@ export const FooterContent = ({
   return (
     <footer className="bg-filas-surface text-filas-ink">
       <div className="mx-auto w-full max-w-[1392px] px-5 sm:px-8 lg:px-14">
-        <div className="grid gap-9 py-12 sm:grid-cols-2 sm:gap-10 sm:py-16 lg:grid-cols-[1fr_1.2fr_0.65fr] lg:gap-16">
-          <div>
+        <div className="grid gap-8 py-10 sm:grid-cols-[minmax(0,1fr)_auto] sm:gap-12 sm:py-12 lg:gap-24">
+          <div className="min-w-0">
             <Brand href={homePath} />
-            <p className="mt-6 text-sm leading-loose whitespace-pre-line text-filas-muted">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-pretty sm:text-base">
+              {footerDefaults.promise}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed whitespace-pre-line text-filas-muted">
               {data.description || footerDefaults.description}
             </p>
             {socialLinks.length > 0 && (
@@ -45,12 +48,9 @@ export const FooterContent = ({
               </nav>
             )}
           </div>
-          <p className="text-3xl leading-snug font-normal tracking-tight whitespace-pre-line">
-            {footerDefaults.promise}
-          </p>
           <nav
             aria-label="Footer navigation"
-            className="flex flex-col items-start gap-4 sm:col-span-2 sm:flex-row sm:flex-wrap sm:gap-6 lg:col-span-1 lg:flex-col lg:gap-4"
+            className="grid grid-cols-2 content-start items-start gap-x-6 gap-y-4 sm:flex sm:flex-col"
           >
             {navItems.map(({ link }, index) => (
               <CMSLink
